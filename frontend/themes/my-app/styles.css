@@ -1,1 +1,18 @@
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
+
+.menubars {
+    padding-top: 3px;
+    height: 2em;
+    width: 2em;
+    margin-left: 85%;
+    color: snow;
+}
+
+.sidebar-button {
+    width: 100%;
+}
+
+.sb {
+    background-color: #d3041c;
+    height: 100vh;
+}

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Todo from "Frontend/generated/com/example/application/Todo";
-import {Sidebar} from "Frontend/components/placeholder/Sidebar.js";
+import {Topbar} from "Frontend/components/placeholder/Topbar.js";
 import {TodoEndpoint} from "Frontend/generated/endpoints";
 import {TextField} from "@hilla/react-components/TextField.js";
 import {Button} from "@hilla/react-components/Button.js";
@@ -35,7 +35,7 @@ export function HomeView() {
 
     return (
         <div>
-            <Sidebar/>
+            <Topbar/>
             <h1>Hello</h1>
             <div className ="flex gap-s">
 

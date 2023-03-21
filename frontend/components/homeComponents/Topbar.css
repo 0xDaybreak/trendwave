@@ -1,0 +1,42 @@
+
+.topbar-buttons {
+    border-radius: 30%;
+    color: snow;
+}
+
+.topbar-right-buttons {
+    margin-left: auto;
+    margin-right: 1%;
+}
+.topbar-right-button {
+    border-radius: 20%;
+    color: snow;
+}
+
+.tb {
+    background-color: #484545;
+    height: 4vh;
+}
+
+.menubars {
+    margin-top: 0.4vh;
+    margin-left: 1vh;
+    height: 2em;
+    width: 2em;
+    color: snow;
+}
+
+.menubars:hover {
+    background-color: #575252;
+    border-radius: 30%;
+    cursor: pointer;
+}
+.margin-left {
+    margin-left: 1vh;
+}
+
+.catefory-title {
+    margin-top: 1vh;
+    font-size: large;
+    color: #f387f3;
+}

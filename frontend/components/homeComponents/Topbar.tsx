@@ -1,9 +1,9 @@
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {Button} from "@hilla/react-components/Button.js";
 import {GoThreeBars} from "react-icons/go";
-import 'Frontend/themes/my-app/styles.css';
+import './Topbar.css';
 import {useState} from "react";
-import {Sidebar} from "Frontend/components/placeholder/Sidebar.js";
+import Sidebar from "Frontend/components/homeComponents/Sidebar.js";
 
 export function Topbar(){
 

@@ -1,0 +1,25 @@
+.sb {
+    height: 100vh;
+    background-color: #565252;
+}
+
+.sb-button {
+    border-radius: 20%;
+    color: snow;
+    width: 100%;
+}
+.sb-expand{
+    height: 100vh;
+    background-color: #565252;
+    width: 12%;
+}
+
+.sb-collapse {
+    height: 100vh;
+    background-color: #565252;
+    width: 2%;
+}
+
+.sb-button:hover {
+    cursor: pointer;
+}

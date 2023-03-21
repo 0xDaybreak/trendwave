@@ -44,6 +44,10 @@
     width: 100%;
 }
 
+.sb-button:hover {
+    cursor: pointer;
+}
+
 .margin-left {
     margin-left: 1vh;
 }

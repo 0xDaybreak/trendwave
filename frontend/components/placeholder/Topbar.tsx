@@ -8,20 +8,14 @@ import {Sidebar} from "Frontend/components/placeholder/Sidebar.js";
 export function Topbar(){
 
     const [show, setShow] = useState(true);
-    const showSidebar = () => {
-        if(show) {
-            setShow(false);
-        }
-        else {
-
-            setShow(true);
-        }
+    const showSidebarHandler = () => {
+        setShow(prevState => !prevState);
     }
     return(
         <div>
 
       <HorizontalLayout className = "tb" >
-          <GoThreeBars className="menubars" onClick={showSidebar}/>
+          <GoThreeBars className="menubars" onClick={showSidebarHandler}/>
           <Button className={"topbar-buttons"}>Home</Button>
           <div className="topbar-right-buttons">
               <Button className="topbar-right-button">Button 2</Button>

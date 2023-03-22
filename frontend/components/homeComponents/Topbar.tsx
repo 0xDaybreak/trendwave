@@ -4,6 +4,7 @@ import {GoThreeBars} from "react-icons/go";
 import './Topbar.css';
 import {useState} from "react";
 import Sidebar from "Frontend/components/homeComponents/Sidebar.js";
+import CardHolder from "Frontend/components/homeComponents/CardHolder";
 
 export function Topbar(){
 
@@ -13,7 +14,6 @@ export function Topbar(){
     }
     return(
         <div>
-
       <HorizontalLayout className = "tb" >
           <GoThreeBars className="menubars" onClick={showSidebarHandler}/>
           <Button className={"topbar-buttons"}>Home</Button>
@@ -22,7 +22,9 @@ export function Topbar(){
               <Button className="topbar-right-button">Button 3</Button>
           </div>
       </HorizontalLayout>
+            <CardHolder/>
             <Sidebar show = {show}/>
+
       </div>
 
     );

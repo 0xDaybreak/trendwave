@@ -8,16 +8,16 @@ const Sidebar = ({show}:{show:boolean}) => {
     if(show) {
         return (
             <div id = "sbs" className='sb-expand'>
-        <VerticalLayout className={"margin-left"}>
-            <div className = "category-title">
-                Categories
+                <VerticalLayout className={"margin-left"}>
+                    <div className = "category-title">
+                        Categories
+                    </div>
+                    <Button className={"sb-button"}>Button 1</Button>
+                    <Button className={"sb-button"}>Button 2</Button>
+                    <Button className={"sb-button"}>Button 3</Button>
+                    <Button className={"sb-button"}>Button 4</Button>
+                </VerticalLayout>
             </div>
-            <Button className={"sb-button"}>Button 1</Button>
-            <Button className={"sb-button"}>Button 2</Button>
-            <Button className={"sb-button"}>Button 3</Button>
-            <Button className={"sb-button"}>Button 4</Button>
-        </VerticalLayout>
-          </div>
         );
     }
 

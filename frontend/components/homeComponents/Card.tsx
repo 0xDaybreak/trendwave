@@ -2,8 +2,8 @@
 
 const Card = () => {
     return (
-      <div>
-
+      <div className="card-item">
+            <p>hello</p>
       </div>
     );
 }

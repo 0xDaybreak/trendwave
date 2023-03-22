@@ -6,26 +6,28 @@ import {useState} from "react";
 import Sidebar from "Frontend/components/homeComponents/Sidebar.js";
 import CardHolder from "Frontend/components/homeComponents/CardHolder";
 
-export function Topbar(){
+export function Topbar() {
 
     const [show, setShow] = useState(true);
     const showSidebarHandler = () => {
         setShow(prevState => !prevState);
     }
-    return(
+    return (
         <div>
-      <HorizontalLayout className = "tb" >
-          <GoThreeBars className="menubars" onClick={showSidebarHandler}/>
-          <Button className={"topbar-buttons"}>Home</Button>
-          <div className="topbar-right-buttons">
-              <Button className="topbar-right-button">Button 2</Button>
-              <Button className="topbar-right-button">Button 3</Button>
-          </div>
-      </HorizontalLayout>
-            <CardHolder/>
-            <Sidebar show = {show}/>
+            <HorizontalLayout className="tb">
+                <GoThreeBars className="menubars" onClick={showSidebarHandler}/>
+                <Button className={"topbar-buttons"}>Home</Button>
+                <div className="topbar-right-buttons">
+                    <Button className="topbar-right-button">Button 2</Button>
+                    <Button className="topbar-right-button">Button 3</Button>
+                </div>
+            </HorizontalLayout>
+            <HorizontalLayout>
+                <Sidebar show={show}/>
+                <CardHolder/>
+            </HorizontalLayout>
 
-      </div>
+        </div>
 
     );
 }

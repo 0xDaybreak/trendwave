@@ -22,7 +22,7 @@ const Sidebar = ({show}:{show:boolean}) => {
     }
 
     return(
-            <div id = "sbs" className='sb-collapse' style = {{width : '2%'}}>
+            <div id = "sbs" className='sb-collapse'>
             </div>
     );
 }

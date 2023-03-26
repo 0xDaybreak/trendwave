@@ -10,7 +10,7 @@ interface CardProps {
 const Card:React.FC<CardProps> = (props:CardProps) => {
     return (
             <video className="card-item" controls>
-                <source src="https://v.redd.it/qv58i2tz82qa1/DASH_360.mp4?source=fallback" type="video/mp4" />
+                <source src={props.img} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
     );

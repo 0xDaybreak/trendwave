@@ -1,12 +1,9 @@
 package com.video.application.entity;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "video", schema = "video_site")
 public class VideoEntity {
 
-    @Id
+
     private String id;
     private String url;
 

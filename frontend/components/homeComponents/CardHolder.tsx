@@ -2,8 +2,21 @@ import Card from './Card'
 import './CardHolder.css'
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
+import {useState} from "react";
+
+interface VideoEntity {
+    id?:string;
+    url?:string;
+}
 
 const CardHolder = () => {
+
+    const[vEntity, setVEntity] = useState<VideoEntity[]>([]);
+
+    function findAll() {
+        //const entities = VideoEntityEndpoint.findAll()
+    }
+
 
     const contentArray = [
         {name: 'Kings of Hearts', value: 10, img: 'https://v.redd.it/qv58i2tz82qa1/DASH_360.mp4?source=fallback'},

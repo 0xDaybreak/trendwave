@@ -2,21 +2,22 @@ import Card from './Card'
 import './CardHolder.css'
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
-import {useState} from "react";
-
-interface VideoEntity {
-    id?:string;
-    url?:string;
-}
+import {useEffect, useState} from "react";
+import {VideoEntityEndpoint} from "Frontend/generated/endpoints";
+import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEntity";
 
 const CardHolder = () => {
 
-    const[vEntity, setVEntity] = useState<VideoEntity[]>([]);
+    const[vEntities, setVEntities] = useState<VideoEntity[]>([]);
 
-    function findAll() {
-        //const entities = VideoEntityEndpoint.findAll()
+    useEffect(()=>{
+        VideoEntityEndpoint.findAll().then(setVEntities);
+    },[]);
+
+    const get = () => {
+        VideoEntityEndpoint.findAll().then(setVEntities);
+        console.log(vEntities);
     }
-
 
     const contentArray = [
         {name: 'Kings of Hearts', value: 10, img: 'https://v.redd.it/qv58i2tz82qa1/DASH_360.mp4?source=fallback'},
@@ -30,6 +31,9 @@ const CardHolder = () => {
     return (
         <VerticalLayout>
             <HorizontalLayout>
+                <button onClick={get}>
+
+                </button>
                 {contentArray.map((content: any) => (
                     <Card name={content.name} value={content.value} img={content.img}/>
                 ))}

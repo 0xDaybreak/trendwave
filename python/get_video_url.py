@@ -12,7 +12,7 @@ video_url = submission.media['reddit_video']['fallback_url']
 client = MongoClient("mongodb://localhost:27017")
 print("Connection Successful")
 db = client.video_site
-collection = db.video
+collection = db.videoEntity
 
 link = {"url": video_url}
 

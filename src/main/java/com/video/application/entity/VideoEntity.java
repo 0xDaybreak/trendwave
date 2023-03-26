@@ -1,9 +1,11 @@
 package com.video.application.entity;
 
+import com.vaadin.flow.component.template.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class VideoEntity {
-
-
+    @Id
     private String id;
     private String url;
 

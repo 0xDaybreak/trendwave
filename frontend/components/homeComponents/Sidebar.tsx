@@ -12,8 +12,8 @@ const Sidebar = ({show}:{show:boolean}) => {
                     <div className = "category-title">
                         Categories
                     </div>
-                    <Button className={"sb-button"}>Button 1</Button>
-                    <Button className={"sb-button"}>Button 2</Button>
+                    <Button className={"sb-button"}>Feed</Button>
+                    <Button className={"sb-button"}>Favourites</Button>
                     <Button className={"sb-button"}>Button 3</Button>
                     <Button className={"sb-button"}>Button 4</Button>
                 </VerticalLayout>

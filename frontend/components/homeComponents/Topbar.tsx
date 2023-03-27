@@ -12,8 +12,8 @@ const Topbar = ({onThreeBarsMenuClick}:{onThreeBarsMenuClick:any}) => {
                 <GoThreeBars className="menubars" onClick={onThreeBarsMenuClick}/>
                 <Button className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
-                    <Button className="topbar-right-button">Button 2</Button>
-                    <Button className="topbar-right-button">Button 3</Button>
+                    <Button className="topbar-right-button">Create Account</Button>
+                    <Button className="topbar-right-button">Sign in</Button>
                 </div>
             </HorizontalLayout>
 

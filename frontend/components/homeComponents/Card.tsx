@@ -1,5 +1,6 @@
 import './Card.css'
 import React from 'react';
+import CardStatusBar from "Frontend/components/homeComponents/CardStatusBar";
 
 interface CardProps {
     url?:string;
@@ -7,10 +8,13 @@ interface CardProps {
 
 const Card:React.FC<CardProps> = (props:CardProps) => {
     return (
-            <video className="card-item" controls>
+        <div className="card-item" >
+            <video className="video-insert" controls>
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
+            <CardStatusBar/>
+        </div>
     );
 }
 

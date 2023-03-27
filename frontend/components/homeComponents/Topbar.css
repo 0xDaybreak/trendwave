@@ -11,6 +11,7 @@
 .topbar-right-button {
     border-radius: 20%;
     color: snow;
+    cursor: pointer;
 }
 
 .tb {

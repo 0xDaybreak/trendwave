@@ -1,0 +1,25 @@
+.favourite-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    padding: 14px 16px;
+    margin-left: 12vw;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    float:right;
+}
+
+.favourite-icon {
+    font-size: 24px;
+    color: #ffb6c1;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.favourite-icon:hover {
+    color: #f1e5e6;
+}

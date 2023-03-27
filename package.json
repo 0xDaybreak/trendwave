@@ -2,6 +2,9 @@
   "name": "no-name",
   "license": "UNLICENSED",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@hilla/form": "1.3.6",
     "@hilla/frontend": "1.3.6",
     "@hilla/generator-typescript-cli": "1.3.6",

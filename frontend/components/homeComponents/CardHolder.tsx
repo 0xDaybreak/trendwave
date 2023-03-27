@@ -7,39 +7,33 @@ import {VideoEntityEndpoint} from "Frontend/generated/endpoints";
 import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEntity";
 
 const CardHolder = () => {
+    const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
+    const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
 
-    const[vEntities, setVEntities] = useState<VideoEntity[]>([]);
-
-    useEffect(()=>{
+    useEffect(() => {
         VideoEntityEndpoint.findAll().then(setVEntities);
-    },[]);
+    }, []);
 
-    const get = () => {
-        VideoEntityEndpoint.findAll().then(setVEntities);
-        console.log(vEntities);
-    }
-
-    const contentArray = [
-        {name: 'Kings of Hearts', value: 10, img: 'https://v.redd.it/qv58i2tz82qa1/DASH_360.mp4?source=fallback'},
-        {name: 'Queen of Hearts', value: 10, img: ''},
-        {name: 'Jack of Hearts', value: 10, img: ''},
-        {name: 'Eight of Hearts', value: 10, img: ''},
-        {name: 'Seven of Diamonds', value: 10, img: ''},
-    ];
-
+    useEffect(() => {
+        const chunks = [];
+        for (let i = 0; i < vEntities.length; i += 4) {
+            chunks.push(vEntities.slice(i, i + 4));
+        }
+        setEntityChunks(chunks);
+    }, [vEntities]);
 
     return (
         <VerticalLayout>
-            <HorizontalLayout>
-                <button onClick={get}>
-
-                </button>
-                {contentArray.map((content: any) => (
-                    <Card name={content.name} value={content.value} img={content.img}/>
-                ))}
-            </HorizontalLayout>
+            {entityChunks.map((chunk, index) => (
+                <HorizontalLayout key={index}>
+                    {chunk.map(entity => (
+                        <Card url={entity.url}/>
+                    ))}
+                </HorizontalLayout>
+            ))}
         </VerticalLayout>
     );
 
 }
-    export default CardHolder
+
+export default CardHolder;

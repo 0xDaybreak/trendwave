@@ -1,6 +1,6 @@
 .sb {
-    height: 100vh;
-    background-color: #565252;
+    height: auto;
+    background-color: #ff0000;
 }
 
 .sb-button {
@@ -9,14 +9,14 @@
     width: 100%;
 }
 .sb-expand{
-    height: 100vh;
-    background-color: #565252;
+    height: auto;
+    background-color: #151a26;
     width: 20vh;
 }
 
 .sb-collapse {
-    height: 100vh;
-    background-color: #565252;
+    height: auto;
+    background-color: #151a26;
     width: 3vh;
 }
 

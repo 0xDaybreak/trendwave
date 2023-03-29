@@ -93,7 +93,10 @@
     "@hilla/generator-typescript-plugin-backbone": "$@hilla/generator-typescript-plugin-backbone",
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
     "@hilla/generator-typescript-cli": "$@hilla/generator-typescript-cli",
-    "react-icons": "$react-icons"
+    "react-icons": "$react-icons",
+    "@fortawesome/fontawesome-svg-core": "$@fortawesome/fontawesome-svg-core",
+    "@fortawesome/free-solid-svg-icons": "$@fortawesome/free-solid-svg-icons",
+    "@fortawesome/react-fontawesome": "$@fortawesome/react-fontawesome"
   },
   "vaadin": {
     "dependencies": {
@@ -141,6 +144,6 @@
       "workbox-core": "6.5.4",
       "workbox-precaching": "6.5.4"
     },
-    "hash": "a13b642570e85050ebe5f10be68350b66341ef53377e2cee8adf000c0566ecb6"
+    "hash": "3e4836558eda25cfb7021a581b5c45c26db508f6e5f1e9e4b95f26dd2f5b75b8"
   }
 }

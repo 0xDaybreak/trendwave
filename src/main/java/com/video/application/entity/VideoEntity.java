@@ -3,11 +3,23 @@ package com.video.application.entity;
 import com.vaadin.flow.component.template.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+
 @Document
 public class VideoEntity {
     @Id
     private String id;
     private String url;
+
+    private ArrayList<String> tags;
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
 
     public String getId() {
         return id;

@@ -12,9 +12,9 @@ const Sidebar = ({show}:{show:boolean}) => {
                     <div className = "category-title">
                         Categories
                     </div>
+                    <Button className={"sb-button"}>Today's Top</Button>
                     <Button className={"sb-button"}>Feed</Button>
                     <Button className={"sb-button"}>Favourites</Button>
-                    <Button className={"sb-button"}>Button 3</Button>
                     <Button className={"sb-button"}>Button 4</Button>
                 </VerticalLayout>
             </div>

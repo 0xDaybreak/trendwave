@@ -15,6 +15,7 @@ const ContextHolder = () => {
     const handleData = (showSignUpModal:any) => {
         setShowSignUpModal(prevState => !prevState);
         console.log(showSignUpModal);
+        //this is a comment
     }
 
     const showSidebarHandler = () => {

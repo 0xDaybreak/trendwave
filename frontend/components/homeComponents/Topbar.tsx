@@ -7,6 +7,7 @@ import React, {useState} from "react";
 interface TopbarProps {
     onThreeBarsMenuClick:any;
     onSignUpBtnClick:any;
+    isMobile: boolean;
 }
 
 const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
@@ -24,7 +25,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     return (
         <div className="tb">
             <HorizontalLayout >
-                <GoThreeBars className="menubars" onClick={props.onThreeBarsMenuClick}/>
+                <GoThreeBars className={`menubars ${props.isMobile ? 'menubars-disabled':''}`} onClick={props.onThreeBarsMenuClick}/>
                 <Button className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
                     <Button onClick={sendDataToParent} className="topbar-right-button">Create Account</Button>

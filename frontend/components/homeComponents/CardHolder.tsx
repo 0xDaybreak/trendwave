@@ -1,10 +1,10 @@
-import Card from './Card'
-import './CardHolder.css'
-import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
-import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
-import {useEffect, useState} from "react";
-import {VideoEntityEndpoint} from "Frontend/generated/endpoints";
-import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEntity";
+import Card from './Card';
+import './CardHolder.css';
+import { HorizontalLayout } from '@hilla/react-components/HorizontalLayout.js';
+import { VerticalLayout } from '@hilla/react-components/VerticalLayout.js';
+import { useEffect, useState } from 'react';
+import { VideoEntityEndpoint } from 'Frontend/generated/endpoints';
+import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
 const CardHolder = () => {
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
@@ -22,18 +22,22 @@ const CardHolder = () => {
         setEntityChunks(chunks);
     }, [vEntities]);
 
+    const isMobile = window.innerWidth < 768; // Check if device is mobile
+
     return (
         <VerticalLayout>
             {entityChunks.map((chunk, index) => (
                 <HorizontalLayout key={index}>
-                    {chunk.map(entity => (
-                        <Card url={entity.url}/>
-                    ))}
+                    {/* Only show the first card when on mobile */}
+                    {isMobile ? (
+                        <Card url={chunk[0]?.url} />
+                    ) : (
+                        chunk.map((entity) => <Card url={entity.url} />)
+                    )}
                 </HorizontalLayout>
             ))}
         </VerticalLayout>
     );
-
-}
+};
 
 export default CardHolder;

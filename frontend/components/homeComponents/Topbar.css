@@ -28,6 +28,10 @@
     color: snow;
 }
 
+.menubars-disabled {
+    pointer-events: none;
+}
+
 .menubars:hover {
     background-color: #575252;
     border-radius: 30%;

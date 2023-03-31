@@ -21,6 +21,8 @@ const ContextHolder = () => {
         setShow(prevState => !prevState);
 
     }
+    const isMobile = window.innerWidth < 768;
+
     return (
         <div>
             {showSignUpModal && (
@@ -30,9 +32,9 @@ const ContextHolder = () => {
                     onClose="test"
                 />)}
             <VerticalLayout className='context-holder-horizontal-layout'>
-                <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler}/>
+                <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
                 <HorizontalLayout>
-                    <Sidebar show={show}/>
+                    {isMobile ? <Sidebar show={false}/> : <Sidebar show={show}/>}
                     <CardHolder/>
                 </HorizontalLayout>
             </VerticalLayout>

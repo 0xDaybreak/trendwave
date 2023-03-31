@@ -8,26 +8,28 @@ import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
 
 const ContextHolder = () => {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     const [showSignUpModal, setShowSignUpModal] = useState(false);
 
     const handleData = (showSignUpModal:any) => {
-        setShowSignUpModal(showSignUpModal);
+        setShowSignUpModal(prevState => !prevState);
+        console.log(showSignUpModal);
     }
 
     const showSidebarHandler = () => {
         setShow(prevState => !prevState);
+
     }
     return (
-        <div >
+        <div className='context-holder-horizontal-layout' >
             {showSignUpModal && (
                 <SignUpModal
                     signUpBtnClicked={true}
                     title="Register or Login"
                     onClose="test"
                 />)}
-            <VerticalLayout className='context-holder-horizontal-layout'>
+            <VerticalLayout >
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler}/>
                 <HorizontalLayout>
                     <Sidebar show={show}/>

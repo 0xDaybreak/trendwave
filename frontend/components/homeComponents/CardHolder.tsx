@@ -27,14 +27,17 @@ const CardHolder = () => {
     return (
         <VerticalLayout>
             {entityChunks.map((chunk, index) => (
-                <HorizontalLayout key={index}>
-                    {/* Only show the first card when on mobile */}
-                    {isMobile ? (
-                        <Card url={chunk[0]?.url} />
-                    ) : (
-                        chunk.map((entity) => <Card url={entity.url} />)
-                    )}
-                </HorizontalLayout>
+                // Conditionally render a VerticalLayout with one card per row when on mobile,
+                // and a HorizontalLayout with multiple cards per row when not on mobile.
+                isMobile ? (
+                    <VerticalLayout key={index}>
+                        {chunk.map((entity) => <Card url={entity.url} />)}
+                    </VerticalLayout>
+                ) : (
+                    <HorizontalLayout key={index}>
+                        {chunk.map((entity) => <Card url={entity.url} />)}
+                    </HorizontalLayout>
+                )
             ))}
         </VerticalLayout>
     );

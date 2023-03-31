@@ -13,7 +13,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     const sendDataToParent = () => {
         handleSignUpBtnClick();
     }
-    const[showSignUpModal, setShowSignUpModal] = useState(false)
+    const[showSignUpModal, setShowSignUpModal] = useState(true)
 
     const handleSignUpBtnClick = () => {
         setShowSignUpModal((prevState:boolean) => (!prevState));

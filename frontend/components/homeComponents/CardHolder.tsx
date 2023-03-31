@@ -16,8 +16,8 @@ const CardHolder = () => {
 
     useEffect(() => {
         const chunks = [];
-        for (let i = 0; i < vEntities.length; i += 4) {
-            chunks.push(vEntities.slice(i, i + 4));
+        for (let i = 0; i < vEntities.length; i += 5) {
+            chunks.push(vEntities.slice(i, i + 5));
         }
         setEntityChunks(chunks);
     }, [vEntities]);

@@ -10,12 +10,14 @@ const Sidebar = ({show}:{show:boolean}) => {
             <div id = "sbs" className='sb-expand'>
                 <VerticalLayout className={"margin-left"}>
                     <div className = "category-title">
-                        Categories
+                        Menu
                     </div>
                     <Button className={"sb-button"}>Today's Top</Button>
                     <Button className={"sb-button"}>Feed</Button>
                     <Button className={"sb-button"}>Favourites</Button>
-                    <Button className={"sb-button"}>Button 4</Button>
+                    <div className = "category-title">
+                        Categories
+                    </div>
                 </VerticalLayout>
             </div>
         );

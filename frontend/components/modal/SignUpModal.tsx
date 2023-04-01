@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SignUpModal.css';
+import TwitterOAuth from "Frontend/components/OAuth/TwitterOAuth";
 interface SignUpModalProps {
     signUpBtnClicked:boolean;
     title:any;
@@ -53,6 +54,7 @@ const SignUpModal:React.FC<SignUpModalProps> = (props:SignUpModalProps) =>{
                         <button type="submit">Submit</button>
                         <button onClick={props.onClose}>Close</button>
                     </div>
+                    <TwitterOAuth/>
                 </form>
             </div>
         </div>

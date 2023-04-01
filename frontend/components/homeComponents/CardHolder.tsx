@@ -9,6 +9,7 @@ import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEn
 const CardHolder = () => {
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
+    let cardCounter = 1;
 
     useEffect(() => {
         VideoEntityEndpoint.findAll().then(setVEntities);
@@ -31,11 +32,15 @@ const CardHolder = () => {
                 // and a HorizontalLayout with multiple cards per row when not on mobile.
                 isMobile ? (
                     <VerticalLayout key={index}>
-                        {chunk.map((entity) => <Card url={entity.url} />)}
+                        {chunk.map((entity) => (
+                            <Card url={entity.url} key={cardCounter++} />
+                        ))}
                     </VerticalLayout>
                 ) : (
                     <HorizontalLayout key={index}>
-                        {chunk.map((entity) => <Card url={entity.url} />)}
+                        {chunk.map((entity) => (
+                            <Card url={entity.url} key={cardCounter++} />
+                        ))}
                     </HorizontalLayout>
                 )
             ))}

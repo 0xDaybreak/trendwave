@@ -3,6 +3,7 @@ import React from 'react';
 import CardStatusBar from "Frontend/components/homeComponents/CardStatusBar";
 
 interface CardProps {
+    key?:number
     url?:string;
 }
 

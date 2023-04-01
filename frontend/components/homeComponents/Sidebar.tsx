@@ -1,8 +1,6 @@
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import {Button} from "@hilla/react-components/Button.js";
 import './Sidebar.css';
-import {useState} from "react";
-
 
 const Sidebar = ({show}:{show:boolean}) => {
     if(show) {

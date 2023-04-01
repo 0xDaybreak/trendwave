@@ -1,13 +1,9 @@
-.sb {
-    height: auto;
-    background-color: #ff0000;
-}
-
 .sb-button {
     border-radius: 20%;
     color: snow;
     width: 100%;
 }
+
 .sb-expand{
     height: auto;
     background-color: #151a26;
@@ -22,4 +18,8 @@
 
 .sb-button:hover {
     cursor: pointer;
+}
+
+.margin-left {
+    margin-left: 1vh;
 }

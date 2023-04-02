@@ -23,7 +23,8 @@ for submission in submissions:
 
         # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
-                        "tags": [submission.subreddit.display_name, "test2"]}
+                        "tags": [submission.subreddit.display_name, "test2"],
+                        "likes": 0}
         result = collection.insert_one(video_entity)
         print(f"Found video: {video_url}")
         print(f"Inserted obj in DB:{video_entity}")

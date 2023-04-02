@@ -5,10 +5,10 @@
     background-color: transparent;
     color: #ffb6c1;
     border: none;
-    padding: 14px 16px;
+    padding: 1.1rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 .like-button:hover {

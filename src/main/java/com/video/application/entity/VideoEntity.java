@@ -1,8 +1,11 @@
 package com.video.application.entity;
 
 import com.vaadin.flow.component.template.Id;
+
+import com.video.application.exceptions.VideoEntityNotFoundException;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 @Document
@@ -10,6 +13,16 @@ public class VideoEntity {
     @Id
     private String id;
     private String url;
+
+    private BigInteger likes;
+
+    public BigInteger getLikes() {
+        return likes;
+    }
+
+    public void setLikes(BigInteger likes) {
+        this.likes = likes;
+    }
 
     private ArrayList<String> tags;
 

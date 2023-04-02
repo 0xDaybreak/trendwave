@@ -55,13 +55,13 @@ const CardHolder = () => {
                     {cardsPerRow === 1 ? (
                         <VerticalLayout>
                             {chunk.map((entity) => (
-                                <Card url={entity.url} key={cardCounter++} />
+                                <Card url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}
                         </VerticalLayout>
                     ) : (
                         <HorizontalLayout>
                             {chunk.map((entity) => (
-                                <Card width={windowWidth} url={entity.url} key={cardCounter++} />
+                                <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}
                         </HorizontalLayout>
                     )}

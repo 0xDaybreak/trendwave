@@ -6,6 +6,7 @@ interface CardProps {
     key?:number
     url?:string;
     width?:number;
+    id?:string;
 }
 
 const Card:React.FC<CardProps> = (props:CardProps) => {
@@ -15,7 +16,7 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <CardStatusBar/>
+            <CardStatusBar id={props.id}/>
         </div>
     );
 }

@@ -10,26 +10,31 @@ interface CardStatusBarProps {
 }
 
 const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) => {
-    const [fetchedLikes, setFetchedLikes] = useState<number | 0>(0);
 
-    useEffect(() => {
-        async function fetchData() {
-            if(props.id) {
-                const videoEntity = await VideoEntityEndpoint.findVideoEntityById(props.id);
-                setFetchedLikes(videoEntity.likes || 0);
+    const [likes, setLikes] = useState(0);
+
+    const fetchData = async () => {
+        if(props.id) {
+            const videoEntity = await VideoEntityEndpoint.findVideoEntityById(props.id);
+            if(videoEntity.likes != null) {
+                setLikes(videoEntity.likes);
+            }
+            else {
+                throw new Error("Invalid video");
             }
         }
-        fetchData();
-    }, [props.id]);
-
-    useEffect(() => {
-        if (props.id) {
-            VideoEntityEndpoint.updateLike(props.id, fetchedLikes);
+        else {
+            throw new Error("Cannot retrieve item with id")
         }
-    }, [fetchedLikes, props.id]);
+    }
+    useEffect(()=>{fetchData()},[]);
 
     const handleLikeClick = () => {
-        setFetchedLikes(prevState => prevState+1);
+        if (props.id) {
+            const updatedLikes = likes + 1;
+            setLikes(updatedLikes);
+            VideoEntityEndpoint.updateLike(props.id, updatedLikes);
+        }
     }
 
     return (
@@ -39,7 +44,7 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
                     <Like/>
                 </div>
                 <div className="likes">
-                    {fetchedLikes}
+                    {likes}
                 </div>
                 <Favourite/>
             </HorizontalLayout>

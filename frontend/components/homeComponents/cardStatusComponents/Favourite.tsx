@@ -6,7 +6,7 @@ import "./Favourite.css";
 const Favourite = () => {
     return (
         <div className="favourite-container">
-        <FontAwesomeIcon icon={faBookmark} className="favourite-icon " />
+            <FontAwesomeIcon icon={faBookmark} className="favourite-icon " />
         </div>
     );
 }

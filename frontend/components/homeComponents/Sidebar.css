@@ -7,13 +7,13 @@
 .sb-expand{
     height: auto;
     background-color: #151a26;
-    width: 20vh;
+    width: 11rem;
 }
 
 .sb-collapse {
     height: auto;
     background-color: #151a26;
-    width: 3vh;
+    width: 2rem;
 }
 
 .sb-button:hover {

@@ -9,40 +9,63 @@ import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEn
 const CardHolder = () => {
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth * 0.8 / 4);
+    const [cardsPerRow, setCardsPerRow] = useState(4);
     let cardCounter = 1;
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth * 0.8 / 4);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         VideoEntityEndpoint.findAll().then(setVEntities);
     }, []);
 
     useEffect(() => {
+        const calculateCardsPerRow = () => {
+            if (window.innerWidth >= 992) {
+                setCardsPerRow(4);
+            } else if (window.innerWidth >= 768) {
+                setCardsPerRow(3);
+            } else {
+                setCardsPerRow(1);
+            }
+        };
+
+        calculateCardsPerRow();
+        window.addEventListener('resize', calculateCardsPerRow);
+
+        return () => window.removeEventListener('resize', calculateCardsPerRow);
+    }, []);
+
+    useEffect(() => {
         const chunks = [];
-        for (let i = 0; i < vEntities.length; i += 5) {
-            chunks.push(vEntities.slice(i, i + 5));
+        for (let i = 0; i < vEntities.length; i += cardsPerRow) {
+            chunks.push(vEntities.slice(i, i + cardsPerRow));
         }
         setEntityChunks(chunks);
-    }, [vEntities]);
-
-    const isMobile = window.innerWidth < 768; // Check if device is mobile
+    }, [vEntities, cardsPerRow]);
 
     return (
         <VerticalLayout>
             {entityChunks.map((chunk, index) => (
-                // Conditionally render a VerticalLayout with one card per row when on mobile,
-                // and a HorizontalLayout with multiple cards per row when not on mobile.
-                isMobile ? (
-                    <VerticalLayout key={index}>
-                        {chunk.map((entity) => (
-                            <Card url={entity.url} key={cardCounter++} />
-                        ))}
-                    </VerticalLayout>
-                ) : (
-                    <HorizontalLayout key={index}>
-                        {chunk.map((entity) => (
-                            <Card url={entity.url} key={cardCounter++} />
-                        ))}
-                    </HorizontalLayout>
-                )
+                <div key={index} style={{ marginBottom: '20px' }}>
+                    {cardsPerRow === 1 ? (
+                        <VerticalLayout>
+                            {chunk.map((entity) => (
+                                <Card url={entity.url} key={cardCounter++} />
+                            ))}
+                        </VerticalLayout>
+                    ) : (
+                        <HorizontalLayout>
+                            {chunk.map((entity) => (
+                                <Card width={windowWidth} url={entity.url} key={cardCounter++} />
+                            ))}
+                        </HorizontalLayout>
+                    )}
+                </div>
             ))}
         </VerticalLayout>
     );

@@ -97,7 +97,8 @@
     "react-icons": "$react-icons",
     "@fortawesome/fontawesome-svg-core": "$@fortawesome/fontawesome-svg-core",
     "@fortawesome/free-solid-svg-icons": "$@fortawesome/free-solid-svg-icons",
-    "@fortawesome/react-fontawesome": "$@fortawesome/react-fontawesome"
+    "@fortawesome/react-fontawesome": "$@fortawesome/react-fontawesome",
+    "react-twitter-login": "$react-twitter-login"
   },
   "vaadin": {
     "dependencies": {
@@ -145,6 +146,6 @@
       "workbox-core": "6.5.4",
       "workbox-precaching": "6.5.4"
     },
-    "hash": "3e4836558eda25cfb7021a581b5c45c26db508f6e5f1e9e4b95f26dd2f5b75b8"
+    "hash": "f6eb579e39e33209ce5a607f11d86234faab83cadc927a4dacb4aacf13c42651"
   }
 }

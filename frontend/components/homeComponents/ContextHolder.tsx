@@ -6,8 +6,9 @@ import React, {useEffect, useState} from "react";
 import './ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
+
 const ContextHolder = () => {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -22,6 +23,7 @@ const ContextHolder = () => {
 
     useEffect(() => {
         const handleResize = () => {
+            console.log(isMobile);
             if (window.innerWidth < 768) {
                 setShow(false);
                 setIsMobile(true);
@@ -45,7 +47,7 @@ const ContextHolder = () => {
             )}
             <VerticalLayout className="context-holder-vertical-layout">
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
-                <HorizontalLayout>
+                <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
                     <CardHolder />
                 </HorizontalLayout>

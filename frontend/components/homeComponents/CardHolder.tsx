@@ -49,7 +49,7 @@ const CardHolder = () => {
     }, [vEntities, cardsPerRow]);
 
     return (
-        <VerticalLayout>
+        <VerticalLayout className="card-holder-vertical-layout">
             {entityChunks.map((chunk, index) => (
                 <div key={index} style={{ marginBottom: '20px' }}>
                     {cardsPerRow === 1 ? (

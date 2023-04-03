@@ -2,7 +2,7 @@ import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {Button} from "@hilla/react-components/Button.js";
 import {GoThreeBars} from "react-icons/go";
 import './Topbar.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 interface TopbarProps {
     onThreeBarsMenuClick:any;
@@ -11,6 +11,7 @@ interface TopbarProps {
 }
 
 const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
+
     const sendDataToParent = () => {
         handleSignUpBtnClick();
     }
@@ -21,6 +22,11 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
         props.onSignUpBtnClick(showSignUpModal)
     }
 
+    const [mobileState, setMobileState] = useState(props.isMobile);
+
+    useEffect(() => {
+        setMobileState(props.isMobile);
+    }, [props.isMobile]);
 
     return (
         <div className="tb">

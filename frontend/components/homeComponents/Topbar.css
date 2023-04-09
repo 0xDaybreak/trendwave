@@ -2,6 +2,7 @@
 .topbar-buttons {
     border-radius: 30%;
     color: snow;
+    cursor: pointer;
 }
 
 .topbar-right-buttons {

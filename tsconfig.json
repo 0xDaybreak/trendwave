@@ -6,6 +6,7 @@
 {
   "flow_version": "23.3.4",
   "compilerOptions": {
+    "esModuleInterop": true,
     "sourceMap": true,
     "jsx": "react-jsx",
     "inlineSources": true,

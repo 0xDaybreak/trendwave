@@ -1,13 +1,13 @@
 import Topbar from "Frontend/components/homeComponents/Topbar";
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import Sidebar from "Frontend/components/homeComponents/Sidebar";
-import CardHolder from "Frontend/components/homeComponents/CardHolder";
+import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
 import React, {useEffect, useState} from "react";
-import './ContextHolder.css'
+import 'Frontend/components/homeComponents/ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
 
-const ContextHolder = () => {
+const ContextHolderTop = () => {
     const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -47,11 +47,11 @@ const ContextHolder = () => {
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
-                    <CardHolder />
+                    <CardHolderTop />
                 </HorizontalLayout>
             </VerticalLayout>
         </div>
     );
 };
 
-export default ContextHolder;
+export default ContextHolderTop;

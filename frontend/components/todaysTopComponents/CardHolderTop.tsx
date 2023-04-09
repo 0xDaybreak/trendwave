@@ -1,12 +1,12 @@
-import Card from './Card';
-import './CardHolder.css';
+import Card from 'Frontend/components/homeComponents/Card';
+import 'Frontend/components/homeComponents/CardHolder.css';
 import { HorizontalLayout } from '@hilla/react-components/HorizontalLayout.js';
 import { VerticalLayout } from '@hilla/react-components/VerticalLayout.js';
 import { useEffect, useState, useRef } from 'react';
 import { VideoEntityEndpoint } from 'Frontend/generated/endpoints';
 import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
-const CardHolder = () => {
+const CardHolderTop = () => {
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * 0.8 / 4);
@@ -34,7 +34,10 @@ const CardHolder = () => {
     }, []);
 
     useEffect(() => {
-        VideoEntityEndpoint.findAll().then(setVEntities);
+        VideoEntityEndpoint.findTodaysTop().then(setVEntities);
+        for(let entity in vEntities){
+            console.log(entity)
+        }
     }, []);
 
     useEffect(() => {
@@ -85,4 +88,4 @@ const CardHolder = () => {
     );
 };
 
-export default CardHolder;
+export default CardHolderTop;

@@ -8,7 +8,10 @@ import com.video.application.repository.VideoEntityRepository;
 import dev.hilla.Endpoint;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Endpoint
 @AnonymousAllowed
@@ -34,4 +37,17 @@ public class VideoEntityEndpoint {
         return repository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
     }
 
+    public List<VideoEntity> findTodaysTop() {
+        LocalDate currentDate = LocalDate.now();
+        String currentDay = String.valueOf(currentDate.getDayOfMonth());
+        return repository.findAll().stream()
+                .filter(videoEntity -> {
+                    LocalDate videoDate = LocalDate.parse(videoEntity.getDate());
+                    String videoDay = String.valueOf(videoDate.getDayOfMonth());
+                    return currentDay.equals(videoDay);
+                })
+                .sorted(Comparator.comparing(VideoEntity::getLikes).reversed())
+                .limit(12)
+                .collect(Collectors.toList());
+    }
 }

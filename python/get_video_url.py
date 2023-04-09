@@ -1,5 +1,6 @@
 import praw
 from pymongo import MongoClient
+from datetime import date
 
 reddit = praw.Reddit(client_id='***REMOVED***',
                      client_secret='***REMOVED***',
@@ -13,6 +14,10 @@ collection = db.videoEntity
 # Get the top posts from r/oddlysatisfying for today
 submissions = reddit.subreddit('oddlysatisfying').top(time_filter='day', limit=10)
 
+
+# get current date
+today = str(date.today())
+
 # Loop through the submissions and extract any videos
 for submission in submissions:
     # Check if the submission has a reddit video
@@ -24,7 +29,8 @@ for submission in submissions:
         # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
                         "tags": [submission.subreddit.display_name, "test2"],
-                        "likes": 0}
+                        "likes": 0,
+                        "date": today}
         result = collection.insert_one(video_entity)
         print(f"Found video: {video_url}")
         print(f"Inserted obj in DB:{video_entity}")

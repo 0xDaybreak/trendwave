@@ -17,4 +17,5 @@ public interface VideoEntityRepository extends MongoRepository<VideoEntity, Stri
     void updateLike(String id, BigInteger like);
 
     VideoEntity findVideoEntityById(String id);
+
 }

@@ -17,6 +17,7 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
                 Your browser does not support the video tag.
             </video>
             <CardStatusBar id={props.id}/>
+
         </div>
     );
 }

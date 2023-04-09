@@ -1,6 +1,7 @@
 
 import { createBrowserRouter, IndexRouteObject, NonIndexRouteObject, useMatches } from 'react-router-dom';
 import { HomeView } from "Frontend/views/HomeView";
+import TodaysTopView from "Frontend/views/TodaysTopView";
 
 export type MenuProps = Readonly<{
   icon?: string;
@@ -28,7 +29,9 @@ export const useViewMatches = useMatches as () => readonly ViewRouteMatch[];
 
 export const routes: readonly ViewRouteObject[] = [
   {path: '/', element: <HomeView/>},
+    {path: 'top', element: <TodaysTopView/>}
 ];
+
 
 const router = createBrowserRouter([...routes]);
 export default router;

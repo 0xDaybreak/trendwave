@@ -6,6 +6,11 @@ import com.video.application.entity.VideoEntity;
 import com.video.application.exceptions.VideoEntityNotFoundException;
 import com.video.application.repository.VideoEntityRepository;
 import dev.hilla.Endpoint;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -16,11 +21,15 @@ import java.util.stream.Collectors;
 @Endpoint
 @AnonymousAllowed
 public class VideoEntityEndpoint {
+
+    @Autowired
+    private final MongoTemplate mongoTemplate;
     private final VideoEntityRepository repository;
 
-    public VideoEntityEndpoint(VideoEntityRepository repository){
+    public VideoEntityEndpoint(VideoEntityRepository repository, MongoTemplate mongoTemplate){
         System.out.println(repository);
         this.repository = repository;
+        this.mongoTemplate = mongoTemplate;
     }
 
     public List<VideoEntity> findAll() {
@@ -49,5 +58,10 @@ public class VideoEntityEndpoint {
                 .sorted(Comparator.comparing(VideoEntity::getLikes).reversed())
                 .limit(12)
                 .collect(Collectors.toList());
+    }
+    public List<VideoEntity> findTwelve(int page) {
+        int pageSize = 12;
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return repository.findAll(pageable).getContent();
     }
 }

@@ -7,23 +7,13 @@ import { VideoEntityEndpoint } from 'Frontend/generated/endpoints';
 import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
 const CardHolder = () => {
+
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * 0.8 / 4);
     const [cardsPerRow, setCardsPerRow] = useState(4);
     const myRef:any = useRef();
     const[myElementIsVisible, setMyElementISVisible] = useState<any>();
-    console.log('myElementIsVisilbe', myElementIsVisible);
-    useEffect(()=>{
-        const observer = new IntersectionObserver((entries)=> {
-            const entry = entries[0];
-            console.log('entry', entry);
-            setMyElementISVisible(entry.isIntersecting)
-        })
-        if(myRef.current != null) {
-            observer.observe(myRef.current);
-        }
-    },[])
 
     let cardCounter = 1;
 
@@ -33,8 +23,14 @@ const CardHolder = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+
     useEffect(() => {
-        VideoEntityEndpoint.findAll().then(setVEntities);
+        VideoEntityEndpoint.findTwelve(0).then(setVEntities);
+        myRef.current = new IntersectionObserver(row => {
+            if(row[0].isIntersecting) {
+                console.log("we are intersecting")
+            }
+        })
     }, []);
 
     useEffect(() => {
@@ -73,7 +69,7 @@ const CardHolder = () => {
                             ))}
                         </VerticalLayout>
                     ) : (
-                        <HorizontalLayout ref={myRef}>
+                        <HorizontalLayout ref={cardCounter===12 ? myRef:null}>
                             {chunk.map((entity) => (
                                 <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}

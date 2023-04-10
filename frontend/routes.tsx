@@ -28,8 +28,9 @@ export type ViewRouteMatch = Readonly<Override<RouteMatch, ViewMeta>>;
 export const useViewMatches = useMatches as () => readonly ViewRouteMatch[];
 
 export const routes: readonly ViewRouteObject[] = [
-  {path: '/', element: <HomeView/>},
+    {path: '/', element: <HomeView/>},
     {path: 'top', element: <TodaysTopView/>}
+
 ];
 
 

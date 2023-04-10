@@ -21,7 +21,6 @@ const CardHolder = () => {
             if(myRef.current) myRef.current.disconnect();
             myRef.current = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
-                    console.log("I am intersecting")
                     setPageNr((prevPageNr) => prevPageNr + 1);
                 }
             },{ threshold: 0.88 });
@@ -39,7 +38,6 @@ const CardHolder = () => {
 
 
     useEffect(() => {
-        console.log(pageNr)
         VideoEntityEndpoint.findTwelve(pageNr).then((newVEntities) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );

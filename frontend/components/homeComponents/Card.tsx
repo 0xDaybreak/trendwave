@@ -24,12 +24,13 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
             videoRef.current.pause();
             videoRef.current.style.opacity = '70%';
             if(videoRef.current.currentTime===videoRef.current.duration) {
-                videoRef.current.style.opacity = '100%';
+                //videoRef.current.style.opacity = '100%';
             }
         }
     }
 
     useEffect(()=>{
+        console.log("loaded")
         const video:any = videoRef.current;
         video.addEventListener('click',()=>{
             video.unmute;

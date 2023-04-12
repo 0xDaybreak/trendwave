@@ -21,16 +21,4 @@ public class Application implements AppShellConfigurator {
         SpringApplication.run(Application.class, args);
     }
 
-    /*
-    @Bean
-    CommandLineRunner runner(VideoEntityRepository repository) {
-        return  args-> {
-            VideoEntity video = new VideoEntity();
-            video.setUrl("www.test.com");
-            repository.insert(video);
-        };
-    }
-
-     */
-
 }

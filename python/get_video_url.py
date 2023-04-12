@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id='***REMOVED***',
 
 client = MongoClient("mongodb://localhost:27017")
 print("Connection Successful")
-db = client.video_site
+db = client.videosite
 collection = db.videoEntity
 
 # Get the top posts from r/oddlysatisfying for today

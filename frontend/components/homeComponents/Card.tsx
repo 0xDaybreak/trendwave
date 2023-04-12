@@ -1,5 +1,5 @@
 import './Card.css'
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import CardStatusBar from "Frontend/components/homeComponents/CardStatusBar";
 
 interface CardProps {
@@ -29,16 +29,27 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
         }
     }
 
+    useEffect(()=>{
+        const video:any = videoRef.current;
+        video.addEventListener('click',()=>{
+            video.unmute;
+            if(video.paused){
+                video.play();
+            } else {
+                video.pause();
+            }
+        })
+    },[])
+
     return (
         <div style={{width:props.width}} className="card-item" >
-            <video className="video-insert" disablePictureInPicture controlsList="nodownload" ref={videoRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <video className="video-insert" muted disablePictureInPicture controlsList="nodownload" ref={videoRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <CardStatusBar id={props.id}/>
-
         </div>
     );
 }
 
-export default Card
+export default Card;

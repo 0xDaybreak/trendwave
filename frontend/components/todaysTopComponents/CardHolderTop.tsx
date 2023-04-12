@@ -34,10 +34,9 @@ const CardHolderTop = () => {
     }, []);
 
     useEffect(() => {
-        VideoEntityEndpoint.findTodaysTop().then(setVEntities);
-        for(let entity in vEntities){
-            console.log(entity)
-        }
+        VideoEntityEndpoint.findTodaysTop().then((entities: any) => {
+            setVEntities(entities);
+        });
     }, []);
 
     useEffect(() => {

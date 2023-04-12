@@ -38,7 +38,7 @@ const CardHolder = () => {
 
 
     useEffect(() => {
-        VideoEntityEndpoint.findTwelve(pageNr).then((newVEntities) =>
+        VideoEntityEndpoint.findTwelve(pageNr).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }, [pageNr]);

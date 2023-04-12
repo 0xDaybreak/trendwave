@@ -4,6 +4,7 @@ import Favourite from "Frontend/components/homeComponents/cardStatusComponents/F
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import React, {useEffect, useState} from "react";
 import {VideoEntityEndpoint} from "Frontend/generated/endpoints";
+import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEntity";
 
 interface CardStatusBarProps {
     id?:string;
@@ -15,7 +16,7 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
 
     const fetchData = async () => {
         if(props.id) {
-            const videoEntity = await VideoEntityEndpoint.findVideoEntityById(props.id);
+            const videoEntity:VideoEntity | any = await VideoEntityEndpoint.findVideoEntityById(props.id);
             if(videoEntity.likes != null) {
                 setLikes(videoEntity.likes);
             }

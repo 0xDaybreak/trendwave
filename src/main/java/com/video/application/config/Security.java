@@ -1,28 +1,41 @@
 package com.video.application.config;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jose.jws.JwsAlgorithms;
 
+
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+@EnableWebSecurity
+@Configuration
 public class Security extends VaadinWebSecurity {
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        super.configure(httpSecurity);
-        setLoginView(httpSecurity, "/login");
-        httpSecurity.formLogin();
-    }
+    @Value("${my.app.auth.secret}")
+    private String authSecret;
 
-    @Bean
-    public UserDetailsManager userDetailsService() {
-        // Configure users and roles in memory
-        return new InMemoryUserDetailsManager(
-                // the {noop} prefix tells Spring that the password is not encoded
-                User.withUsername("user").password("{noop}user").roles("USER").build(),
-                User.withUsername("admin").password("{noop}admin").roles("ADMIN", "USER").build()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        super.configure(http);
+
+        // Disable creating and using sessions in Spring Security
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Register your login view to the view access checker mechanism
+        setLoginView(http, "/login");
+
+        // Enable stateless authentication
+        setStatelessAuthentication(http,
+                new SecretKeySpec(Base64.getDecoder().decode(authSecret),
+                        JwsAlgorithms.HS256),
+                "com.video.application"
         );
     }
+
 }

@@ -18,7 +18,7 @@ public class JwtHelper {
     @Value("#{${accessTokenExpirationMinutes} * 60 * 1000}")
     private int accessTokenExpirationTime;
     @Value("#{${refreshTokenExpirationDays} * 24 * 60 * 60 * 100}")
-    private int refreshTokenExpirationTime;
+    private long refreshTokenExpirationTime;
 
     private Algorithm accessTokenAlgorithm;
     private Algorithm refreshTokenAlgorithm;

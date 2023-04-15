@@ -20,6 +20,11 @@ const ContextHolder = () => {
         setShow((prevState) => !prevState);
     };
 
+    const handleShowModal = () => {
+
+        setShowSignUpModal(prevState => !prevState);
+    }
+
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
@@ -41,7 +46,7 @@ const ContextHolder = () => {
     return (
         <div className="big-div">
             {showSignUpModal && (
-                <SignUpModal signUpBtnClicked={true} title="Register or Login" onClose="test" />
+                <SignUpModal signUpBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="context-holder-vertical-layout">
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />

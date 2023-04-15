@@ -4,18 +4,17 @@ import TwitterOAuth from "Frontend/components/OAuth/TwitterOAuth";
 interface SignUpModalProps {
     signUpBtnClicked:boolean;
     title:any;
-    onClose:any;
+    handleShowModal:any;
+
 }
 
 const SignUpModal:React.FC<SignUpModalProps> = (props:SignUpModalProps) =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleSubmit(event:any) {
+    const handleCloseModal = (event:any) => {
         event.preventDefault();
-        // Handle form submission here, e.g. by sending data to server
-        // and redirecting to the main page
-        props.onClose();
+        props.handleShowModal();
     }
 
     function handleInputChange(event:any) {
@@ -30,7 +29,7 @@ const SignUpModal:React.FC<SignUpModalProps> = (props:SignUpModalProps) =>{
     return (
         <div className="modal">
             <div className="modal-content">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleCloseModal}>
                     <h2>{props.title}</h2>
                     <label>
                         Username:
@@ -52,7 +51,7 @@ const SignUpModal:React.FC<SignUpModalProps> = (props:SignUpModalProps) =>{
                     </label>
                     <div className="modal-buttons">
                         <button type="submit">Submit</button>
-                        <button onClick={props.onClose}>Close</button>
+                        <button onClick={handleCloseModal}>Close</button>
                     </div>
                     <TwitterOAuth/>
                 </form>

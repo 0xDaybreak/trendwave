@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import 'Frontend/components/homeComponents/ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
+import CardHolder from "Frontend/components/homeComponents/CardHolder";
 
 const ContextHolderTop = () => {
     const [show, setShow] = useState(window.innerWidth > 768);
@@ -19,6 +20,11 @@ const ContextHolderTop = () => {
     const showSidebarHandler = () => {
         setShow((prevState) => !prevState);
     };
+
+    const handleShowModal = () => {
+
+        setShowSignUpModal(false);
+    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -41,17 +47,18 @@ const ContextHolderTop = () => {
     return (
         <div className="big-div">
             {showSignUpModal && (
-                <SignUpModal signUpBtnClicked={true} title="Register or Login" onClose="test" />
+                <SignUpModal signUpBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="context-holder-vertical-layout">
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
-                    <CardHolderTop />
+                    <CardHolder />
                 </HorizontalLayout>
             </VerticalLayout>
         </div>
     );
 };
+
 
 export default ContextHolderTop;

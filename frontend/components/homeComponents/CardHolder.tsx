@@ -14,6 +14,7 @@ const CardHolder = () => {
     const [cardsPerRow, setCardsPerRow] = useState(4);
     const [pageNr, setPageNr] = useState(0);
 
+
     const myRef:any = useRef(null);
     const lastCard:any = useCallback(
         (node:any) => {

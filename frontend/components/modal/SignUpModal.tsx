@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SignUpModal.css';
 import TwitterOAuth from "Frontend/components/OAuth/TwitterOAuth";
 interface SignUpModalProps {
-    signUpBtnClicked:boolean;
+    signInBtnClicked:boolean;
     title:any;
     handleShowModal:any;
 

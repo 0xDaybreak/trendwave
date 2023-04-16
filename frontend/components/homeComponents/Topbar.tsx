@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 interface TopbarProps {
     onThreeBarsMenuClick:any;
-    onSignUpBtnClick:any;
+    signInBtnClicked:any;
     isMobile: boolean;
 }
 
@@ -18,15 +18,18 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     const handleHomeButtonClick = () => {
         navigate('/');
     };
+    const handleSignUpBtnClick = () => {
+        navigate('/register');
+    };
 
-    const sendDataToParent = () => {
-        handleSignUpBtnClick();
+    const sendDataToContextHolder = () => {
+        handleSignInBtnClick();
     }
     const[showSignUpModal, setShowSignUpModal] = useState(true)
 
-    const handleSignUpBtnClick = () => {
+    const handleSignInBtnClick = () => {
         setShowSignUpModal((prevState:boolean) => (!prevState));
-        props.onSignUpBtnClick(showSignUpModal)
+        props.signInBtnClicked(showSignUpModal)
     }
 
     const [mobileState, setMobileState] = useState(props.isMobile);
@@ -41,8 +44,8 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
                 <GoThreeBars className={`menubars ${props.isMobile ? 'menubars-disabled':''}`} onClick={props.onThreeBarsMenuClick}/>
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
-                    <Button onClick={sendDataToParent} className="topbar-right-button">Create Account</Button>
-                    <Button className="topbar-right-button">Sign in</Button>
+                    <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create Account</Button>
+                    <Button onClick={sendDataToContextHolder} className="topbar-right-button">Sign in</Button>
                 </div>
             </HorizontalLayout>
 

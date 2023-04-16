@@ -7,6 +7,8 @@ import './ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
 import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
+import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
+import '@vaadin/vaadin-lumo-styles/utility.js';
 
 interface ContextHolderProps {
     content?:string;
@@ -50,19 +52,29 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     }, []);
 
     return (
-        <div className="big-div">
+        <div className="flex-wrap min-h-screen">
             {showSignUpModal && (
-                <SignUpModal signUpBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
+                <SignUpModal signInBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="context-holder-vertical-layout">
-                <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
+                <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
-                    {props.content==='top' ? <CardHolderTop/> : <CardHolder/>}
+                    {(() => {
+                        switch (props.content) {
+                            case 'top':
+                                return <CardHolderTop />;
+                            case 'register':
+                                return <RegisterHolder />;
+                            default:
+                                return <CardHolder />;
+                        }
+                    })()}
                 </HorizontalLayout>
             </VerticalLayout>
         </div>
     );
+
 };
 
 export default ContextHolder;

@@ -19,6 +19,8 @@
     background-color: #65486c;
     height: 2.4rem;
     width: 100%;
+    position:fixed;
+    z-index:9999;
 }
 
 .menubars {

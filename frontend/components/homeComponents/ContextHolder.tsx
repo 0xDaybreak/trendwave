@@ -20,7 +20,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-    const handleData = (showSignUpModal:any) => {
+    const handleData = () => {
         setShowSignUpModal((prevState) => !prevState);
     };
 
@@ -52,11 +52,11 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     }, []);
 
     return (
-        <div className="flex-wrap min-h-screen">
+        <div className="big-div">
             {showSignUpModal && (
                 <SignUpModal signInBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
             )}
-            <VerticalLayout className="context-holder-vertical-layout">
+            <VerticalLayout className="min-h-screen">
                 <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />

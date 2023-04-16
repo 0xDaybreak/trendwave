@@ -1,10 +1,10 @@
-import ContextHolderTop from "Frontend/components/todaysTopComponents/ContextHolderTop";
+import ContextHolder from "Frontend/components/homeComponents/ContextHolder";
 
 
 const TodaysTopView = () => {
 
     return (
-        <ContextHolderTop/>
+        <ContextHolder content={'top'}/>
     );
 }
 

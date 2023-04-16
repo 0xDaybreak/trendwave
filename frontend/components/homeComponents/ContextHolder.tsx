@@ -6,8 +6,14 @@ import React, {useEffect, useState} from "react";
 import './ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignUpModal from "Frontend/components/modal/SignUpModal";
+import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
 
-const ContextHolder = () => {
+interface ContextHolderProps {
+    content?:string;
+}
+
+
+const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) => {
     const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -52,7 +58,7 @@ const ContextHolder = () => {
                 <Topbar onSignUpBtnClick={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
-                    <CardHolder />
+                    {props.content==='top' ? <CardHolderTop/> : <CardHolder/>}
                 </HorizontalLayout>
             </VerticalLayout>
         </div>

@@ -13,10 +13,13 @@ const RegisterHolder = () => {
             <div className={"m-auto"}>
                 <VerticalLayout className={"min-h-screen"}>
                     <img className={"image"} alt="logo" src={sheepImg} />
+                    <h3 className={"text"}>Email</h3>
                     <TextField className={"field"}>Email</TextField>
+                    <h3 className={"text"}>Password</h3>
                     <PasswordField className={"field"}>Password</PasswordField>
+                    <h3 className={"text"}>Repeat Password</h3>
                     <PasswordField className={"field"}>Repeat Password</PasswordField>
-                    <Button className={"text"}> Create Account</Button>
+                    <Button className={"button"}> Create Account</Button>
                 </VerticalLayout>
             </div>
         </VerticalLayout>

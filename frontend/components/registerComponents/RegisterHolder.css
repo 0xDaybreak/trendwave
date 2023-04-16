@@ -17,6 +17,13 @@
     height: auto;
 }
 
+.text {
+    color: #f387f3;
+    width: 100%;
+    max-width: 95%;
+    align-self: center;
+}
+
 .field {
     margin-top: 1vh;
     align-self: center;
@@ -27,4 +34,12 @@
     overflow: auto;
     width: 100%;
     max-width: 95%;
+}
+
+.button {
+    color: #f387f3;
+    width: 100%;
+    max-width: 95%;
+    align-self: center;
+    cursor:pointer;
 }

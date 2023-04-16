@@ -31,8 +31,8 @@ const Sidebar = ({show}:{show:boolean}) => {
     }
 
     return(
-            <div id = "sbs" className='sb-collapse'>
-            </div>
+        <div id = "sbs" className='sb-collapse'>
+        </div>
     );
 }
 export default Sidebar

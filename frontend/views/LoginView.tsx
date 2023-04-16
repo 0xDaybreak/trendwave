@@ -7,13 +7,8 @@ import User from "Frontend/generated/com/video/application/entity/User";
 export const LoginView = () => {
   const navigate = useNavigate();
     const user: User = {
-        accountNonExpired: true,
-        accountNonLocked: true,
-        credentialsNonExpired: true,
-        enabled: true,
-        id: "123",
-        username: "johndoe",
-        password:"123"
+        username: "johndoes",
+        password:"1234",
     };
   return (
       <div>

@@ -1,5 +1,6 @@
 package com.video.application.service;
 
+import com.video.application.entity.SecurityUser;
 import com.video.application.entity.User;
 import com.video.application.exceptions.UserNameAlreadyExistsException;
 import com.video.application.repository.UserRepository;
@@ -23,7 +24,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userRepository != null) {
-            return userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("username not found"));
+            User u = userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("username not found"));
+            return new SecurityUser(u);
         }
         return null;
     }

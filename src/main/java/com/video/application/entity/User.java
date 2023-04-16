@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Document
-public class User implements UserDetails {
+public class User {
     @Id
     private String id;
     @Indexed(unique = true)
@@ -28,45 +28,21 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setPassword(@NonNull String password) {
-        this.password = password;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
+    @NonNull
     public String getUsername() {
-        return this.username;
+        return username;
     }
+
     public void setUsername(@NonNull String username) {
         this.username = username;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    @NonNull
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public void setPassword(@NonNull String password) {
+        this.password = password;
     }
 }

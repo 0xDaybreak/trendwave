@@ -17,7 +17,6 @@ public class User implements UserDetails {
     @Indexed(unique = true)
     @NonNull
     private String username;
-    @JsonIgnore
     @NonNull
     private String password;
 
@@ -40,7 +39,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
 
     @Override

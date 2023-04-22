@@ -34,6 +34,8 @@
     overflow: auto;
     width: 100%;
     max-width: 95%;
+    background-color: #2b334b;
+    border-radius: 25px;
 }
 
 .button {

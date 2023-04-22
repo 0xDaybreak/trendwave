@@ -4,11 +4,15 @@ import com.video.application.entity.SecurityUser;
 import com.video.application.entity.User;
 import com.video.application.exceptions.UserNameAlreadyExistsException;
 import com.video.application.repository.UserRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -25,6 +29,8 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userRepository != null) {
             User u = userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("username not found"));
+            //List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
+            //u.setAuthorities(authorities);
             return new SecurityUser(u);
         }
         return null;
@@ -36,7 +42,7 @@ public class UserService implements UserDetailsService {
         }
         return null;
     }
-    
+
     public void createUser(User user) {
         assert userRepository != null;
         userRepository.findByUsername(user.getUsername())

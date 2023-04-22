@@ -5,7 +5,7 @@ import CardHolder from "Frontend/components/homeComponents/CardHolder";
 import React, {useEffect, useState} from "react";
 import './ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
-import SignUpModal from "Frontend/components/modal/SignUpModal";
+import SignInModal from "Frontend/components/modal/SignInModal";
 import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
@@ -17,11 +17,11 @@ interface ContextHolderProps {
 
 const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) => {
     const [show, setShow] = useState(window.innerWidth > 768);
-    const [showSignUpModal, setShowSignUpModal] = useState(false);
+    const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     const handleData = () => {
-        setShowSignUpModal((prevState) => !prevState);
+        setShowSignInModal((prevState) => !prevState);
     };
 
     const showSidebarHandler = () => {
@@ -30,7 +30,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     const handleShowModal = () => {
 
-        setShowSignUpModal(prevState => !prevState);
+        setShowSignInModal(prevState => !prevState);
     }
 
     useEffect(() => {
@@ -53,8 +53,8 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     return (
         <div className="big-div">
-            {showSignUpModal && (
-                <SignUpModal signInBtnClicked={true} title="Register or Login" handleShowModal={handleShowModal} />
+            {showSignInModal && (
+                <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="min-h-screen">
                 <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />

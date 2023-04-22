@@ -14,7 +14,7 @@ const Sidebar = ({show}:{show:boolean}) => {
 
     if(show) {
         return (
-            <div id = "sbs" className='sb-expand'>
+            <div id = "sbs" className='sb-expand min-h-screen'>
                 <VerticalLayout className={"margin-left"}>
                     <div className = "category-title">
                         Menu

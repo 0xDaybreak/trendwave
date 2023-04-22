@@ -6,6 +6,8 @@ import com.video.application.entity.VideoEntity;
 import com.video.application.exceptions.VideoEntityNotFoundException;
 import com.video.application.repository.VideoEntityRepository;
 import dev.hilla.Endpoint;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,6 +48,7 @@ public class VideoEntityEndpoint {
         return repository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
     }
 
+    @PermitAll
     public List<VideoEntity> findTodaysTop() {
         LocalDate currentDate = LocalDate.now();
         String currentDay = String.valueOf(currentDate.getDayOfMonth());
@@ -58,6 +61,10 @@ public class VideoEntityEndpoint {
                 .sorted(Comparator.comparing(VideoEntity::getLikes).reversed())
                 .limit(12)
                 .collect(Collectors.toList());
+    }
+
+    public String test() {
+        return "test";
     }
     public List<VideoEntity> findTwelve(int page) {
         int pageSize = 12;

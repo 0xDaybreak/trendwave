@@ -18,6 +18,7 @@ public class UserEndpoint {
     public UserEndpoint(UserService userService) {
         this.userService = userService;
     }
+
     public void saveUser(User user) {
         userService.createUser(user);
     }

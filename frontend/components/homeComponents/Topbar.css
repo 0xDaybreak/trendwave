@@ -31,7 +31,7 @@
     margin-left: 1vh;
     width: 2em;
     color: snow;
-    height: fit-content;
+    height: auto;
 }
 
 .menubars-disabled {

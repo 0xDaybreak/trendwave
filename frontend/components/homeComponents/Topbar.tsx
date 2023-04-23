@@ -9,7 +9,6 @@ import { isLoggedIn, loginImpl, logoutImpl } from "Frontend/auth/auth";
 
 interface TopbarProps {
     onThreeBarsMenuClick:any;
-    handleLogIn:any;
     signInBtnClicked:any;
     isMobile: boolean;
 }
@@ -47,8 +46,8 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
                 <GoThreeBars className={`menubars ${props.isMobile ? 'menubars-disabled':''}`} onClick={props.onThreeBarsMenuClick}/>
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
-                    {isLoggedIn? <Button onClick={() => logout().then(()=>navigate("/")).then(()=>logoutImpl())
-                            .then(props.handleLogIn(false))} className="topbar-right-button" >Log out</Button> :
+                    {isLoggedIn? <Button onClick={() => logout().then(()=>navigate("/")).then(()=>logoutImpl())}
+                                         className="topbar-right-button" >Log out</Button> :
                         <>
                             <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create Account</Button>
                             <Button onClick={sendDataToContextHolder} className="topbar-right-button">Sign in</Button>

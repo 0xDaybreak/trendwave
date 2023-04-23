@@ -12,8 +12,6 @@ interface SignInModalProps {
     signInBtnClicked?:boolean;
     title?:any;
     handleShowModal?:any;
-    handleLogIn:any;
-
 }
 
 const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
@@ -51,8 +49,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             theme="primary"
                             onClick={() =>
                                 login(username, password, {loginProcessingUrl:"/home"})
-                                    .then((e) => e.error ? console.warn("login failed") : props.handleLogIn(true))
-                                    .then(props.handleShowModal)
+                                    .then((e) => e.error ? console.warn("login failed"): props.handleShowModal)
                                     .then(() => navigate('/'))
                                     .then(()=>loginImpl())
                                     .catch((e) => console.warn(e))

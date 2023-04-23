@@ -20,13 +20,6 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const [isLoggedIn, setIsLoggedIn] = useState( !!localStorage.getItem("isLoggedIn"));
-
-    const handleLogIn = (isLoggedIn: boolean) => {
-        setIsLoggedIn(isLoggedIn);
-        console.log('islogged in', isLoggedIn);
-    }
-
 
     const handleData = () => {
         setShowSignInModal((prevState) => !prevState);
@@ -62,10 +55,10 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     return (
         <div className="big-div">
             {showSignInModal && (
-                <SignInModal handleLogIn={handleLogIn} signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal} />
+                <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="min-h-screen">
-                <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} handleLogIn={handleLogIn}/>
+                <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
                     {(() => {

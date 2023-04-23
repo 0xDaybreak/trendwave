@@ -10,6 +10,7 @@ import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
 
+
 interface ContextHolderProps {
     content?:string;
 }
@@ -19,6 +20,13 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isLoggedIn, setIsLoggedIn] = useState( !!localStorage.getItem("isLoggedIn"));
+
+    const handleLogIn = (isLoggedIn: boolean) => {
+        setIsLoggedIn(isLoggedIn);
+        console.log('islogged in', isLoggedIn);
+    }
+
 
     const handleData = () => {
         setShowSignInModal((prevState) => !prevState);
@@ -54,10 +62,10 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     return (
         <div className="big-div">
             {showSignInModal && (
-                <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal} />
+                <SignInModal handleLogIn={handleLogIn} signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal} />
             )}
             <VerticalLayout className="min-h-screen">
-                <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} />
+                <Topbar signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile} handleLogIn={handleLogIn}/>
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
                     {(() => {

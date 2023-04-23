@@ -2,15 +2,14 @@ import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import React, {useState} from "react";
 import {Button} from "@hilla/react-components/Button.js";
 import {TextField} from "@hilla/react-components/TextField.js";
-import {Notification} from "@hilla/react-components/Notification.js"
 import "@vaadin/vaadin-lumo-styles/utility.js";
 import "./RegisterHolder.css";
 import sheepImg from 'Frontend/images/sheep.png';
 import {PasswordField} from "@hilla/react-components/PasswordField.js";
 import {UserEndpoint} from "Frontend/generated/endpoints";
-import user from "Frontend/generated/com/video/application/entity/User";
 import User from "Frontend/generated/com/video/application/entity/User";
 import {useNavigate} from "react-router-dom";
+import {openNotification} from "Frontend/components/Notification";
 
 const RegisterHolder = () => {
 
@@ -18,8 +17,7 @@ const RegisterHolder = () => {
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('')
     const [password2, setPassword2] = useState('')
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const [notificationOpened, setNotificationOpened] = useState(false);
+    const emailRegex = /^[a-zA-Z\d._%+-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 
     function handleInputChange(event: any) {
         const {name, value} = event.target;
@@ -39,26 +37,12 @@ const RegisterHolder = () => {
                 username: email,
                 password: password2,
             };
-            openNotification("User Registration successful. You can login now")
+            openNotification("User Registration successful. You can login now", "bottom-center")
             UserEndpoint.saveUser(u).then(() => navigate("/"));
         } else {
-            openNotification("User registration failed. Please Make sure that the passwords match and that you have entered a valid email")
+            openNotification("User registration failed. Please Make sure that the passwords match and that you have entered a valid email", "bottom-center")
         }
     }
-
-    const openNotification = (input:string) => {
-        setNotificationOpened(true);
-        const notification = Notification.show(input, {
-            position: "bottom-center", duration:5000 });
-        const handleOpenChanged = (e: any) => {
-            if (!e.detail.value) {
-                setNotificationOpened(false);
-                notification.removeEventListener("opened-changed", handleOpenChanged);
-            }
-        };
-        notification.addEventListener("opened-changed", handleOpenChanged);
-    }
-
     return (
         <VerticalLayout className="card-holder-vertical-layout">
             <div className={"m-auto"}>
@@ -72,7 +56,7 @@ const RegisterHolder = () => {
                     <h3 className={"text"}>Repeat Password</h3>
                     <PasswordField onChange={handleInputChange} name={'password2'} className={"field"}>Repeat
                         Password</PasswordField>
-                    <Button onClick={handleRegister} disabled={notificationOpened} className={"button"}> Create
+                    <Button onClick={handleRegister} className={"button"}> Create
                         Account</Button>
                 </VerticalLayout>
             </div>

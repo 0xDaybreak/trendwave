@@ -9,6 +9,7 @@ import SignInModal from "Frontend/components/modal/SignInModal";
 import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
+import {openNotification} from "Frontend/components/Notification";
 
 
 interface ContextHolderProps {
@@ -25,11 +26,13 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     function handleLogin() {
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
+        openNotification("Logged In successfully", "middle");
     }
 
     function handleLogout() {
         setIsLoggedIn(false);
         localStorage.removeItem("isLoggedIn");
+        openNotification("Logged out", "middle");
     }
 
     const handleData = () => {

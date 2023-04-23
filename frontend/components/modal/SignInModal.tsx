@@ -6,7 +6,6 @@ import {TextField} from "@hilla/react-components/TextField.js";
 import {PasswordField} from "@hilla/react-components/PasswordField.js";
 import {AiFillCloseCircle} from "react-icons/all";
 import {useNavigate} from "react-router-dom";
-import {loginImpl} from "Frontend/auth/auth";
 
 interface SignInModalProps {
     signInBtnClicked?:boolean;
@@ -40,6 +39,8 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
             setPassword(value);
         }
     }
+
+
 
     return (
         <div className="modal">

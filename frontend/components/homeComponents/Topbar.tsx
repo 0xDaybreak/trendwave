@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {logout} from "@hilla/frontend";
 import { isLoggedIn, loginImpl, logoutImpl } from "Frontend/auth/auth";
+import {openNotification} from "Frontend/components/Notification";
 
 interface TopbarProps {
     onThreeBarsMenuClick:any;

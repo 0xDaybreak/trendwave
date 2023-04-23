@@ -7,6 +7,7 @@ import {PasswordField} from "@hilla/react-components/PasswordField.js";
 import {AiFillCloseCircle} from "react-icons/all";
 import {useNavigate} from "react-router-dom";
 import sheepWave from "Frontend/images/sheepwave.png";
+import {openNotification} from "Frontend/components/Notification";
 
 interface SignInModalProps {
     signInBtnClicked?:boolean;
@@ -58,7 +59,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             theme="primary"
                             onClick={() =>
                                 login(username, password, {loginProcessingUrl:"/home"})
-                                    .then((e) => e.error ? console.warn("login failed"): handleLogIn())
+                                    .then((e) => e.error ? openNotification("Invalid user", "middle"): handleLogIn())
                                     .catch((e) => console.warn(e))
                             }
                         >Login

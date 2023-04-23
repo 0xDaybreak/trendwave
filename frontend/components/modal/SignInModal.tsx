@@ -49,7 +49,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             theme="primary"
                             onClick={() =>
                                 login(username, password, {loginProcessingUrl:"/home"})
-                                    .then((e) => e.error ? console.warn("login failed"): props.handleShowModal)
+                                    .then((e) => e.error ? console.warn("login failed"): props.handleShowModal())
                                     .then(() => navigate('/'))
                                     .then(()=>loginImpl())
                                     .catch((e) => console.warn(e))

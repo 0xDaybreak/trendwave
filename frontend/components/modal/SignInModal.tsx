@@ -6,6 +6,7 @@ import {TextField} from "@hilla/react-components/TextField.js";
 import {PasswordField} from "@hilla/react-components/PasswordField.js";
 import {AiFillCloseCircle} from "react-icons/all";
 import {useNavigate} from "react-router-dom";
+import sheepWave from "Frontend/images/sheepwave.png";
 
 interface SignInModalProps {
     signInBtnClicked?:boolean;
@@ -62,8 +63,10 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             }
                         >Login
                         </Button>
+
                     </div>
                 </form>
+                <img className={"image"} alt="logo" src={sheepWave}/>
             </div>
         </div>
     );

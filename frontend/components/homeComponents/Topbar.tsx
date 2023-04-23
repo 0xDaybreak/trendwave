@@ -4,6 +4,7 @@ import {GoThreeBars} from "react-icons/go";
 import './Topbar.css';
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {logout} from "@hilla/frontend";
 
 interface TopbarProps {
     onThreeBarsMenuClick:any;
@@ -44,6 +45,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
                 <GoThreeBars className={`menubars ${props.isMobile ? 'menubars-disabled':''}`} onClick={props.onThreeBarsMenuClick}/>
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
+                    <Button onClick={()=>logout()}>Log out</Button>
                     <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create Account</Button>
                     <Button onClick={sendDataToContextHolder} className="topbar-right-button">Sign in</Button>
                 </div>

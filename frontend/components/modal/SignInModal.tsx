@@ -9,9 +9,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {AiFillCloseCircle} from "react-icons/all";
 
 interface SignInModalProps {
-    signInBtnClicked:boolean;
-    title:any;
-    handleShowModal:any;
+    signInBtnClicked?:boolean;
+    title?:any;
+    handleShowModal?:any;
 
 }
 
@@ -32,22 +32,21 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
             setPassword(value);
         }
     }
-
     return (
         <div className="modal">
             <div className="modal-content">
                 <AiFillCloseCircle onClick={handleCloseModal} className={"close"}/>
                 <form onSubmit={handleCloseModal}>
                     <h2 className={"title"}>{props.title}</h2>
-                    <h3 className={"title"}> Username </h3>
+                    <h3 className={"text-signing"}> Email </h3>
                     <TextField  name="username" onInput={handleInputChange} className={"field-signin"}>Email</TextField>
-                    <h3 className={"title"}>Password</h3>
+                    <h3 className={"text-signing"}>Password</h3>
                     <PasswordField name="password" onInput={handleInputChange} className={"field"}>Password</PasswordField>
                     <div className="modal-buttons">
                         <Button
                             theme="primary"
                             onClick={() =>
-                                login(username, password)
+                                login(username, password, {loginProcessingUrl:"/home"})
                                     .then((e) => e.error ? console.warn("login failed") : props.handleShowModal())
                                     .catch((e) => console.warn(e))
                             }

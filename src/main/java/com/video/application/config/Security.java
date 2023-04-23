@@ -31,7 +31,8 @@ public class Security extends VaadinWebSecurity{
     @Override
     protected void configure(HttpSecurity http) throws Exception { // point 2
         super.configure(http);
-        setLoginView(http, "/login");
+        setLoginView(http, "/home");
+
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -39,7 +40,7 @@ public class Security extends VaadinWebSecurity{
         setStatelessAuthentication(
                 http,
                 new SecretKeySpec(Base64.getDecoder().decode(appSecret), JwsAlgorithms.HS256),
-                "com.example.application",3600
+                "com.example.application"
         );
     }
 

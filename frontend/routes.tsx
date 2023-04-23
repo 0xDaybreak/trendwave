@@ -32,7 +32,7 @@ export const useViewMatches = useMatches as () => readonly ViewRouteMatch[];
 export const routes: readonly ViewRouteObject[] = [
     {path: '/', element: <HomeView/>},
     {path: 'top', element: <TodaysTopView/>},
-    {path:'login', element:<LoginView/>},
+    {path:'/home', element:<LoginView/>},
     {path: 'register', element: <RegisterView/>}
 
 ];

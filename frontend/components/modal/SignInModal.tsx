@@ -12,6 +12,7 @@ interface SignInModalProps {
     signInBtnClicked?:boolean;
     title?:any;
     handleShowModal?:any;
+    onLogin: () => void;
 }
 
 const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
@@ -19,10 +20,16 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-
     const handleCloseModal = (event:any) => {
         event.preventDefault();
         props.handleShowModal();
+
+    }
+
+    const handleLogIn = () => {
+        props.handleShowModal()
+        navigate('/');
+        props.onLogin();
     }
 
     function handleInputChange(event:any) {
@@ -49,9 +56,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             theme="primary"
                             onClick={() =>
                                 login(username, password, {loginProcessingUrl:"/home"})
-                                    .then((e) => e.error ? console.warn("login failed"): props.handleShowModal())
-                                    .then(() => navigate('/'))
-                                    .then(()=>loginImpl())
+                                    .then((e) => e.error ? console.warn("login failed"): handleLogIn())
                                     .catch((e) => console.warn(e))
                             }
                         >Login

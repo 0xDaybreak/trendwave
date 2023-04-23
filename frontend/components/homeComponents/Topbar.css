@@ -3,14 +3,17 @@
     border-radius: 30%;
     color: snow;
     cursor: pointer;
+    height: fit-content;
 }
 
 .topbar-right-buttons {
     margin-left: auto;
     margin-right: 1%;
+    height: fit-content;
 }
 .topbar-right-button {
     border-radius: 20%;
+    height: fit-content;
     color: snow;
     cursor: pointer;
 }
@@ -24,11 +27,11 @@
 }
 
 .menubars {
-    margin-top: 0.4vh;
+    padding-top: 0.4vh;
     margin-left: 1vh;
-    height: 2em;
     width: 2em;
     color: snow;
+    height: fit-content;
 }
 
 .menubars-disabled {
@@ -39,11 +42,4 @@
     background-color: #575252;
     border-radius: 30%;
     cursor: pointer;
-}
-.category-title {
-    margin-top: 1vh;
-    font-size: large;
-    color: #f387f3;
-    user-select: none;
-    overflow: auto;
 }

@@ -1,9 +1,15 @@
 .card-holder-vertical-layout {
     width: 100%;
     background-color: #0f131a;
+    margin-top: 20px;
+
 }
 
 
 .margin-bottom {
     margin-bottom: 20px;
+}
+
+.margin {
+    margin-left: 11rem;
 }

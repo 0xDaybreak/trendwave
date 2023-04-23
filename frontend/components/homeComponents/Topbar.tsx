@@ -11,6 +11,8 @@ interface TopbarProps {
     onThreeBarsMenuClick:any;
     signInBtnClicked:any;
     isMobile: boolean;
+    isLoggedIn: boolean;
+    onLogout: () => void;
 }
 
 const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
@@ -29,6 +31,11 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     }
     const[showSignUpModal, setShowSignUpModal] = useState(true)
 
+    const handleLogoutBtnClick = () => {
+        props.onLogout();
+        navigate("/");
+    };
+
     const handleSignInBtnClick = () => {
         setShowSignUpModal((prevState:boolean) => (!prevState));
         props.signInBtnClicked(showSignUpModal)
@@ -40,13 +47,17 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
         setMobileState(props.isMobile);
     }, [props.isMobile]);
 
+    useEffect(() => {
+    }, [props.isLoggedIn]);
+
+
     return (
         <div className="tb">
             <HorizontalLayout>
-                <GoThreeBars className={`menubars ${props.isMobile ? 'menubars-disabled':''}`} onClick={props.onThreeBarsMenuClick}/>
+                <GoThreeBars className={'menubars'} onClick={props.onThreeBarsMenuClick}/>
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
-                    {isLoggedIn? <Button onClick={() => logout().then(()=>navigate("/")).then(()=>logoutImpl())}
+                    {props.isLoggedIn ? <Button onClick={() => logout().then(() => handleLogoutBtnClick()).then(()=>logoutImpl())}
                                          className="topbar-right-button" >Log out</Button> :
                         <>
                             <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create Account</Button>

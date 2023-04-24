@@ -2,22 +2,21 @@ package com.video.application.endpoints;
 
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.video.application.entity.User;
 import com.video.application.entity.VideoEntity;
 import com.video.application.exceptions.VideoEntityNotFoundException;
 import com.video.application.repository.VideoEntityRepository;
+import com.video.application.service.UserService;
 import dev.hilla.Endpoint;
 import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Endpoint
@@ -26,33 +25,33 @@ public class VideoEntityEndpoint {
 
     @Autowired
     private final MongoTemplate mongoTemplate;
-    private final VideoEntityRepository repository;
-
-    public VideoEntityEndpoint(VideoEntityRepository repository, MongoTemplate mongoTemplate){
-        System.out.println(repository);
-        this.repository = repository;
+    private final VideoEntityRepository videoEntityRepository;
+    private final UserService userService;
+    public VideoEntityEndpoint(VideoEntityRepository repository, MongoTemplate mongoTemplate, UserService userService){
+        this.userService = userService;
+        this.videoEntityRepository = repository;
         this.mongoTemplate = mongoTemplate;
     }
 
     public List<VideoEntity> findAll() {
-        return repository.findAll();
+        return videoEntityRepository.findAll();
     }
 
     public void updateLike(String id, BigInteger like) {
-        VideoEntity videoEntity = repository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
+        VideoEntity videoEntity = videoEntityRepository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
         videoEntity.setLikes(like);
-        repository.save(videoEntity);
+        videoEntityRepository.save(videoEntity);
     }
 
     public VideoEntity findVideoEntityById(String id) {
-        return repository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
+        return videoEntityRepository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
     }
 
     @PermitAll
     public List<VideoEntity> findTodaysTop() {
         LocalDate currentDate = LocalDate.now();
         String currentDay = String.valueOf(currentDate.getDayOfMonth());
-        return repository.findAll().stream()
+        return videoEntityRepository.findAll().stream()
                 .filter(videoEntity -> {
                     LocalDate videoDate = LocalDate.parse(videoEntity.getDate());
                     String videoDay = String.valueOf(videoDate.getDayOfMonth());
@@ -63,12 +62,22 @@ public class VideoEntityEndpoint {
                 .collect(Collectors.toList());
     }
 
-    public String test() {
-        return "test";
+    @PermitAll
+    public Set<VideoEntity> getFavourites() {
+        User u = userService.findByUsername();
+        if (u != null) {
+            return videoEntityRepository.findAll()
+                    .stream()
+                    .filter(videoEntity -> u.getFavourites().contains(videoEntity.getId()))
+                    .collect(Collectors.toSet());
+        }
+        return Collections.emptySet();
     }
+
+
     public List<VideoEntity> findTwelve(int page) {
         int pageSize = 12;
         Pageable pageable = PageRequest.of(page, pageSize);
-        return repository.findAll(pageable).getContent();
+        return videoEntityRepository.findAll(pageable).getContent();
     }
 }

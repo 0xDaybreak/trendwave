@@ -11,6 +11,9 @@ const Sidebar = ({show}:{show:boolean}) => {
         navigate('/top');
     };
 
+    const handleFavouritesChange = () => {
+      navigate('/favourites');
+    };
 
     if(show) {
         return (
@@ -21,7 +24,7 @@ const Sidebar = ({show}:{show:boolean}) => {
                     </div>
                     <Button onClick={handleTodaysTopChange} className={"sb-button"}>Today's Top</Button>
                     <Button className={"sb-button"}>Feed</Button>
-                    <Button className={"sb-button"}>Favourites</Button>
+                    <Button onClick={handleFavouritesChange} className={"sb-button"}>Favourites</Button>
                     <div className = "category-title">
                         Categories
                     </div>

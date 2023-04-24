@@ -10,6 +10,7 @@ import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
 import {openNotification} from "Frontend/components/Notification";
+import FavouritesHolder from "Frontend/components/favouritesComponents/FavouritesHolder";
 
 
 interface ContextHolderProps {
@@ -22,6 +23,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("isLoggedIn"));
+    const [uId, setUid] = useState('');
 
     function handleLogin() {
         setIsLoggedIn(true);
@@ -84,6 +86,8 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
                                 return <CardHolderTop />;
                             case 'register':
                                 return <RegisterHolder />;
+                            case 'favourites':
+                                return <FavouritesHolder />
                             default:
                                 return <CardHolder />;
                         }

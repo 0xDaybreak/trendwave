@@ -4,6 +4,7 @@ import { HomeView } from "Frontend/views/HomeView";
 import TodaysTopView from "Frontend/views/TodaysTopView";
 import {LoginView} from "Frontend/views/LoginView";
 import RegisterView from "Frontend/views/RegisterView";
+import FavouritesView from "Frontend/views/FavouritesView";
 
 export type MenuProps = Readonly<{
   icon?: string;
@@ -33,8 +34,8 @@ export const routes: readonly ViewRouteObject[] = [
     {path: '/', element: <HomeView/>},
     {path: 'top', element: <TodaysTopView/>},
     {path:'/home', element:<LoginView/>},
-    {path: 'register', element: <RegisterView/>}
-
+    {path: 'register', element: <RegisterView/>},
+    {path: 'favourites', element: <FavouritesView/>}
 ];
 
 

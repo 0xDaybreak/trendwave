@@ -47,7 +47,7 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
                 <div className="likes">
                     {likes}
                 </div>
-                <Favourite/>
+                <Favourite vid={props.id}/>
             </HorizontalLayout>
         </div>
     );

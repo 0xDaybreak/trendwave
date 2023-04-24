@@ -58,6 +58,22 @@
     margin-left: 10%;
 }
 
+.image-modal {
+    max-width: 100%;
+    height: auto;
+    image-rendering: high-quality;
+    object-fit: inherit;
+}
+
+.sn-button {
+    color: snow;
+    width: 15%;
+    cursor: pointer;
+    background-color: #3b3b3b;
+    border-radius: 25px;
+}
+
+
 .close:hover,
 .close:focus {
     color: #d9d6d6;

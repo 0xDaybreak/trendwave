@@ -56,7 +56,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                     <PasswordField name="password" onInput={handleInputChange} className={"field"}>Password</PasswordField>
                     <div className="modal-buttons">
                         <Button
-                            theme="primary"
+                            className={"sn-button"}
                             onClick={() =>
                                 login(username, password, {loginProcessingUrl:"/home"})
                                     .then((e) => e.error ? openNotification("Invalid user", "middle"): handleLogIn())
@@ -67,7 +67,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
 
                     </div>
                 </form>
-                <img className={"image"} alt="logo" src={sheepWave}/>
+                <img className={"image-modal"} alt="logo" src={sheepWave}/>
             </div>
         </div>
     );

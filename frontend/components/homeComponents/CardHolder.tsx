@@ -102,7 +102,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
             {entityChunks.map((chunk, index) => (
                 <div key={index} className='margin-bottom'>
                     {cardsPerRow === 1 ? (
-                        <VerticalLayout className={""} ref={lastCard}>
+                        <VerticalLayout className={"padding-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}

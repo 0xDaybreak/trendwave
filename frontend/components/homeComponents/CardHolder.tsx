@@ -74,13 +74,13 @@ const CardHolder = () => {
             {entityChunks.map((chunk, index) => (
                 <div key={index} className='margin-bottom'>
                     {cardsPerRow === 1 ? (
-                        <VerticalLayout className={"no-margin"} ref={lastCard}>
+                        <VerticalLayout className={""} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}
                         </VerticalLayout>
                     ) : (
-                        <HorizontalLayout className={"margin"} ref={lastCard}>
+                        <HorizontalLayout className={"padding"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id}/>
                             ))}

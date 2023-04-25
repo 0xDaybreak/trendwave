@@ -6,7 +6,6 @@ const Like = () => {
     return (
         <button className="like-button">
             <FontAwesomeIcon icon={faHeart } />
-            <span>Like</span>
         </button>
     );
 };

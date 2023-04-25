@@ -7,13 +7,13 @@
     padding: 14px 16px;
     margin-left: auto;
     border-radius: 4px;
-    cursor: pointer;
+
     font-size: 20px;
     float:right;
 }
 
 .favourite-icon {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #ffb6c1;
     cursor: pointer;
     margin-left: 10px;
@@ -22,4 +22,6 @@
 
 .favourite-icon:hover {
     color: #f1e5e6;
+    font-size: 1.6rem;
+    cursor: pointer;
 }

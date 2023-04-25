@@ -2,11 +2,16 @@ import Card from './Card';
 import './CardHolder.css';
 import { HorizontalLayout } from '@hilla/react-components/HorizontalLayout.js';
 import { VerticalLayout } from '@hilla/react-components/VerticalLayout.js';
-import {useEffect, useState, useRef, useCallback} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import { VideoEntityEndpoint } from 'Frontend/generated/endpoints';
 import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
-const CardHolder = () => {
+interface CardHolderProps {
+    content?:string;
+}
+
+
+const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
 
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
@@ -37,11 +42,34 @@ const CardHolder = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-
-    useEffect(() => {
-        VideoEntityEndpoint.findTwelve(pageNr).then((newVEntities:any) =>
+    const getHomeContent = () => {
+        VideoEntityEndpoint.findAmount(pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
+    }
+
+    const getTodaysTopContent = () => {
+        VideoEntityEndpoint.findTodaysTop(pageNr,8).then((newVEntities:any) =>
+            setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
+        );
+    }
+
+    const getFavouritesContent = () => {
+        VideoEntityEndpoint.getFavourites(pageNr,8).then((newVEntities:any) =>
+            setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
+        );
+    }
+
+    useEffect(() => {
+        switch (props.content) {
+            case 'top':
+                return getTodaysTopContent();
+            case 'favourites':
+                return getFavouritesContent();
+            default:
+                return getHomeContent();
+        }
+
     }, [pageNr]);
 
     useEffect(() => {

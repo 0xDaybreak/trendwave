@@ -6,11 +6,9 @@ import React, {useEffect, useState} from "react";
 import './ContextHolder.css'
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import SignInModal from "Frontend/components/modal/SignInModal";
-import CardHolderTop from "Frontend/components/todaysTopComponents/CardHolderTop";
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
 import {openNotification} from "Frontend/components/Notification";
-import FavouritesHolder from "Frontend/components/favouritesComponents/FavouritesHolder";
 
 
 interface ContextHolderProps {
@@ -23,7 +21,6 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("isLoggedIn"));
-    const [uId, setUid] = useState('');
 
     function handleLogin() {
         setIsLoggedIn(true);
@@ -77,19 +74,14 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
             <VerticalLayout className="min-h-screen">
                 <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
-
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
                     {(() => {
                         switch (props.content) {
-                            case 'top':
-                                return <CardHolderTop />;
                             case 'register':
                                 return <RegisterHolder />;
-                            case 'favourites':
-                                return <FavouritesHolder />
                             default:
-                                return <CardHolder />;
+                                return <CardHolder content={props.content}/>;
                         }
                     })()}
                 </HorizontalLayout>

@@ -48,25 +48,27 @@ public class VideoEntityEndpoint {
     }
 
     @PermitAll
-    public List<VideoEntity> findTodaysTop() {
+    public List<VideoEntity> findTodaysTop(int page, int pageSize)  {
         LocalDate currentDate = LocalDate.now();
         String currentDay = String.valueOf(currentDate.getDayOfMonth());
-        return videoEntityRepository.findAll().stream()
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return videoEntityRepository.findAll(pageable).getContent().stream()
                 .filter(videoEntity -> {
                     LocalDate videoDate = LocalDate.parse(videoEntity.getDate());
                     String videoDay = String.valueOf(videoDate.getDayOfMonth());
                     return currentDay.equals(videoDay);
                 })
                 .sorted(Comparator.comparing(VideoEntity::getLikes).reversed())
-                .limit(12)
+                .limit(8)
                 .collect(Collectors.toList());
     }
 
     @PermitAll
-    public Set<VideoEntity> getFavourites() {
+    public Set<VideoEntity> getFavourites(int page, int pageSize) {
         User u = userService.findByUsername();
+        Pageable pageable = PageRequest.of(page, pageSize);
         if (u != null) {
-            return videoEntityRepository.findAll()
+            return videoEntityRepository.findAll(pageable).getContent()
                     .stream()
                     .filter(videoEntity -> u.getFavourites().contains(videoEntity.getId()))
                     .collect(Collectors.toSet());
@@ -74,9 +76,8 @@ public class VideoEntityEndpoint {
         return Collections.emptySet();
     }
 
-
-    public List<VideoEntity> findTwelve(int page) {
-        int pageSize = 12;
+    @AnonymousAllowed
+    public List<VideoEntity> findAmount(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
         return videoEntityRepository.findAll(pageable).getContent();
     }

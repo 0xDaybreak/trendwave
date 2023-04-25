@@ -15,10 +15,10 @@
 }
 
 .sb-collapse {
-    height: auto;
+    height: 100%;
     background-color: #151a26;
-    width: 2rem;
-    position: relative;
+    width: 1.9rem;
+    position: fixed;
     z-index: 2;
 }
 

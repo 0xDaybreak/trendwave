@@ -40,7 +40,7 @@ public class Security extends VaadinWebSecurity{
         setStatelessAuthentication(
                 http,
                 new SecretKeySpec(Base64.getDecoder().decode(appSecret), JwsAlgorithms.HS256),
-                "com.example.application"
+                "com.example.application",3600
         );
     }
 

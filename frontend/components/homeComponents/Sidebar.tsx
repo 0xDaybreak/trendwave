@@ -34,7 +34,8 @@ const Sidebar = ({show}:{show:boolean}) => {
     }
 
     return(
-        <div id = "sbs" className='sb-collapse'>
+        <div className='sb-collapse'>
+
         </div>
     );
 }

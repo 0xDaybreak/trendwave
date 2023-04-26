@@ -1,14 +1,10 @@
 package com.video.application.endpoints;
 
-
-import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.video.application.entity.User;
 import com.video.application.service.UserService;
 import dev.hilla.Endpoint;
 import jakarta.annotation.security.PermitAll;
-import java.util.HashSet;
-import java.util.Set;
 
 @Endpoint
 @AnonymousAllowed
@@ -23,6 +19,12 @@ public class UserEndpoint {
     public void saveUser(User user) {
         userService.createUser(user);
     }
+
+    public boolean isLoggedIn() {
+        User u = userService.findByUsername();
+        return u != null;
+    }
+
     @PermitAll
     public void saveFavourite(String vid) {
         User user = userService.findByUsername();

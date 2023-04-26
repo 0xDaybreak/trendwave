@@ -17,3 +17,7 @@ export const openNotification = (input: string, pos:NotificationPosition) => {
     notification.addEventListener("opened-changed", handleOpenChanged);
 }
 
+export const isOpened = () => {
+    return notificationOpened;
+}
+

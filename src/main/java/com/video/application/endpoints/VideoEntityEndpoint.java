@@ -76,6 +76,15 @@ public class VideoEntityEndpoint {
         return Collections.emptySet();
     }
 
+    @PermitAll
+    public boolean isVideoFavourite(String id) {
+        User u = userService.findByUsername();
+        if(u != null) {
+            return u.getFavourites().contains(id);
+        }
+        return false;
+    }
+
     @AnonymousAllowed
     public List<VideoEntity> findAmount(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);

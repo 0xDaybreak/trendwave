@@ -1,30 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import "./Favourite.css";
-import {UserEndpoint} from "Frontend/generated/endpoints";
+import { UserEndpoint } from "Frontend/generated/endpoints";
 
 interface FavouriteProps {
-    vid?:string;
+    vid?: string;
+    isFavourite: Promise<boolean>;
 }
 
+const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
+    const [isFav, setIsFav] = useState(false);
 
-const Favourite:React.FC<FavouriteProps> = (props:FavouriteProps) => {
-
-    const[isFavourite, setIsFavourite] = useState(false);
+    useEffect(() => {
+        async function checkFav() {
+            const result = await props.isFavourite;
+            setIsFav(result);
+        }
+        checkFav();
+    }, [props.isFavourite]);
 
     const handleFavouriteClick = () => {
-        setIsFavourite(prevState=>!prevState);
-        console.log(props.vid)
-        UserEndpoint.saveFavourite(props.vid);
-        if(isFavourite) {
-
+        setIsFav(prevState => !prevState);
+        if (!isFav) {
+            UserEndpoint.saveFavourite(props.vid);
+        } else {
+            UserEndpoint.deleteFavourites(props.vid);
         }
     }
 
     return (
         <div className="favourite-container">
-            <FontAwesomeIcon icon={faBookmark} onClick={handleFavouriteClick} className="favourite-icon " />
+            <FontAwesomeIcon icon={faBookmark} onClick={handleFavouriteClick} className={isFav ? "favourite-icon-yes" : "favourite-icon-no"} />
         </div>
     );
 }

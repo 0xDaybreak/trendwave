@@ -1,9 +1,9 @@
 import Card from './Card';
 import './CardHolder.css';
-import { HorizontalLayout } from '@hilla/react-components/HorizontalLayout.js';
-import { VerticalLayout } from '@hilla/react-components/VerticalLayout.js';
-import React, {useEffect, useState, useRef, useCallback} from 'react';
-import { VideoEntityEndpoint } from 'Frontend/generated/endpoints';
+import {HorizontalLayout} from '@hilla/react-components/HorizontalLayout.js';
+import {VerticalLayout} from '@hilla/react-components/VerticalLayout.js';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {VideoEntityEndpoint} from 'Frontend/generated/endpoints';
 import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
 interface CardHolderProps {
@@ -60,6 +60,9 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         );
     }
 
+    const isFavourite = async (id: string | undefined): Promise<boolean> => {
+        return await VideoEntityEndpoint.isVideoFavourite(id);
+    };
     useEffect(() => {
         switch (props.content) {
             case 'top':
@@ -104,13 +107,13 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     {cardsPerRow === 1 ? (
                         <VerticalLayout className={"padding-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
-                                <Card url={entity.url} key={cardCounter++} id={entity.id}/>
+                                <Card url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </VerticalLayout>
                     ) : (
                         <HorizontalLayout className={"padding"} ref={lastCard}>
                             {chunk.map((entity) => (
-                                <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id}/>
+                                <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </HorizontalLayout>
                     )}

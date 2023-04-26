@@ -7,21 +7,42 @@
     padding: 14px 16px;
     margin-left: auto;
     border-radius: 4px;
-
-    font-size: 20px;
-    float:right;
 }
 
-.favourite-icon {
+.favourite-icon-no {
     font-size: 1.5rem;
     color: #ffb6c1;
     cursor: pointer;
     margin-left: 10px;
 }
 
-
-.favourite-icon:hover {
-    color: #f1e5e6;
+.favourite-icon-no:hover,
+.favourite-icon-no:focus,
+.favourite-icon-no:active {
+    color: #efe894;
     font-size: 1.6rem;
     cursor: pointer;
+}
+
+.favourite-icon-yes {
+    font-size: 1.5rem;
+    color: #efe894;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.favourite-icon-yes:hover,
+.favourite-icon-yes:focus,
+.favourite-icon-yes:active {
+    color: #ffb6c1;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.favourite-icon-no:not(.favourite-icon-yes) {
+    color: #ffb6c1;
+}
+
+.favourite-icon-yes:not(.favourite-icon-no) {
+    color: #efe894;
 }

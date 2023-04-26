@@ -7,6 +7,7 @@ interface CardProps {
     url?:string;
     width?:number;
     id?:string;
+    isFavourite: Promise<boolean>;
 }
 
 const Card:React.FC<CardProps> = (props:CardProps) => {
@@ -48,7 +49,7 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <CardStatusBar id={props.id}/>
+            <CardStatusBar id={props.id} isFavourite={props.isFavourite}/>
         </div>
     );
 }

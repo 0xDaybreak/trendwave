@@ -62,14 +62,13 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     return (
         <div className="big-div">
-
             {showSignInModal && (
                 <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal}  onLogin={handleLogin} />
             )}
 
             <VerticalLayout className="min-h-screen">
                 <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
-                <HorizontalLayout className="context-holder-horizontal-layout">
+                <HorizontalLayout className="min-w-full">
                     <Sidebar show={show} />
                     {(() => {
                         switch (props.content) {

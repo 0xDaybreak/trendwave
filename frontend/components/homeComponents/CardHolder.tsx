@@ -107,14 +107,14 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
             {entityChunks.map((chunk, index) => (
                 <div key={index} className='margin-bottom'>
                     {cardsPerRow === 1 ? (
-                        <VerticalLayout className={"padding-mobile"} ref={lastCard}>
+                        <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
                                       url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </VerticalLayout>
                     ) : (
-                        <HorizontalLayout className={"padding"} ref={lastCard}>
+                        <HorizontalLayout className={"margin"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
                                       width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>

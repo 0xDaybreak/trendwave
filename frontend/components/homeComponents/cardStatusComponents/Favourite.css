@@ -1,11 +1,11 @@
 .favourite-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
     background-color: transparent;
+    align-items: end;
+    justify-content: center;
     border: none;
-    padding: 14px 16px;
-    margin-left: auto;
+    margin: 0.4em 1em 4em auto;
     border-radius: 4px;
 }
 

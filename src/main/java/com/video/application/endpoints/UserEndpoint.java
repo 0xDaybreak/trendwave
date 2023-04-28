@@ -1,5 +1,7 @@
 package com.video.application.endpoints;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.video.application.entity.User;
 import com.video.application.service.UserService;
@@ -19,10 +21,11 @@ public class UserEndpoint {
     public void saveUser(User user) {
         userService.createUser(user);
     }
-
+    @AnonymousAllowed
     public boolean isLoggedIn() {
-        User u = userService.findByUsername();
-        return u != null;
+        Authentication auth =
+                SecurityContextHolder.getContext().getAuthentication();
+        return !auth.getName().equals("anonymousUser");
     }
 
     @PermitAll

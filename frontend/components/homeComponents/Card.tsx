@@ -8,6 +8,7 @@ interface CardProps {
     width?:number;
     id?:string;
     isFavourite: Promise<boolean>;
+    onFavouriteNotLoggedIn:()=>void;
 }
 
 const Card:React.FC<CardProps> = (props:CardProps) => {
@@ -49,7 +50,7 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <CardStatusBar id={props.id} isFavourite={props.isFavourite}/>
+            <CardStatusBar id={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}/>
         </div>
     );
 }

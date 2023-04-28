@@ -34,16 +34,11 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
         openNotification("Logged out", "middle");
     }
 
-    const handleData = () => {
-        setShowSignInModal((prevState) => !prevState);
-    };
-
     const showSidebarHandler = () => {
         setShow((prevState) => !prevState);
     };
 
     const handleShowModal = () => {
-
         setShowSignInModal(prevState => !prevState);
     }
 
@@ -73,7 +68,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
             )}
 
             <VerticalLayout className="min-h-screen">
-                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleData} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
+                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
                 <HorizontalLayout className="context-holder-horizontal-layout">
                     <Sidebar show={show} />
                     {(() => {
@@ -81,7 +76,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
                             case 'register':
                                 return <RegisterHolder />;
                             default:
-                                return <CardHolder content={props.content}/>;
+                                return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content}/>;
                         }
                     })()}
                 </HorizontalLayout>

@@ -8,6 +8,7 @@ import {openNotification, isOpened} from "Frontend/components/Notification";
 interface FavouriteProps {
     vid?: string;
     isFavourite: Promise<boolean>;
+    onFavouriteNotLoggedIn:()=>void;
 }
 
 const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
@@ -34,7 +35,7 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
             }
         }
         else {
-            openNotification("Please Log In", "middle")
+            props.onFavouriteNotLoggedIn();
         }
     }
 

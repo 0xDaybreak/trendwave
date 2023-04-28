@@ -7,8 +7,10 @@ import {VideoEntityEndpoint} from 'Frontend/generated/endpoints';
 import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEntity';
 
 interface CardHolderProps {
-    content?:string;
+    content?: string;
+    onFavouriteNotLoggedIn: () => void;
 }
+
 
 
 const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
@@ -107,13 +109,15 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     {cardsPerRow === 1 ? (
                         <VerticalLayout className={"padding-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
-                                <Card url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
+                                <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
+                                      url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </VerticalLayout>
                     ) : (
                         <HorizontalLayout className={"padding"} ref={lastCard}>
                             {chunk.map((entity) => (
-                                <Card width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
+                                <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
+                                      width={windowWidth} url={entity.url} key={cardCounter++} id={entity.id} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </HorizontalLayout>
                     )}

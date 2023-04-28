@@ -5,18 +5,19 @@ import './Topbar.css';
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {logout} from "@hilla/frontend";
-import { isLoggedIn, loginImpl, logoutImpl } from "Frontend/auth/auth";
+import {isLoggedIn, loginImpl, logoutImpl} from "Frontend/auth/auth";
 import {openNotification} from "Frontend/components/Notification";
 
 interface TopbarProps {
-    onThreeBarsMenuClick:any;
-    signInBtnClicked:any;
+    onThreeBarsMenuClick: any;
+    signInBtnClicked: any;
     isMobile: boolean;
     isLoggedIn: boolean;
+    isLoading: boolean;
     onLogout: () => void;
 }
 
-const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
+const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
 
     const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     const sendDataToContextHolder = () => {
         handleSignInBtnClick();
     }
-    const[showSignUpModal, setShowSignUpModal] = useState(true)
+    const [showSignUpModal, setShowSignUpModal] = useState(true)
 
     const handleLogoutBtnClick = () => {
         props.onLogout();
@@ -39,7 +40,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     };
 
     const handleSignInBtnClick = () => {
-        setShowSignUpModal((prevState:boolean) => (!prevState));
+        setShowSignUpModal((prevState: boolean) => (!prevState));
         props.signInBtnClicked(showSignUpModal)
     }
 
@@ -59,11 +60,18 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
                 <GoThreeBars className={'menubars'} onClick={props.onThreeBarsMenuClick}/>
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
-                    {props.isLoggedIn ? <Button onClick={() => logout().then(() => handleLogoutBtnClick()).then(()=>logoutImpl())}
-                                         className="topbar-right-button" >Log out</Button> :
-                        <>
-                            <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create Account</Button>
-                            <Button onClick={sendDataToContextHolder} className="topbar-right-button">Sign in</Button>
+                    {props.isLoggedIn ?
+                        <Button onClick={() => logout().then(() => handleLogoutBtnClick()).then(() => logoutImpl())}
+                                className="topbar-right-button">Log out</Button> :
+                        <>{props.isLoading ?
+
+                            <div className={"topbar-right-button"}>Loading... </div>
+                            : <> <Button onClick={handleSignUpBtnClick} className="topbar-right-button">Create
+                                Account</Button>
+                                <Button onClick={sendDataToContextHolder} className="topbar-right-button">Sign
+                                    in</Button></>
+                        }
+
                         </>
 
                     }

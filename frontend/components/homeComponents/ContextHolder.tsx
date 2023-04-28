@@ -22,6 +22,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     function handleLogin() {
         setIsLoggedIn(true);
@@ -45,6 +46,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
         async function checkLoginStatus() {
             const loggedIn = await UserEndpoint.isLoggedIn();
             setIsLoggedIn(loggedIn);
+            setIsLoading(false);
         }
 
         checkLoginStatus();
@@ -71,11 +73,11 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     return (
         <div className="big-div">
             {showSignInModal && (
-                <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal}  onLogin={handleLogin} />
+                <SignInModal signInBtnClicked={true} title="Log In" handleShowModal={handleShowModal}  onLogin={handleLogin}/>
             )}
 
             <VerticalLayout className="min-h-screen">
-                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}/>
+                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}  isLoading={isLoading}/>
                 <HorizontalLayout className="min-w-full">
                     <Sidebar show={show} />
                     {(() => {

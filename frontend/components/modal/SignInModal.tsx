@@ -62,7 +62,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                                     .then((e) => e.error ? openNotification("Invalid user", "middle"): handleLogIn())
                                     .catch((e) => console.warn(e))
                             }
-                        >Login
+                        >Sign in
                         </Button>
 
                     </div>

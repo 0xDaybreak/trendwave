@@ -7,8 +7,8 @@
     top: 0;
     width: 100%; /* Full width */
     height: 100%;/* Full height */
-    overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    overflow: hidden;
 }
 
 /* Modal content */
@@ -79,4 +79,17 @@
     color: #d9d6d6;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal::-webkit-scrollbar {
+    width: 0;
+}
+
+.modal::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1em;
 }

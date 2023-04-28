@@ -35,6 +35,7 @@ const Topbar:React.FC<TopbarProps> = (props:TopbarProps) => {
     const handleLogoutBtnClick = () => {
         props.onLogout();
         navigate("/");
+        window.location.reload();
     };
 
     const handleSignInBtnClick = () => {

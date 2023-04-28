@@ -5,8 +5,8 @@
     align-items: end;
     justify-content: center;
     border: none;
-    margin: 0.4em 1em 4em auto;
     border-radius: 4px;
+    margin:0;
 }
 
 .favourite-icon-no {

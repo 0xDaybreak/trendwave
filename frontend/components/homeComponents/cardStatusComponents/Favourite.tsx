@@ -4,6 +4,7 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import "./Favourite.css";
 import { UserEndpoint } from "Frontend/generated/endpoints";
 import {openNotification, isOpened} from "Frontend/components/Notification";
+import {Button} from "@hilla/react-components/Button.js";
 
 interface FavouriteProps {
     vid?: string;
@@ -40,9 +41,9 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
     }
 
     return (
-        <div className="favourite-container">
-            <FontAwesomeIcon icon={faBookmark} onClick={handleFavouriteClick} className={isFav ? "favourite-icon-yes" : "favourite-icon-no"}/>
-        </div>
+            <Button className={"favourite-container"} onClick={handleFavouriteClick} disabled={isOpened()}>
+                <FontAwesomeIcon icon={faBookmark} className={isFav ? "favourite-icon-yes" : "favourite-icon-no"}/>
+            </Button>
     );
 }
 

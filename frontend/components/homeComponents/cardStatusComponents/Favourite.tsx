@@ -23,9 +23,8 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
     }, [props.isFavourite]);
 
     const handleFavouriteClick = async () => {
-        setIsFav(prevState => !prevState);
         if (await UserEndpoint.isLoggedIn()) {
-            console.log(UserEndpoint.isLoggedIn());
+            setIsFav(prevState => !prevState);
             if (!isFav) {
                 UserEndpoint.saveFavourite(props.vid);
                 openNotification("Saved Favourite", "bottom-start")
@@ -33,6 +32,9 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
                 UserEndpoint.deleteFavourites(props.vid);
                 openNotification("Removed Favourite", "bottom-start")
             }
+        }
+        else {
+            openNotification("Please Log In", "middle")
         }
     }
 

@@ -9,6 +9,7 @@ import SignInModal from "Frontend/components/modal/SignInModal";
 import RegisterHolder from "Frontend/components/registerComponents/RegisterHolder";
 import '@vaadin/vaadin-lumo-styles/utility.js';
 import {openNotification} from "Frontend/components/Notification";
+import {UserEndpoint} from "Frontend/generated/endpoints";
 
 
 interface ContextHolderProps {
@@ -20,17 +21,15 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [show, setShow] = useState(window.innerWidth > 768);
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("isLoggedIn"));
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     function handleLogin() {
         setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", "true");
         openNotification("Logged In successfully", "middle");
     }
 
     function handleLogout() {
         setIsLoggedIn(false);
-        localStorage.removeItem("isLoggedIn");
         openNotification("Logged out", "middle");
     }
 
@@ -41,6 +40,15 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const handleShowModal = () => {
         setShowSignInModal(prevState => !prevState);
     }
+
+    useEffect(() => {
+        async function checkLoginStatus() {
+            const loggedIn = await UserEndpoint.isLoggedIn();
+            setIsLoggedIn(loggedIn);
+        }
+
+        checkLoginStatus();
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {

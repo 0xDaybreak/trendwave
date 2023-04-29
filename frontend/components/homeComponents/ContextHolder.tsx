@@ -79,7 +79,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
             <VerticalLayout className="min-h-screen">
                 <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}  isLoading={isLoading}/>
                 <HorizontalLayout className="min-w-full">
-                    <Sidebar show={show} />
+                    <Sidebar show={show} onFavouriteNotLoggedIn={handleShowModal} />
                     {(() => {
                         switch (props.content) {
                             case 'register':

@@ -2,8 +2,17 @@ import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import {Button} from "@hilla/react-components/Button.js";
 import './Sidebar.css';
 import {useNavigate} from 'react-router-dom';
+import React from "react";
+import {UserEndpoint} from "Frontend/generated/endpoints";
+import {openNotification} from "Frontend/components/Notification";
 
-const Sidebar = ({show}:{show:boolean}) => {
+interface SidebarProps {
+    show:boolean;
+    onFavouriteNotLoggedIn:()=>void;
+}
+
+
+const Sidebar:React.FC<SidebarProps> = (props:SidebarProps) => {
 
     const navigate = useNavigate();
 
@@ -11,11 +20,25 @@ const Sidebar = ({show}:{show:boolean}) => {
         navigate('/top');
     };
 
-    const handleFavouritesChange = () => {
-      navigate('/favourites');
+    const handleFeedChange = async () => {
+        if (await UserEndpoint.isLoggedIn()) {
+
+        }
+        else {
+            props.onFavouriteNotLoggedIn();
+        }
+    }
+
+    const handleFavouritesChange = async () => {
+        if (await UserEndpoint.isLoggedIn()) {
+            navigate('/favourites');
+        }
+        else {
+            props.onFavouriteNotLoggedIn();
+        }
     };
 
-    if(show) {
+    if(props.show) {
         return (
             <div id = "sbs" className='sb-expand min-h-screen'>
                 <VerticalLayout className={"margin-left"}>
@@ -23,7 +46,7 @@ const Sidebar = ({show}:{show:boolean}) => {
                         Menu
                     </div>
                     <Button onClick={handleTodaysTopChange} className={"sb-button"}>Today's Top</Button>
-                    <Button className={"sb-button"}>Feed</Button>
+                    <Button onClick={handleFeedChange} className={"sb-button"}>Feed</Button>
                     <Button onClick={handleFavouritesChange} className={"sb-button"}>Favourites</Button>
                     <div className = "category-title">
                         Categories

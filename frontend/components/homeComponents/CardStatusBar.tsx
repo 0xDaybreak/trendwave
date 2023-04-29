@@ -51,7 +51,7 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
                     {likes}
                 </div>
                 <div className="subreddit">
-                    <a className={"nostyle"} href={"http://reddit.com/"+props.post}>
+                    <a className={"nostyle"} href={"http://reddit.com/"+props.post} target="_blank">
                     {" r/" + props.tags?.[0]}
                     </a>
                 </div>

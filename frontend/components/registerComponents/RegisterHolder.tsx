@@ -51,8 +51,10 @@ const RegisterHolder = () => {
                     <h3 className={"text"}>Email</h3>
                     <TextField onChange={handleInputChange} name={'email'} className={"field"}>Email</TextField>
                     <h3 className={"text"}>Password</h3>
+
                     <PasswordField onChange={handleInputChange} name={'password1'}
                                    className={"field"}>Password</PasswordField>
+                    <span className={"tip"}>A password must be at least 8 characters. It has to have at least one letter and one digit.</span>
                     <h3 className={"text"}>Repeat Password</h3>
                     <PasswordField onChange={handleInputChange} name={'password2'} className={"field"}>Repeat
                         Password</PasswordField>

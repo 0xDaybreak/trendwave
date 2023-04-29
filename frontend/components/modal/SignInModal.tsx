@@ -53,7 +53,13 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                     <h3 className={"text-signing"}> Email </h3>
                     <TextField  name="username" onInput={handleInputChange} className={"field-signin"}>Email</TextField>
                     <h3 className={"text-signing"}>Password</h3>
-                    <PasswordField name="password" onInput={handleInputChange} className={"field"}>Password</PasswordField>
+                    <PasswordField name="password" onInput={handleInputChange}
+                                   className={"field"}
+                                   theme="helper-above-field" allowed-char-pattern="[A-Za-z0-9]"
+                                   required
+                                   min-length="6"
+                                   max-length="12"
+                                   >Password</PasswordField>
                     <div className="modal-buttons">
                         <Button
                             className={"sn-button"}

@@ -24,18 +24,10 @@
     align-self: center;
 }
 
-.field {
-    margin-top: 1vh;
-    align-self: center;
-    right: 1rem;
-    font-size: large;
+.tip {
     color: #f387f3;
-    user-select: none;
-    overflow: auto;
-    width: 100%;
-    max-width: 95%;
-    background-color: #2b334b;
-    border-radius: 25px;
+    font-size: small;
+    padding-left: 1rem;
 }
 
 .button {

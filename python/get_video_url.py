@@ -25,9 +25,11 @@ for submission in submissions:
             'reddit_video') is not None:
         # Get the URL of the reddit video
         video_url = submission.media['reddit_video']['fallback_url']
+        post_url = submission.permalink
 
         # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
+                        "post": post_url,
                         "tags": [submission.subreddit.display_name, "test2"],
                         "likes": 0,
                         "date": today}

@@ -17,6 +17,15 @@ public class VideoEntity {
     private BigInteger likes;
 
     private String date;
+    private String post;
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
 
     public String getDate() {
         return date;

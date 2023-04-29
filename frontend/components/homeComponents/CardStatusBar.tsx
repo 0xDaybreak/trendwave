@@ -8,6 +8,7 @@ import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEn
 
 interface CardStatusBarProps {
     id?:string;
+    tags?:(string|undefined)[];
     isFavourite: Promise<boolean>
     onFavouriteNotLoggedIn:()=>void;
 }
@@ -47,6 +48,9 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
                 <div className="likes">
                     <Like onLikeClick={handleLikeClick}/>
                     {likes}
+                </div>
+                <div className="subreddit">
+                    {" r/" + props.tags?.[0]}
                 </div>
                 <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}/>
             </HorizontalLayout>

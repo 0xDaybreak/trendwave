@@ -1,5 +1,7 @@
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {Button} from "@hilla/react-components/Button.js";
+import {MenuBar} from "@hilla/react-components/MenuBar.js"
+import {MenuBarItem} from "@hilla/react-components/MenuBar.js"
 import {GoThreeBars} from "react-icons/go";
 import './Topbar.css';
 import React, {useEffect, useState} from "react";
@@ -7,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {logout} from "@hilla/frontend";
 import {isLoggedIn, loginImpl, logoutImpl} from "Frontend/auth/auth";
 import {openNotification} from "Frontend/components/Notification";
+import {color} from "@vaadin/vaadin-lumo-styles/color.js";
 
 interface TopbarProps {
     onThreeBarsMenuClick: any;
@@ -52,7 +55,28 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
 
     useEffect(() => {
     }, [props.isLoggedIn]);
+    const [selectedItem, setSelectedItem] = useState<MenuBarItem>();
 
+    const items = [
+        {
+            text: "Account",
+            style: { color: "red" },
+            children: [{ text: "Settings" }, { text: "Log out" }],
+        },
+    ];
+
+    useEffect(() => {
+        if (selectedItem) {
+            logout()
+                .then(() => {
+                    handleLogoutBtnClick();
+                    logoutImpl();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [selectedItem]);
 
     return (
         <div className="tb">
@@ -61,8 +85,13 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
                 <Button onClick={handleHomeButtonClick} className={"topbar-buttons"}>Home</Button>
                 <div className="topbar-right-buttons">
                     {props.isLoggedIn ?
-                        <Button onClick={() => logout().then(() => handleLogoutBtnClick()).then(() => logoutImpl())}
-                                className="topbar-right-button">Log out</Button> :
+                        //<Button onClick={}
+                              //  className="topbar-right-button">Log out</Button>
+                        <MenuBar
+                            theme="icon primary"
+                            items={items}
+                            onItemSelected={({ detail: { value } }) => setSelectedItem(value)}
+                        />:
                         <>{props.isLoading ?
 
                             <div className={"topbar-right-button"}>Loading... </div>

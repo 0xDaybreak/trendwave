@@ -10,7 +10,11 @@ interface CategoryProps {
 const CategoryComp:React.FC<CategoryProps> = (props:CategoryProps) => {
     return(
         <>
-            <Button className={"category"}>{props.category.cName}</Button>
+            <Button className={"category"}>
+                <span className={"category-text"}>
+                    {props.category.cName}
+                </span>
+            </Button>
         </>
         );
 }

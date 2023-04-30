@@ -7,9 +7,8 @@ import './Topbar.css';
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {logout} from "@hilla/frontend";
-import {isLoggedIn, loginImpl, logoutImpl} from "Frontend/auth/auth";
-import {openNotification} from "Frontend/components/Notification";
-import {color} from "@vaadin/vaadin-lumo-styles/color.js";
+import {logoutImpl} from "Frontend/auth/auth";
+
 
 interface TopbarProps {
     onThreeBarsMenuClick: any;
@@ -60,13 +59,12 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
     const items = [
         {
             text: "Account",
-            style: { color: "red" },
             children: [{ text: "Settings" }, { text: "Log out" }],
         },
     ];
 
     useEffect(() => {
-        if (selectedItem) {
+        if (selectedItem?.text==="Log out")  {
             logout()
                 .then(() => {
                     handleLogoutBtnClick();

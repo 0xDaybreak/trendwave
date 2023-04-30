@@ -4,6 +4,7 @@ import './Sidebar.css';
 import {useNavigate} from 'react-router-dom';
 import React from "react";
 import {UserEndpoint} from "Frontend/generated/endpoints";
+import CategoriesHolder from "Frontend/components/homeComponents/CategoriesHolder";
 
 interface SidebarProps {
     show:boolean;
@@ -48,9 +49,7 @@ const Sidebar:React.FC<SidebarProps> = (props:SidebarProps) => {
                     <Button onClick={handleFeedChange} className={"sb-button"}>Feed</Button>
                     <Button onClick={handleFavouritesChange} className={"sb-button"}>Favourites</Button>
                     <hr className={"hr-sb"}></hr>
-                    <div className = "category-title">
-                        Categories
-                    </div>
+                    <CategoriesHolder/>
                 </VerticalLayout>
             </div>
         );

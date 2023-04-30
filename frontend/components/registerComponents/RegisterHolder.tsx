@@ -1,5 +1,5 @@
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button} from "@hilla/react-components/Button.js";
 import {TextField} from "@hilla/react-components/TextField.js";
 import "@vaadin/vaadin-lumo-styles/utility.js";
@@ -17,9 +17,12 @@ const RegisterHolder = () => {
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('')
     const [password2, setPassword2] = useState('')
+    const [showTip, setShowTip] = useState(false)
     const emailRegex = /^[a-zA-Z\d._%+-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 
+
     function handleInputChange(event: any) {
+
         const {name, value} = event.target;
         if (name === 'email') {
             setEmail(value);
@@ -30,6 +33,9 @@ const RegisterHolder = () => {
         }
     }
 
+    const handleShowTip = () => {
+        setShowTip(true);
+    }
 
     const handleRegister = () => {
         if (password1 === password2 && emailRegex.test(email)) {
@@ -52,9 +58,9 @@ const RegisterHolder = () => {
                     <TextField onChange={handleInputChange} name={'email'} className={"field"}>Email</TextField>
                     <h3 className={"text"}>Password</h3>
 
-                    <PasswordField onChange={handleInputChange} name={'password1'}
+                    <PasswordField onKeyUp={handleShowTip} onChange={handleInputChange} name={'password1'}
                                    className={"field"}>Password</PasswordField>
-                    <span className={"tip"}>A password must be at least 8 characters. It has to have at least one letter and one digit.</span>
+                    {showTip? <span className={"tip"}>A password must be at least 8 characters. It has to have at least one letter and one digit.</span> : <span></span>}
                     <h3 className={"text"}>Repeat Password</h3>
                     <PasswordField onChange={handleInputChange} name={'password2'} className={"field"}>Repeat
                         Password</PasswordField>

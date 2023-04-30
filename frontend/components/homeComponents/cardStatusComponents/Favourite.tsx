@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import "./Favourite.css";
 import { UserEndpoint } from "Frontend/generated/endpoints";
-import {openNotification, isOpened} from "Frontend/components/Notification";
 import {Button} from "@hilla/react-components/Button.js";
+import {Notification} from "@hilla/react-components/Notification.js";
+import {NotificationPosition} from "@vaadin/notification/src/vaadin-notification";
 
 interface FavouriteProps {
     vid?: string;
@@ -15,6 +16,20 @@ interface FavouriteProps {
 const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
     const [isFav, setIsFav] = useState(false);
     const [notificationOpened, setNotificationOpened] = useState(false);
+
+    const handleNotification = (message:string, position:NotificationPosition) => {
+        setNotificationOpened(true);
+        const notification = Notification.show(message, {
+            position: position, duration: 4000
+        });
+        const handleOpenChanged = (e: any) => {
+            if (!e.detail.value) {
+                setNotificationOpened(false);
+                notification.removeEventListener("opened-changed", handleOpenChanged);
+            }
+        };
+        notification.addEventListener("opened-changed", handleOpenChanged);
+    };
 
     useEffect(() => {
         async function checkFav() {
@@ -29,10 +44,10 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
             setIsFav(prevState => !prevState);
             if (!isFav) {
                 UserEndpoint.saveFavourite(props.vid);
-                openNotification("Saved Favourite", "bottom-start")
+                handleNotification("Saved Favourite", "bottom-start")
             } else {
                 UserEndpoint.deleteFavourites(props.vid);
-                openNotification("Removed Favourite", "bottom-start")
+                handleNotification("Removed Favourite", "bottom-start")
             }
         }
         else {
@@ -41,7 +56,7 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
     }
 
     return (
-            <Button className={"favourite-container"} onClick={handleFavouriteClick} disabled={isOpened()}>
+            <Button className={"favourite-container"} onClick={handleFavouriteClick} disabled={notificationOpened}>
                 <FontAwesomeIcon icon={faBookmark} className={isFav ? "favourite-icon-yes" : "favourite-icon-no"}/>
             </Button>
     );

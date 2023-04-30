@@ -42,3 +42,8 @@
     user-select: none;
     overflow: auto;
 }
+
+.hr-sb {
+    border-top: 1px solid #ffb6c1;
+    margin-right: 0.9rem;
+}

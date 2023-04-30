@@ -4,7 +4,6 @@ import './Sidebar.css';
 import {useNavigate} from 'react-router-dom';
 import React from "react";
 import {UserEndpoint} from "Frontend/generated/endpoints";
-import {openNotification} from "Frontend/components/Notification";
 
 interface SidebarProps {
     show:boolean;
@@ -48,6 +47,7 @@ const Sidebar:React.FC<SidebarProps> = (props:SidebarProps) => {
                     <Button onClick={handleTodaysTopChange} className={"sb-button"}>Today's Top</Button>
                     <Button onClick={handleFeedChange} className={"sb-button"}>Feed</Button>
                     <Button onClick={handleFavouritesChange} className={"sb-button"}>Favourites</Button>
+                    <hr className={"hr-sb"}></hr>
                     <div className = "category-title">
                         Categories
                     </div>

@@ -8,6 +8,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {logout} from "@hilla/frontend";
 import {logoutImpl} from "Frontend/auth/auth";
+import '@vaadin/avatar';
 
 
 interface TopbarProps {
@@ -20,6 +21,10 @@ interface TopbarProps {
 }
 
 const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
+
+    const avatarElement = document.createElement('vaadin-avatar');
+    avatarElement.name = "Account";
+    avatarElement.style.cssText = "background-color:#b5b5b5; cursor:pointer; height:34px"
 
     const navigate = useNavigate();
 
@@ -58,7 +63,7 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
 
     const items = [
         {
-            text: "Account",
+            component: avatarElement,
             children: [{ text: "Settings" }, { text: "Log out" }],
         },
     ];
@@ -86,10 +91,10 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
                         //<Button onClick={}
                               //  className="topbar-right-button">Log out</Button>
                         <MenuBar
-                            theme="icon primary"
                             items={items}
                             onItemSelected={({ detail: { value } }) => setSelectedItem(value)}
-                        />:
+                        />
+                        :
                         <>{props.isLoading ?
 
                             <div className={"topbar-right-button"}>Loading... </div>

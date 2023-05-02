@@ -90,4 +90,12 @@ public class VideoEntityEndpoint {
         Pageable pageable = PageRequest.of(page, pageSize);
         return videoEntityRepository.findAll(pageable).getContent();
     }
+
+    @AnonymousAllowed
+    public List<VideoEntity> filterEntities(String filter, int page, int pageSize) {
+        List<VideoEntity> found = findAmount(page, pageSize);
+        System.out.println(found);
+        System.out.println(found.stream().filter(videoEntity -> videoEntity.getSubreddit().equals(filter)).collect(Collectors.toList()));
+        return found.stream().filter(videoEntity -> videoEntity.getSubreddit().equals(filter)).collect(Collectors.toList());
+    }
 }

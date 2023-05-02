@@ -9,6 +9,7 @@ import CategoriesHolder from "Frontend/components/homeComponents/CategoriesHolde
 interface SidebarProps {
     show:boolean;
     onFavouriteNotLoggedIn:()=>void;
+    onCategoryClicked:(childCategory:string)=>void;
 }
 
 
@@ -49,7 +50,7 @@ const Sidebar:React.FC<SidebarProps> = (props:SidebarProps) => {
                     <Button onClick={handleFeedChange} className={"sb-button"}>Feed</Button>
                     <Button onClick={handleFavouritesChange} className={"sb-button"}>Favourites</Button>
                     <hr className={"hr-sb"}></hr>
-                    <CategoriesHolder/>
+                    <CategoriesHolder onCategoryClicked={props.onCategoryClicked}/>
                 </VerticalLayout>
             </div>
         );

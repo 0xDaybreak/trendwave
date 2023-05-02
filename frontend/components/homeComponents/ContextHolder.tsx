@@ -23,6 +23,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [category, setCategory] = useState('');
 
     function handleLogin() {
         setIsLoggedIn(true);
@@ -40,6 +41,11 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     const handleShowModal = () => {
         setShowSignInModal(prevState => !prevState);
+    }
+
+    const handleCategoryClicked = (childCategory:string) => {
+        setCategory(childCategory);
+        console.log(category);
     }
 
     useEffect(() => {
@@ -79,13 +85,13 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
             <VerticalLayout className="min-h-screen">
                 <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}  isLoading={isLoading}/>
                 <HorizontalLayout className="min-w-full">
-                    <Sidebar show={show} onFavouriteNotLoggedIn={handleShowModal} />
+                    <Sidebar show={show} onFavouriteNotLoggedIn={handleShowModal} onCategoryClicked={handleCategoryClicked}/>
                     {(() => {
                         switch (props.content) {
                             case 'register':
                                 return <RegisterHolder />;
                             default:
-                                return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content}/>;
+                                return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content} category={category}/>;
                         }
                     })()}
                 </HorizontalLayout>

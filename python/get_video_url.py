@@ -12,7 +12,7 @@ db = client.videosite
 collection = db.videoEntity
 
 # Get the top posts from r/oddlysatisfying for today
-submissions = reddit.subreddit('damnthatsinteresting').top(time_filter='day', limit=10)
+submissions = reddit.subreddit('oddlysatisfying').top(time_filter='day', limit=10)
 
 
 # get current date
@@ -30,9 +30,10 @@ for submission in submissions:
         # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
                         "post": post_url,
-                        "tags": [submission.subreddit.display_name, "test2"],
+                        "tags": ["test1", "test2"],
                         "likes": 0,
-                        "date": today}
+                        "date": today,
+                        "subreddit": submission.subreddit.display_name}
         result = collection.insert_one(video_entity)
         print(f"Found video: {video_url}")
         print(f"Inserted obj in DB:{video_entity}")

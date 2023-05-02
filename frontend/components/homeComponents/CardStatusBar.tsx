@@ -10,6 +10,7 @@ interface CardStatusBarProps {
     id?:string;
     tags?:(string|undefined)[];
     post:string|undefined;
+    subreddit?:string|undefined;
     isFavourite: Promise<boolean>
     onFavouriteNotLoggedIn:()=>void;
 }
@@ -52,7 +53,7 @@ const CardStatusBar:React.FC<CardStatusBarProps> = (props:CardStatusBarProps) =>
                 </div>
                 <div className="subreddit">
                     <a className={"nostyle"} href={"http://reddit.com/"+props.post} target="_blank">
-                    {" r/" + props.tags?.[0]}
+                    {" r/" + props.subreddit}
                     </a>
                 </div>
                 <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}/>

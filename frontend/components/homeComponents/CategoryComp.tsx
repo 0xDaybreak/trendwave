@@ -4,13 +4,17 @@ import React from "react";
 
 interface CategoryProps {
     category:any;
+    onCategoryClicked:(childCategory:string)=>void;
 }
 
 
 const CategoryComp:React.FC<CategoryProps> = (props:CategoryProps) => {
+    const handleCategoryButton = () => {
+        props.onCategoryClicked(props.category.cName);
+    }
     return(
         <>
-            <Button className={"category"}>
+            <Button onClick={handleCategoryButton} className={"category"}>
                 <span className={"category-text"}>
                     {props.category.cName}
                 </span>

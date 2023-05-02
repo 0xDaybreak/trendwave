@@ -3,11 +3,13 @@ import './CategoriesHolder.css';
 import Category from "Frontend/generated/com/video/application/entity/Category";
 import CategoryComp from "Frontend/components/homeComponents/CategoryComp";
 import {CategoryEndpoint} from "Frontend/generated/endpoints";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
+interface CategoriesHolder {
+    onCategoryClicked:(childCategory:string)=>void;
+}
 
-
-const CategoriesHolder = () => {
+const CategoriesHolder:React.FC<CategoriesHolder> = (props:CategoriesHolder) => {
 
     const [categories, setCategories] = useState<Category[]>([]);
 
@@ -25,7 +27,7 @@ const CategoriesHolder = () => {
     return (
         <VerticalLayout className = "category-title">
             Categories
-            {categories.map(category => <CategoryComp category={category}/>)}
+            {categories.map(category => <CategoryComp category={category} onCategoryClicked={props.onCategoryClicked}/>)}
         </VerticalLayout>
         );
 }

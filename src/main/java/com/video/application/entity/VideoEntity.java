@@ -19,6 +19,15 @@ public class VideoEntity {
     private String date;
     private String post;
 
+    public String getSubreddit() {
+        return subreddit;
+    }
+
+    public void setSubreddit(String subreddit) {
+        this.subreddit = subreddit;
+    }
+
+    private String subreddit;
     public String getPost() {
         return post;
     }

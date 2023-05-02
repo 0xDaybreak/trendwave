@@ -8,6 +8,7 @@ import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEn
 
 interface CardHolderProps {
     content?: string;
+    category?:string;
     onFavouriteNotLoggedIn: () => void;
 }
 
@@ -19,6 +20,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * 0.8 / 4);
     const [cardsPerRow, setCardsPerRow] = useState(4);
+
     const [pageNr, setPageNr] = useState(0);
 
 
@@ -44,12 +46,16 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    useEffect(()=> {
+        getHomeContent();
+    },[props.category])
+
     const getHomeContent = () => {
-        VideoEntityEndpoint.findAmount(pageNr,8).then((newVEntities:any) =>
+        console.log(props.category)
+        VideoEntityEndpoint.filterEntities(props.category, pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }
-
     const getTodaysTopContent = () => {
         VideoEntityEndpoint.findTodaysTop(pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
@@ -110,14 +116,15 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                         <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} isFavourite={isFavourite(entity.id)}/>
+                                      post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </VerticalLayout>
                     ) : (
                         <HorizontalLayout className={"margin"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      width={windowWidth} post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} isFavourite={isFavourite(entity.id)}/>
+                                      width={windowWidth} post={entity.post} url={entity.url}
+                                      key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite(entity.id)}/>
                             ))}
                         </HorizontalLayout>
                     )}

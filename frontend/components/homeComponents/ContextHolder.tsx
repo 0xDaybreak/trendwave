@@ -83,7 +83,9 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
             )}
 
             <VerticalLayout className="min-h-screen">
-                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal} onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}  isLoading={isLoading}/>
+                <Topbar isLoggedIn={isLoggedIn} onLogout={handleLogout} signInBtnClicked={handleShowModal}
+                        onThreeBarsMenuClick={showSidebarHandler} isMobile={isMobile}  isLoading={isLoading}
+                        onCategoryClicked={handleCategoryClicked}/>
                 <HorizontalLayout className="min-w-full">
                     <Sidebar show={show} onFavouriteNotLoggedIn={handleShowModal} onCategoryClicked={handleCategoryClicked}/>
                     {(() => {

@@ -18,6 +18,7 @@ interface TopbarProps {
     isLoggedIn: boolean;
     isLoading: boolean;
     onLogout: () => void;
+    onCategoryClicked:(childCategory:string)=>void;
 }
 
 const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
@@ -29,6 +30,7 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
     const navigate = useNavigate();
 
     const handleHomeButtonClick = () => {
+        props.onCategoryClicked('');
         navigate('/');
     };
     const handleSignUpBtnClick = () => {
@@ -64,7 +66,7 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
     const items = [
         {
             component: avatarElement,
-            children: [{ text: "Settings" }, { text: "Log out" }],
+            children: [{color: 'red', text: "Settings"}, { text: "Log out" }],
         },
     ];
 

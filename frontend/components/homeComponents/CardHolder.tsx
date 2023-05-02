@@ -25,18 +25,19 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
 
 
     const myRef:any = useRef(null);
-    const lastCard:any = useCallback(
-        (node:any) => {
-            if(!node) return;
-            if(myRef.current) myRef.current.disconnect();
+    const lastCard = useCallback(
+        (node: any) => {
+            if (!node) return;
+            if (myRef.current) myRef.current.disconnect();
             myRef.current = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) {
                     setPageNr((prevPageNr) => prevPageNr + 1);
                 }
-            },{ threshold: 0.88 });
+            }, { threshold: 0.88 });
             myRef.current.observe(node);
-        }, [1]
+        }, [setPageNr]
     );
+
     let cardCounter = 1;
 
     useEffect(() => {
@@ -47,8 +48,17 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     }, []);
 
     useEffect(()=> {
-        getHomeContent();
-    },[props.category])
+        setPageNr(0); // Reset the page number when category changes
+        setVEntities([]); // Clear the entities when category changes
+        switch (props.content) {
+            case 'top':
+                return getTodaysTopContent();
+            case 'favourites':
+                return getFavouritesContent();
+            default:
+                return getHomeContent();
+        }
+    }, [props.category]);
 
     const getHomeContent = () => {
         console.log(props.category)

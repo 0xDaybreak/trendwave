@@ -13,14 +13,12 @@ interface CardHolderProps {
 }
 
 
-
 const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
 
     const [vEntities, setVEntities] = useState<VideoEntity[]>([]);
     const [entityChunks, setEntityChunks] = useState<VideoEntity[][]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * 0.8 / 4);
     const [cardsPerRow, setCardsPerRow] = useState(4);
-
     const [pageNr, setPageNr] = useState(0);
 
 
@@ -47,25 +45,20 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    useEffect(()=> {
-        setPageNr(0); // Reset the page number when category changes
-        setVEntities([]); // Clear the entities when category changes
-        switch (props.content) {
-            case 'top':
-                return getTodaysTopContent();
-            case 'favourites':
-                return getFavouritesContent();
-            default:
-                return getHomeContent();
-        }
-    }, [props.category]);
-
     const getHomeContent = () => {
-        console.log(props.category)
+
+        VideoEntityEndpoint.findAmount(pageNr,8).then((newVEntities:any) =>
+            setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
+        );
+    }
+
+    const getFilteredContent = () => {
+        console.log(props.content)
         VideoEntityEndpoint.filterEntities(props.category, pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }
+
     const getTodaysTopContent = () => {
         VideoEntityEndpoint.findTodaysTop(pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
@@ -78,20 +71,32 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         );
     }
 
-    const isFavourite = async (id: string | undefined): Promise<boolean> => {
+    const isFavourite = useCallback(async (id: string | undefined): Promise<boolean> => {
         return await VideoEntityEndpoint.isVideoFavourite(id);
-    };
-    useEffect(() => {
-        switch (props.content) {
-            case 'top':
-                return getTodaysTopContent();
-            case 'favourites':
-                return getFavouritesContent();
-            default:
-                return getHomeContent();
-        }
+    }, []);
 
-    }, [pageNr]);
+    useEffect(() => {
+        setPageNr(0);
+        setVEntities([]);
+    }, [props.category]);
+
+    useEffect(() => {
+        if (props.category) {
+            getFilteredContent();
+        } else {
+            switch (props.content) {
+                case 'top':
+                    getTodaysTopContent();
+                    break;
+                case 'favourites':
+                    getFavouritesContent();
+                    break;
+                default:
+                    getHomeContent();
+                    break;
+            }
+        }
+    }, [pageNr, props.category]);
 
     useEffect(() => {
         const calculateCardsPerRow = () => {

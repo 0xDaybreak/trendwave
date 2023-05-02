@@ -45,7 +45,6 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     const handleCategoryClicked = (childCategory:string) => {
         setCategory(childCategory);
-        console.log(category);
     }
 
     useEffect(() => {

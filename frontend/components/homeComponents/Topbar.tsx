@@ -24,8 +24,7 @@ interface TopbarProps {
 const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
 
     const avatarElement = document.createElement('vaadin-avatar');
-    avatarElement.name = "Account";
-    avatarElement.style.cssText = "background-color:#b5b5b5; cursor:pointer; height:34px"
+    avatarElement.style.cssText = "background-color:#cccaca; cursor:pointer; height:34px"
 
     const navigate = useNavigate();
 

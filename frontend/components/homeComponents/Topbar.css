@@ -43,3 +43,10 @@
     border-radius: 30%;
     cursor: pointer;
 }
+
+vaadin-menu-bar-item[theme~="custom-theme"],
+vaadin-menu-bar[theme~='custom-theme']{
+    background-color: #3b3b3b;
+    color: whitesmoke;
+    cursor: pointer;
+}

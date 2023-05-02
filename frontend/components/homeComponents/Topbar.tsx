@@ -66,7 +66,7 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
     const items = [
         {
             component: avatarElement,
-            children: [{color: 'red', text: "Settings"}, { text: "Log out" }],
+            children: [{text: "Settings", theme: 'custom-theme'}, { text: "Log out", theme: 'custom-theme' }],
         },
     ];
 

@@ -44,9 +44,16 @@
     cursor: pointer;
 }
 
-vaadin-menu-bar-item[theme~="custom-theme"],
-vaadin-menu-bar[theme~='custom-theme']{
+
+vaadin-menu-bar-overlay::part(overlay) {
     background-color: #3b3b3b;
-    color: whitesmoke;
+}
+
+vaadin-menu-bar-overlay::part(content) {
+    background-color: #3b3b3b;
+    color:whitesmoke;
+}
+
+vaadin-menu-bar-item {
     cursor: pointer;
 }

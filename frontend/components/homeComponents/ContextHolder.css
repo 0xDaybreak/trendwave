@@ -19,3 +19,11 @@ body::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 1em;
 }
+
+vaadin-notification-card::part(overlay){
+    background-color: #3b3b3b;
+}
+
+vaadin-notification-card::part(content) {
+    color:whitesmoke;
+}

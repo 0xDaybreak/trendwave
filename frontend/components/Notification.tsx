@@ -1,5 +1,6 @@
 import {Notification} from "@hilla/react-components/Notification.js"
 import {NotificationPosition} from "@vaadin/notification/src/vaadin-notification";
+import './homeComponents/ContextHolder.css';
 
 let notificationOpened = false;
 

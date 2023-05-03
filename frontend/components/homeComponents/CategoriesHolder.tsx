@@ -21,7 +21,6 @@ const CategoriesHolder:React.FC<CategoriesHolder> = (props:CategoriesHolder) => 
                 }
             })
             .catch(error => console.error(error));
-        console.log(categories);
     }, []);
 
     return (

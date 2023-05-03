@@ -51,9 +51,8 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         );
     }
 
-    const getFilteredContent = () => {
-        console.log('filtered content', props.content)
-        VideoEntityEndpoint.filterEntities(props.content, pageNr,8).then((newVEntities:any) =>
+    const getFilteredContent = (category: string) => {
+        VideoEntityEndpoint.filterEntities(category, pageNr, 8).then((newVEntities: any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }
@@ -88,7 +87,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     getFavouritesContent();
                     break;
                 default:
-                    getFilteredContent();
+                    getFilteredContent(props.category || '');
                     break;
             }
     }, [pageNr, props.content]);

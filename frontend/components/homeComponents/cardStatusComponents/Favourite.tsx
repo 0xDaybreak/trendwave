@@ -33,9 +33,12 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
 
     useEffect(() => {
         async function checkFav() {
-            const result = await props.isFavourite(props.vid);
-            setIsFav(result);
+            if (await UserEndpoint.isLoggedIn()) {
+                const result = await props.isFavourite(props.vid);
+                setIsFav(result);
+            }
         }
+
         checkFav();
     }, [props.isFavourite]);
 

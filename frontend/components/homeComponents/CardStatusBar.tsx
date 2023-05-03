@@ -11,7 +11,7 @@ interface CardStatusBarProps {
     tags?:(string|undefined)[];
     post:string|undefined;
     subreddit?:string|undefined;
-    isFavourite: Promise<boolean>
+    isFavourite: (id: string | undefined) => Promise<boolean>
     onFavouriteNotLoggedIn:()=>void;
 }
 

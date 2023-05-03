@@ -9,7 +9,7 @@ import {NotificationPosition} from "@vaadin/notification/src/vaadin-notification
 
 interface FavouriteProps {
     vid?: string;
-    isFavourite: Promise<boolean>;
+    isFavourite: (id: string | undefined) => Promise<boolean>;
     onFavouriteNotLoggedIn:()=>void;
 }
 
@@ -33,7 +33,7 @@ const Favourite: React.FC<FavouriteProps> = (props: FavouriteProps) => {
 
     useEffect(() => {
         async function checkFav() {
-            const result = await props.isFavourite;
+            const result = await props.isFavourite(props.vid);
             setIsFav(result);
         }
         checkFav();

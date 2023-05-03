@@ -10,7 +10,7 @@ interface CardProps {
     tags?:(string|undefined)[];
     subreddit?:string|undefined;
     post:string|undefined;
-    isFavourite: Promise<boolean>;
+    isFavourite: (id: string | undefined) => Promise<boolean> ;
     onFavouriteNotLoggedIn:()=>void;
 }
 

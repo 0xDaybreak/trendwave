@@ -53,7 +53,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
 
     const getFilteredContent = () => {
         console.log('filtered content', props.content)
-        VideoEntityEndpoint.filterEntities(props.category, pageNr,8).then((newVEntities:any) =>
+        VideoEntityEndpoint.filterEntities(props.content, pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }
@@ -80,9 +80,6 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     }, [props.category]);
 
     useEffect(() => {
-        if (props.category) {
-            getFilteredContent();
-        } else {
             switch (props.content) {
                 case 'top':
                     getTodaysTopContent();
@@ -91,11 +88,10 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     getFavouritesContent();
                     break;
                 default:
-                    getHomeContent();
+                    getFilteredContent();
                     break;
             }
-        }
-    }, [pageNr, props.category]);
+    }, [pageNr, props.content]);
 
     useEffect(() => {
         const calculateCardsPerRow = () => {
@@ -138,7 +134,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
                                       width={windowWidth} post={entity.post} url={entity.url}
-                                      key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite(entity.id)}/>
+                                      key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </HorizontalLayout>
                     )}

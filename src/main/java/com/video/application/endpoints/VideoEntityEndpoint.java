@@ -94,6 +94,6 @@ public class VideoEntityEndpoint {
     @AnonymousAllowed
     public List<VideoEntity> filterEntities(String filter, int page, int pageSize) {
         List<VideoEntity> found = findAmount(page, pageSize);
-        return filter.isEmpty() || filter.isBlank() ? found : found.stream().filter(videoEntity -> videoEntity.getSubreddit().equals(filter)).collect(Collectors.toList());
+        return filter==null || filter.isBlank() || filter.equals("undefined") ? found : found.stream().filter(videoEntity -> videoEntity.getSubreddit().equals(filter)).collect(Collectors.toList());
     }
 }

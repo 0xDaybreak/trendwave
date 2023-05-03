@@ -10,6 +10,7 @@ import RegisterHolder from "Frontend/components/registerComponents/RegisterHolde
 import '@vaadin/vaadin-lumo-styles/utility.js';
 import {openNotification} from "Frontend/components/Notification";
 import {UserEndpoint} from "Frontend/generated/endpoints";
+import {useNavigate} from "react-router-dom";
 
 
 interface ContextHolderProps {
@@ -24,6 +25,8 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [category, setCategory] = useState('');
+
+    const navigate = useNavigate();
 
     function handleLogin() {
         setIsLoggedIn(true);
@@ -45,6 +48,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
 
     const handleCategoryClicked = (childCategory:string) => {
         setCategory(childCategory);
+        navigate(`/${childCategory}`, { replace: true });
     }
 
     useEffect(() => {

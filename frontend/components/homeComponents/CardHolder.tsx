@@ -46,14 +46,13 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     }, []);
 
     const getHomeContent = () => {
-
         VideoEntityEndpoint.findAmount(pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );
     }
 
     const getFilteredContent = () => {
-        console.log(props.content)
+        console.log('filtered content', props.content)
         VideoEntityEndpoint.filterEntities(props.category, pageNr,8).then((newVEntities:any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
         );

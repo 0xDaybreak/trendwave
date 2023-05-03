@@ -126,7 +126,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                         <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite(entity.id)}/>
+                                      post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </VerticalLayout>
                     ) : (

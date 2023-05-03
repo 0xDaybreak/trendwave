@@ -27,7 +27,7 @@ const CategoriesHolder:React.FC<CategoriesHolder> = (props:CategoriesHolder) => 
     return (
         <VerticalLayout className = "category-title">
             Categories
-            {categories.map(category => <CategoryComp category={category} onCategoryClicked={props.onCategoryClicked}/>)}
+            {categories.map((category,index) => <CategoryComp key={index} category={category} onCategoryClicked={props.onCategoryClicked}/>)}
         </VerticalLayout>
         );
 }

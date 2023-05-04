@@ -10,6 +10,7 @@ import com.video.application.service.UserService;
 import dev.hilla.Endpoint;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -93,14 +94,14 @@ public class VideoEntityEndpoint {
 
     @AnonymousAllowed
     public List<VideoEntity> filterEntities(String filter, int page, int pageSize) {
-        List<VideoEntity> found = findAll();
-        found.stream()
-                .filter(videoEntity -> {
-                    System.out.println(videoEntity.getSubreddit());
-                    return videoEntity.getSubreddit().equals(filter);
-                })
-                .collect(Collectors.toList());
-
-        return filter==null || filter.isBlank() || filter.equals("undefined") ? found : found.stream().filter(videoEntity -> videoEntity.getSubreddit().equals(filter)).collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<VideoEntity> pageResult;
+        if (filter == null || filter.isBlank() || filter.equals("undefined")) {
+            pageResult = videoEntityRepository.findAll(pageable);
+        } else {
+            pageResult = videoEntityRepository.findBySubreddit(filter, pageable);
+        }
+        return pageResult.getContent();
     }
+
 }

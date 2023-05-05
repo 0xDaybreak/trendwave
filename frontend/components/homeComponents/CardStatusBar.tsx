@@ -4,6 +4,7 @@ import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEn
 import Like from "Frontend/components/homeComponents/cardStatusComponents/Like";
 import Favourite from "Frontend/components/homeComponents/cardStatusComponents/Favourite";
 import { HorizontalLayout } from "@hilla/react-components/HorizontalLayout.js";
+import { VerticalLayout } from "@hilla/react-components/VerticalLayout.js";
 import "./CardStatusBar.css";
 
 interface CardStatusBarProps {
@@ -58,13 +59,13 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
                     <Like onLikeClick={handleLikeClick} />
                     {likes}
                 </div>
-                <div className="subreddit">
-                    <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
-                        {" r/" + props.subreddit}
-                    </a>
-                </div>
-                <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} />
-                {isNewVideo && <span className="new-video">!New!</span>}
+                <VerticalLayout className="subreddit">
+                        <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
+                            {" r/" + props.subreddit}
+                        </a>
+                    {isNewVideo && <span className="new-video">!New!</span>}
+                </VerticalLayout>
+                    <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} />
             </HorizontalLayout>
         </div>
     );

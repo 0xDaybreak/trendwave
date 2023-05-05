@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    margin: 0.3rem auto auto 0.5em;
+    margin: auto auto auto 0.5em;
 }
 
 .hr {
@@ -38,4 +38,11 @@ a.nostyle:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: pointer;
+}
+.new-video{
+    color:#ffb6c1;
+    display: flex;
+    font-size: smaller;
+    align-items: center;
+    justify-content: center;
 }

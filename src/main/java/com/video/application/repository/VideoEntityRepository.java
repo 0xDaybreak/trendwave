@@ -22,8 +22,6 @@ public interface VideoEntityRepository extends MongoRepository<VideoEntity, Stri
 
     Page<VideoEntity> findBySubreddit(String subreddit, Pageable pageable);
 
-    @Query(value = "{}", sort = "{creationDate : -1}")
-    Page<VideoEntity>  findLatestVideos(Pageable pageable);
 
 
 }

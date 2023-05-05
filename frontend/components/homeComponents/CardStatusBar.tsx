@@ -4,7 +4,6 @@ import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEn
 import Like from "Frontend/components/homeComponents/cardStatusComponents/Like";
 import Favourite from "Frontend/components/homeComponents/cardStatusComponents/Favourite";
 import { HorizontalLayout } from "@hilla/react-components/HorizontalLayout.js";
-import { VerticalLayout } from "@hilla/react-components/VerticalLayout.js";
 import "./CardStatusBar.css";
 
 interface CardStatusBarProps {
@@ -18,7 +17,6 @@ interface CardStatusBarProps {
 
 const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) => {
     const [likes, setLikes] = useState(0);
-    const [isNewVideo, setIsNewVideo] = useState(false);
 
     const fetchData = async () => {
         if (props.id) {
@@ -33,14 +31,8 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
         }
     };
 
-    const checkIsNewVideo = async () => {
-        const isNew = await VideoEntityEndpoint.isNew(props.id);
-        setIsNewVideo(isNew);
-    }
-
     useEffect(() => {
         fetchData();
-        checkIsNewVideo();
     }, []);
 
     const handleLikeClick = () => {
@@ -59,12 +51,11 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
                     <Like onLikeClick={handleLikeClick} />
                     {likes}
                 </div>
-                <VerticalLayout className="subreddit">
+                <div className="subreddit">
                         <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
                             {" r/" + props.subreddit}
                         </a>
-                    {isNewVideo && <span className="new-video">!New!</span>}
-                </VerticalLayout>
+                </div>
                     <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} />
             </HorizontalLayout>
         </div>

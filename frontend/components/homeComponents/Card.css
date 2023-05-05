@@ -6,6 +6,7 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .video-insert {
     opacity: 70%;
@@ -16,4 +17,18 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     controls: off;
+}
+
+.new-video{
+    color:#ffb6c1;
+    display: flex;
+    font-size: smaller;
+    align-items: center;
+    justify-content: center;
+    top: 0.2rem;
+    left: 0.2rem;
+    position: absolute;
+    z-index: 10000;
+    background-color: #65486c;
+    border-radius: 20px;
 }

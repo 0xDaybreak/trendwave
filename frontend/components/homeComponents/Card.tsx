@@ -1,6 +1,8 @@
 import './Card.css'
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import CardStatusBar from "Frontend/components/homeComponents/CardStatusBar";
+import {VideoEntityEndpoint} from "Frontend/generated/endpoints";
+import { Button } from "@hilla/react-components/Button.js";
 
 interface CardProps {
     key?:number
@@ -16,6 +18,7 @@ interface CardProps {
 
 const Card:React.FC<CardProps> = (props:CardProps) => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isNewVideo, setIsNewVideo] = useState(false);
 
     const handleMouseEnter = () => {
         if (videoRef.current) {
@@ -34,8 +37,14 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
         }
     }
 
+    const checkIsNewVideo = async () => {
+        const isNew = await VideoEntityEndpoint.isNew(props.id);
+        setIsNewVideo(isNew);
+    }
+
+
     useEffect(()=>{
-        console.log("loaded")
+        checkIsNewVideo();
         const video:any = videoRef.current;
         video.addEventListener('click',()=>{
             video.unmute;
@@ -49,6 +58,7 @@ const Card:React.FC<CardProps> = (props:CardProps) => {
 
     return (
         <div style={{width:props.width}} className="card-item" >
+            {isNewVideo && <Button disabled className="new-video">New</Button>}
             <video className="video-insert" muted disablePictureInPicture controlsList="nodownload" ref={videoRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.

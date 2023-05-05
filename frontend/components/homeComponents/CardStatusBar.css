@@ -39,10 +39,3 @@ a.nostyle:visited {
     color: inherit;
     cursor: pointer;
 }
-.new-video{
-    color:#ffb6c1;
-    display: flex;
-    font-size: smaller;
-    align-items: center;
-    justify-content: center;
-}

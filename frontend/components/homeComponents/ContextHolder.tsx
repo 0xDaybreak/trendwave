@@ -24,7 +24,6 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [category, setCategory] = useState('');
 
     const navigate = useNavigate();
 
@@ -47,7 +46,6 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
     }
 
     const handleCategoryClicked = (childCategory:string) => {
-        setCategory(childCategory);
         navigate(`/${childCategory}`, { replace: true });
     }
 
@@ -96,7 +94,7 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
                             case 'register':
                                 return <RegisterHolder />;
                             default:
-                                return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content} category={category}/>;
+                                return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content}/>;
                         }
                     })()}
                 </HorizontalLayout>

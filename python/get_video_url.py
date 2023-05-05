@@ -12,7 +12,7 @@ db = client.videosite
 collection = db.videoEntity
 
 # Get the top posts from r/oddlysatisfying for today
-submissions = reddit.subreddit('damnthatsinteresting').top(time_filter='day', limit=10)
+submissions = reddit.subreddit('interestingasfuck').top(time_filter='day', limit=10)
 
 
 # get current date
@@ -32,7 +32,7 @@ for submission in submissions:
                         "post": post_url,
                         "tags": ["test1", "test2"],
                         "likes": 0,
-                        "date": today,
+                        "date": "2023-07-07",
                         "subreddit": submission.subreddit.display_name.lower()}
 
         result = collection.insert_one(video_entity)

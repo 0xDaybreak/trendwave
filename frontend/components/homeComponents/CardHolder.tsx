@@ -8,7 +8,6 @@ import VideoEntity from 'Frontend/generated/com/video/application/entity/VideoEn
 
 interface CardHolderProps {
     content?: string;
-    category?:string;
     onFavouriteNotLoggedIn: () => void;
 }
 
@@ -45,12 +44,6 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const getHomeContent = () => {
-        VideoEntityEndpoint.findAmount(pageNr,8).then((newVEntities:any) =>
-            setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
-        );
-    }
-
     const getFilteredContent = (category: string) => {
         VideoEntityEndpoint.filterEntities(category, pageNr, 8).then((newVEntities: any) =>
             setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
@@ -76,7 +69,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     useEffect(() => {
         setPageNr(0);
         setVEntities([]);
-    }, [props.category]);
+    }, [props.content]);
 
     useEffect(() => {
             switch (props.content) {
@@ -87,7 +80,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     getFavouritesContent();
                     break;
                 default:
-                    getFilteredContent(props.category || '');
+                    getFilteredContent(props.content || '');
                     break;
             }
     }, [pageNr, props.content]);

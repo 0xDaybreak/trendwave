@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.math.BigInteger;
@@ -34,10 +35,6 @@ public class VideoEntityEndpoint {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<VideoEntity> findAll() {
-        return videoEntityRepository.findAll();
-    }
-
     public void updateLike(String id, BigInteger like) {
         VideoEntity videoEntity = videoEntityRepository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
         videoEntity.setLikes(like);
@@ -51,13 +48,11 @@ public class VideoEntityEndpoint {
     @PermitAll
     public List<VideoEntity> findTodaysTop(int page, int pageSize)  {
         LocalDate currentDate = LocalDate.now();
-        String currentDay = String.valueOf(currentDate.getDayOfMonth());
         Pageable pageable = PageRequest.of(page, pageSize);
         return videoEntityRepository.findAll(pageable).getContent().stream()
                 .filter(videoEntity -> {
-                    LocalDate videoDate = LocalDate.parse(videoEntity.getDate());
-                    String videoDay = String.valueOf(videoDate.getDayOfMonth());
-                    return currentDay.equals(videoDay);
+                    LocalDate videoDate = videoEntity.getDate();
+                    return currentDate.equals(videoDate);
                 })
                 .sorted(Comparator.comparing(VideoEntity::getLikes).reversed())
                 .limit(8)
@@ -87,14 +82,8 @@ public class VideoEntityEndpoint {
     }
 
     @AnonymousAllowed
-    public List<VideoEntity> findAmount(int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize);
-        return videoEntityRepository.findAll(pageable).getContent();
-    }
-
-    @AnonymousAllowed
     public List<VideoEntity> filterEntities(String filter, int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize);
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by("date").descending());
         Page<VideoEntity> pageResult;
         if (filter == null || filter.isBlank() || filter.equals("undefined")) {
             pageResult = videoEntityRepository.findAll(pageable);
@@ -104,4 +93,11 @@ public class VideoEntityEndpoint {
         return pageResult.getContent();
     }
 
+
+    @AnonymousAllowed
+    public boolean isNew(String id) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate videoDate = videoEntityRepository.findById(id).get().getDate();
+        return currentDate.equals(videoDate);
+    }
 }

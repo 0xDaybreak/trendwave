@@ -2,7 +2,7 @@ package com.video.application.entity;
 
 import com.vaadin.flow.component.template.Id;
 
-import com.video.application.exceptions.VideoEntityNotFoundException;
+import java.time.LocalDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigInteger;
@@ -16,7 +16,7 @@ public class VideoEntity {
 
     private BigInteger likes;
 
-    private String date;
+    private LocalDate date;
     private String post;
 
     public String getSubreddit() {
@@ -36,11 +36,11 @@ public class VideoEntity {
         this.post = post;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

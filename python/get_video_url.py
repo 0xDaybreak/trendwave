@@ -12,27 +12,35 @@ db = client.videosite
 collection = db.videoEntity
 
 # Get the top posts from r/oddlysatisfying for today
-submissions = reddit.subreddit('interestingasfuck').top(time_filter='day', limit=10)
-
+submissions = reddit.subreddit('oddlysatisfying').top(time_filter='day', limit=10)
 
 # get current date
 today = str(date.today())
 
-# Loop through the submissions and extract any videos
+# Loop through the submissions and extract any videos with sound
 for submission in submissions:
-    # Check if the submission has a reddit video
+    # Check if the submission has a reddit video with sound
     if hasattr(submission, 'media') and submission.media is not None and submission.media.get(
-            'reddit_video') is not None:
+            'reddit_video') is not None and not submission.media['reddit_video'].get('is_gif', False):
         # Get the URL of the reddit video
         video_url = submission.media['reddit_video']['fallback_url']
         post_url = submission.permalink
 
-        # Do something with the video URL, such as download it or save it to a database
+        # Check if the submission has a sound url
+        sound_url = None
+        sound_url = submission.media['reddit_video']['fallback_url']
+        pos = sound_url.find("DASH")  # find the index of the first occurrence of "DASH"
+        if pos != -1:
+            pos = pos + 4
+            sound_url = sound_url[:pos]+"_audio.mp4"
+
+    # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
+                        "audio": sound_url,
                         "post": post_url,
                         "tags": ["test1", "test2"],
                         "likes": 0,
-                        "date": "2023-07-07",
+                        "date": today,
                         "subreddit": submission.subreddit.display_name.lower()}
 
         result = collection.insert_one(video_entity)

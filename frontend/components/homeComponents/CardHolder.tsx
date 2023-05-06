@@ -118,14 +118,15 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                         <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      post={entity.post} url={entity.url} key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
+                                      post={entity.post} url={entity.url} audio={entity.audio}
+                                      key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </VerticalLayout>
                     ) : (
                         <HorizontalLayout className={"margin"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      width={windowWidth} post={entity.post} url={entity.url}
+                                      width={windowWidth} post={entity.post} url={entity.url} audio={entity.audio}
                                       key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </HorizontalLayout>

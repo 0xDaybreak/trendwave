@@ -7,6 +7,7 @@ import { Button } from "@hilla/react-components/Button.js";
 interface CardProps {
     key?:number
     url?:string;
+    audio?:any;
     width?:number;
     id?:string;
     tags?:(string|undefined)[];

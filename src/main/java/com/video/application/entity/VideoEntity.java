@@ -14,6 +14,7 @@ public class VideoEntity {
     private String id;
     private String url;
 
+    private String audio;
     private BigInteger likes;
 
     private LocalDate date;
@@ -78,6 +79,13 @@ public class VideoEntity {
         this.url = url;
     }
 
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

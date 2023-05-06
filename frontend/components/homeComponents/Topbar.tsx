@@ -36,6 +36,10 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
         navigate('/register');
     };
 
+    const handleProfileMenuBarClick = () => {
+        navigate('/profile');
+    };
+
     const sendDataToContextHolder = () => {
         handleSignInBtnClick();
     }
@@ -65,20 +69,25 @@ const Topbar: React.FC<TopbarProps> = (props: TopbarProps) => {
     const items = [
         {
             component: avatarElement,
-            children: [{text: "Settings", theme: 'custom-theme'}, { text: "Log out", theme: 'custom-theme' }],
+            children: [{text: "Profile", theme: 'custom-theme'}, { text: "Log out", theme: 'custom-theme' }],
         },
     ];
 
     useEffect(() => {
-        if (selectedItem?.text==="Log out")  {
-            logout()
-                .then(() => {
-                    handleLogoutBtnClick();
-                    logoutImpl();
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        switch (selectedItem?.text)  {
+            case "Log out":
+                logout()
+                    .then(() => {
+                        handleLogoutBtnClick();
+                        logoutImpl();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                break;
+            case "Profile":
+                handleProfileMenuBarClick();
+                break;
         }
     }, [selectedItem]);
 

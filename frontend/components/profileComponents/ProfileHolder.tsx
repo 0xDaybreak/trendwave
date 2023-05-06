@@ -1,6 +1,7 @@
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
 import "./ProfileHolder.css"
 import React from "react";
+import { TextField } from "@hilla/react-components/TextField.js";
 
 const ProfileHolder = () => {
     return (
@@ -8,13 +9,8 @@ const ProfileHolder = () => {
             <div className={"m-auto"}>
                 <VerticalLayout className={"min-h-screen"}>
                     <div className={"profile-holder"}>
-                        test
-                        test
-                        test
-                        test
-                        test
-                        test
-                        test
+                        <h3 className={"text-profile"}>Name</h3>
+                        <TextField name={'name'} className={"field-profile"}>Name</TextField>
                     </div>
                 </VerticalLayout>
             </div>

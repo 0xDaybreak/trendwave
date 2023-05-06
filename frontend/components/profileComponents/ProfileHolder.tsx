@@ -11,6 +11,8 @@ const ProfileHolder = () => {
                     <div className={"profile-holder"}>
                         <h3 className={"text-profile"}>Name</h3>
                         <TextField name={'name'} className={"field-profile"}>Name</TextField>
+                        <h3 className={"text-profile"}>Email</h3>
+                        <TextField name={'email'} className={"field-profile"}>Email</TextField>
                     </div>
                 </VerticalLayout>
             </div>

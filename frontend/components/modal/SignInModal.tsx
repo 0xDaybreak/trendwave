@@ -8,6 +8,7 @@ import {AiFillCloseCircle} from "react-icons/all";
 import {useNavigate} from "react-router-dom";
 import sheepWave from "Frontend/images/sheepwave.png";
 import {openNotification} from "Frontend/components/Notification";
+import { HorizontalLayout } from '@hilla/react-components/HorizontalLayout.js';
 
 interface SignInModalProps {
     signInBtnClicked?:boolean;
@@ -42,8 +43,6 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
         }
     }
 
-
-
     return (
         <div className="modal">
             <div className="modal-content">
@@ -60,7 +59,7 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                                    min-length="6"
                                    max-length="12"
                                    >Password</PasswordField>
-                    <div className="modal-buttons">
+                    <HorizontalLayout className="modal-buttons">
                         <Button
                             className={"sn-button"}
                             onClick={() =>
@@ -70,10 +69,14 @@ const SignInModal:React.FC<SignInModalProps> = (props:SignInModalProps) =>{
                             }
                         >Sign in
                         </Button>
-
-                    </div>
+                        <div className={"forgot-password"}>
+                            Forgot Password?
+                        </div>
+                    </HorizontalLayout>
                 </form>
+                <div className={"image-container"}>
                 <img className={"image-modal"} alt="logo" src={sheepWave}/>
+                </div>
             </div>
         </div>
     );

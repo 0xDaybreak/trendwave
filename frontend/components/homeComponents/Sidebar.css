@@ -11,7 +11,7 @@
     background-color: #151a26;
     width: 11rem;
     position: fixed;
-    z-index: 2;
+    z-index: 5;
 }
 
 .sb-collapse {

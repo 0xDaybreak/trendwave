@@ -1,5 +1,6 @@
 package com.video.application.repository;
 
+import com.mongodb.lang.NonNull;
 import com.video.application.entity.VideoEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -13,7 +14,8 @@ import java.util.List;
 @Repository
 public interface VideoEntityRepository extends MongoRepository<VideoEntity, String> {
 
-    List<VideoEntity> findAll();
+    @NonNull
+    Page<VideoEntity> findAll(@NonNull Pageable pageable);
 
     @Query("{'id': ?0}")
     void updateLike(String id, BigInteger like);

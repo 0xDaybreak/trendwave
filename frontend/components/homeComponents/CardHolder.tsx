@@ -28,11 +28,11 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
             if (myRef.current) myRef.current.disconnect();
             myRef.current = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
-                    setPageNr((prevPageNr) => prevPageNr + 1);
+                    setPageNr(prevState => prevState+1)
                 }
             }, { threshold: 0.88 });
             myRef.current.observe(node);
-        }, [setPageNr]
+        }, []
     );
 
     let cardCounter = 1;
@@ -45,10 +45,14 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     }, []);
 
     const getFilteredContent = (category: string) => {
-        VideoEntityEndpoint.filterEntities(category, pageNr, 8).then((newVEntities: any) =>
-            setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities])
-        );
-    }
+        VideoEntityEndpoint.filterEntities(category, pageNr, 8).then((newVEntities: any) => {
+            if (pageNr === 0) {
+                setVEntities(newVEntities);
+            } else {
+                setVEntities((prevVEntities) => [...prevVEntities, ...newVEntities]);
+            }
+        });
+    };
 
     const getTodaysTopContent = () => {
         VideoEntityEndpoint.findTodaysTop(pageNr,8).then((newVEntities:any) =>

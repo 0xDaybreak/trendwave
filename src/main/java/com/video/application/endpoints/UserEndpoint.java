@@ -31,9 +31,7 @@ public class UserEndpoint {
     @PermitAll
     public void saveFavourite(String vid) {
         User user = userService.findByUsername();
-        System.out.println(user.getUsername());
         user.getFavourites().add(vid);
-        System.out.println(user.getFavourites());
         userService.updateUser(user);
     }
     @PermitAll

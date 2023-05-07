@@ -84,6 +84,8 @@ public class VideoEntityEndpoint {
     @AnonymousAllowed
     public List<VideoEntity> filterEntities(String filter, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by("date").descending());
+        System.out.println(page);
+        System.out.println(pageSize);
         Page<VideoEntity> pageResult;
         if (filter == null || filter.isBlank() || filter.equals("undefined")) {
             pageResult = videoEntityRepository.findAll(pageable);

@@ -2,7 +2,7 @@
     margin-left: 2rem;
     margin-top: 2rem;
     width: 18rem;
-    height: 40rem;
+    height: auto;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
     object-position: top;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    controls: off;
+    resize: both;
 }
 
 .new-video{

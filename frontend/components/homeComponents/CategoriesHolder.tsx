@@ -1,17 +1,23 @@
-import {VerticalLayout} from "@hilla/react-components/VerticalLayout.js";
+import { VerticalLayout } from "@hilla/react-components/VerticalLayout.js";
 import './CategoriesHolder.css';
 import Category from "Frontend/generated/com/video/application/entity/Category";
 import CategoryComp from "Frontend/components/homeComponents/CategoryComp";
-import {CategoryEndpoint} from "Frontend/generated/endpoints";
-import React, {useEffect, useState} from "react";
+import { CategoryEndpoint } from "Frontend/generated/endpoints";
+import React, { useEffect, useState } from "react";
 
-interface CategoriesHolder {
-    onCategoryClicked:(childCategory:string)=>void;
+interface CategoriesHolderProps {
+    onCategoryClicked: (childCategory: string) => void;
 }
 
-const CategoriesHolder:React.FC<CategoriesHolder> = (props:CategoriesHolder) => {
+const CategoriesHolder: React.FC<CategoriesHolderProps> = (props: CategoriesHolderProps) => {
 
     const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+
+    const handleCategoryClicked = (childCategory: string) => {
+        props.onCategoryClicked(childCategory);
+        setSelectedCategory(childCategory);
+    }
 
     useEffect(() => {
         CategoryEndpoint.accessCategories()
@@ -24,11 +30,18 @@ const CategoriesHolder:React.FC<CategoriesHolder> = (props:CategoriesHolder) => 
     }, []);
 
     return (
-        <VerticalLayout className = "category-title">
+        <VerticalLayout className="category-title">
             Categories
-            {categories.map((category,index) => <CategoryComp key={index} category={category} onCategoryClicked={props.onCategoryClicked}/>)}
+            {categories.map((category, index) =>
+                <CategoryComp
+                    key={index}
+                    category={category}
+                    onCategoryClicked={handleCategoryClicked}
+                    isSelected={category.cName === selectedCategory}
+                />
+            )}
         </VerticalLayout>
-        );
+    );
 }
 
 export default CategoriesHolder;

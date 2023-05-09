@@ -18,12 +18,21 @@
 .popup-content {
     position: relative;
     max-width: 500px;
-    width: 90%;
-    max-height: 90%;
+    width: auto;
     overflow-y: auto;
     margin: auto;
     padding: 30px;
     border-radius: 10px;
     background-color: #151a26;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.video-insert-popup {
+    opacity: 100%;
+    width: 50vh;
+    height: auto;
+    object-position: top;
+    resize: both;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }

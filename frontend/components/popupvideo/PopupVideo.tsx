@@ -41,10 +41,15 @@ const PopupVideo:React.FC<PopupVideoProps> = (props:PopupVideoProps) => {
                 popupRef.current &&
                 !popupRef.current.contains(event.target as Node)
             ) {
-                setIsVideoShow(false)
-                props.onCardClick(isVideoShow,'','');
+                setIsVideoShow(prevIsVideoShow => {
+                    if (prevIsVideoShow) {
+                        props.onCardClick(false,'','');
+                    }
+                    return false;
+                });
             }
         };
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -53,8 +58,8 @@ const PopupVideo:React.FC<PopupVideoProps> = (props:PopupVideoProps) => {
 
     return (
       <div className={"popup"}>
-          <div className={"popup-content"} ref={popupRef}>
-          <video ref={videoRef} className={"video-insert"} controls />
+          <div ref={popupRef}>
+          <video ref={videoRef} className={"video-insert-popup"} controls />
           </div>
       </div>
     );

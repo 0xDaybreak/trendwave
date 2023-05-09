@@ -24,9 +24,15 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
     const [showVideo, setShowVideo] = useState<boolean>(false);
 
     const handleVideoClick = () => {
-        setShowVideo(prevState => !prevState);
-        props.onCardClick(showVideo, props.url, props.audio);
+        setShowVideo(prevShowVideo => {
+            const isVideoShow = !prevShowVideo;
+            if(isVideoShow) {
+                props.onCardClick(isVideoShow, props.url, props.audio);
+            }
+            return isVideoShow;
+        });
     }
+
 
     const handleMouseEnter = () => {
         if (videoRef.current) {
@@ -50,12 +56,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
         checkIsNewVideo();
         const video: any = videoRef.current;
         video.addEventListener('click', () => {
-            video.unmute;
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
+            handleVideoClick();
         })
     }, [])
 

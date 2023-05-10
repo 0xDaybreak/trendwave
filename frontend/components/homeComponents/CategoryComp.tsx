@@ -1,6 +1,6 @@
 import {Button} from "@hilla/react-components/Button.js";
 import './CategoryComp.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 interface CategoryProps {
     category:any;
@@ -18,6 +18,9 @@ const CategoryComp:React.FC<CategoryProps> = (props:CategoryProps) => {
         setCategory(props.category.cName);
         props.onCategoryClicked(category);
     }
+    useEffect(()=>{
+        setCategory(props.category.cName);
+    },[])
 
     return(
         <>

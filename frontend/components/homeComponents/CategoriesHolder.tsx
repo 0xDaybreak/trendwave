@@ -37,7 +37,7 @@ const CategoriesHolder: React.FC<CategoriesHolderProps> = (props: CategoriesHold
                     key={index}
                     category={category}
                     onCategoryClicked={handleCategoryClicked}
-                    isSelected={category.cName === selectedCategory}
+                    isSelected={selectedCategory !== undefined && category.cName === selectedCategory}
                 />
             )}
         </VerticalLayout>

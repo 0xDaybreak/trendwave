@@ -4,6 +4,7 @@ import Category from "Frontend/generated/com/video/application/entity/Category";
 import CategoryComp from "Frontend/components/homeComponents/CategoryComp";
 import { CategoryEndpoint } from "Frontend/generated/endpoints";
 import React, { useEffect, useState } from "react";
+import {useLocation} from "react-router-dom";
 
 interface CategoriesHolderProps {
     onCategoryClicked: (childCategory: string) => void;
@@ -12,11 +13,11 @@ interface CategoriesHolderProps {
 const CategoriesHolder: React.FC<CategoriesHolderProps> = (props: CategoriesHolderProps) => {
 
     const [categories, setCategories] = useState<Category[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+    const location = useLocation();
+    const categoryNameInPath = location.pathname.split('/')[1];
 
     const handleCategoryClicked = (childCategory: string) => {
         props.onCategoryClicked(childCategory);
-        setSelectedCategory(childCategory);
     }
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const CategoriesHolder: React.FC<CategoriesHolderProps> = (props: CategoriesHold
             .catch(error => console.error(error));
     }, []);
 
+
     return (
         <VerticalLayout className="category-title">
             Categories
@@ -37,7 +39,7 @@ const CategoriesHolder: React.FC<CategoriesHolderProps> = (props: CategoriesHold
                     key={index}
                     category={category}
                     onCategoryClicked={handleCategoryClicked}
-                    isSelected={selectedCategory !== undefined && category.cName === selectedCategory}
+                    isSelected={category.cName === categoryNameInPath}
                 />
             )}
         </VerticalLayout>

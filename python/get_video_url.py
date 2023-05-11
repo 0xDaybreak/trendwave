@@ -12,7 +12,7 @@ db = client.videosite
 collection = db.videoEntity
 
 # Get the top posts from r/oddlysatisfying for today
-submissions = reddit.subreddit('oddlysatisfying').top(time_filter='day', limit=10)
+submissions = reddit.subreddit('oddlysatisfying').top(time_filter='day', limit=30)
 
 # get current date
 today = str(date.today())

@@ -22,18 +22,19 @@ const PopupVideo:React.FC<PopupVideoProps> = (props:PopupVideoProps) => {
         if(video!=null) {
             video.src = URL.createObjectURL(mediaSource);
         }
-
         // When the MediaSource object is ready, create a SourceBuffer and append the video and audio sources
-        mediaSource.addEventListener('sourceopen', () => {
+        mediaSource.addEventListener  ('sourceopen', async () => {
             const sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs="avc1.4d401f"');
-            fetch(props.url)
-                .then((response) => response.arrayBuffer())
-                .then((buffer) => sourceBuffer.appendBuffer(buffer));
+            const videoResponse = await fetch(props.url);
+            const videoData = await videoResponse.blob();
+            const arrayBufferVideo = await videoData.arrayBuffer();
+            sourceBuffer.appendBuffer(arrayBufferVideo);
 
             const audioSourceBuffer = mediaSource.addSourceBuffer('audio/mp4; codecs="mp4a.40.2"');
-            fetch(props.audio)
-                .then((response) => response.arrayBuffer())
-                .then((buffer) => audioSourceBuffer.appendBuffer(buffer));
+            const audioResponse = await fetch(props.audio);
+            const audioData = await audioResponse.blob();
+            const arrayBufferAudio = await audioData.arrayBuffer();
+            audioSourceBuffer.appendBuffer(arrayBufferAudio);
         });
 
         const handleClickOutside = (event: MouseEvent) => {

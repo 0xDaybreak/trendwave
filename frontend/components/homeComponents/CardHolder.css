@@ -8,6 +8,9 @@
 }
 
 .margin {
+    display: grid;
+    grid-template-columns:
+            repeat(4, 1fr);
     margin: 0 0 0 13.5em;
 }
 

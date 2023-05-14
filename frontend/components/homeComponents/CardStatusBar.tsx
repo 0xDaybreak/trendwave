@@ -52,11 +52,11 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
                     {likes}
                 </div>
                 <div className="subreddit">
-                        <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
-                            {" r/" + props.subreddit}
-                        </a>
+                    <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
+                        {" r/" + props.subreddit}
+                    </a>
                 </div>
-                    <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} />
+                <Favourite vid={props.id} isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} />
             </HorizontalLayout>
         </div>
     );

@@ -27,6 +27,10 @@ public class UserEndpoint {
                 SecurityContextHolder.getContext().getAuthentication();
         return !auth.getName().equals("anonymousUser");
     }
+    @PermitAll
+    public String retrieveUserId() {
+        return userService.findByUsername().getId();
+    }
 
     @PermitAll
     public void saveFavourite(String vid) {

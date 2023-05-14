@@ -35,9 +35,11 @@ public class VideoEntityEndpoint {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public void updateLike(String id, BigInteger like) {
+    @PermitAll
+    public void updateLike(String id, BigInteger like, String userId) {
         VideoEntity videoEntity = videoEntityRepository.findById(id).orElseThrow(() -> new VideoEntityNotFoundException(id));
         videoEntity.setLikes(like);
+        videoEntity.getUserLikes().add(userId);
         videoEntityRepository.save(videoEntity);
     }
 

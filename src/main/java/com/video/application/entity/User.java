@@ -16,7 +16,6 @@ public class User {
     @NonNull
     private String password;
     private Set<String> favourites;
-
     public String getId() {
         return id;
     }
@@ -50,4 +49,5 @@ public class User {
     public void setFavourites(Set<String> favourites) {
         this.favourites = favourites;
     }
+
 }

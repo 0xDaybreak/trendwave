@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Document
 public class VideoEntity {
@@ -14,13 +15,13 @@ public class VideoEntity {
     private String id;
     private String url;
     private String audio;
-
     private String hls;
-
     private BigInteger likes;
-
     private LocalDate date;
     private String post;
+
+    private Set<String> userLikes;
+
     public String getHls() {
         return hls;
     }
@@ -94,6 +95,14 @@ public class VideoEntity {
 
     public void setAudio(String audio) {
         this.audio = audio;
+    }
+
+    public Set<String> getUserLikes() {
+        return userLikes;
+    }
+
+    public void setUserLikes(Set<String> userLikes) {
+        this.userLikes = userLikes;
     }
     @Override
     public boolean equals(Object o) {

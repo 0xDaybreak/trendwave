@@ -42,7 +42,8 @@ for submission in submissions:
                         "tags": ["test1", "test2"],
                         "likes": 0,
                         "date": today,
-                        "subreddit": submission.subreddit.display_name.lower()}
+                        "subreddit": submission.subreddit.display_name.lower(),
+                        "userLikes": ""}
 
         result = collection.insert_one(video_entity)
         print(f"Found video: {video_url}")

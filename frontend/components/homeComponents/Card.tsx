@@ -12,6 +12,7 @@ interface CardProps {
     width?: number;
     id?: string;
     tags?: (string | undefined)[];
+    userLikes?: (string | undefined)[];
     subreddit?: string | undefined;
     post: string | undefined;
     isFavourite: (id: string | undefined) => Promise<boolean>;
@@ -72,7 +73,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
                 <source src={props.url} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
-            <CardStatusBar id={props.id} subreddit={props.subreddit} tags={props.tags} post={props.post}
+            <CardStatusBar id={props.id} subreddit={props.subreddit} tags={props.tags} userLikes={props.userLikes} post={props.post}
                            isFavourite={props.isFavourite} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}/>
         </div>
     );

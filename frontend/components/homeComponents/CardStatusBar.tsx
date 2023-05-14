@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { VideoEntityEndpoint } from "Frontend/generated/endpoints";
+import {UserEndpoint, VideoEntityEndpoint} from "Frontend/generated/endpoints";
 import VideoEntity from "Frontend/generated/com/video/application/entity/VideoEntity";
 import Like from "Frontend/components/homeComponents/cardStatusComponents/Like";
 import Favourite from "Frontend/components/homeComponents/cardStatusComponents/Favourite";
@@ -9,6 +9,7 @@ import "./CardStatusBar.css";
 interface CardStatusBarProps {
     id?: string;
     tags?: (string | undefined)[];
+    userLikes?: (string | undefined)[];
     post: string | undefined;
     subreddit?: string | undefined;
     isFavourite: (id: string | undefined) => Promise<boolean>;
@@ -35,11 +36,17 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
         fetchData();
     }, []);
 
-    const handleLikeClick = () => {
+    const handleLikeClick = async () => {
         if (props.id) {
-            const updatedLikes = likes + 1;
-            setLikes(updatedLikes);
-            VideoEntityEndpoint.updateLike(props.id, updatedLikes);
+            if(await UserEndpoint.isLoggedIn()) {
+                const userId = await UserEndpoint.retrieveUserId();
+                if(userId != '' && !props.userLikes?.includes(userId)) {
+                    console.log(props.userLikes)
+                    const updatedLikes = likes + 1;
+                    setLikes(updatedLikes);
+                    VideoEntityEndpoint.updateLike(props.id, updatedLikes, userId);
+                }
+            }
         }
     };
 

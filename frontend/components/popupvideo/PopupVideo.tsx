@@ -6,46 +6,62 @@ interface PopupVideoProps {
     url?: any;
     audio?: any;
     hls?: string;
-    onCardClick: (state: boolean, entityUrl: string, entityAudio: string, hls:string) => void;
+    onCardClick: (state: boolean, entityUrl: string, entityAudio: string, hls: string) => void;
 }
 
 const PopupVideo: React.FC<PopupVideoProps> = (props: PopupVideoProps) => {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const popupRef = useRef<HTMLDivElement>(null);
-    const [isVideoShow, setIsVideoShow] = useState<boolean>(true);
+        const videoRef = useRef<HTMLVideoElement>(null);
+        const popupRef = useRef<HTMLDivElement>(null);
+        const [isVideoShow, setIsVideoShow] = useState<boolean>(true);
+        const [videoWidth, setVideoWidth] = useState('');
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-                setIsVideoShow((prevIsVideoShow) => {
-                    if (prevIsVideoShow) {
-                        props.onCardClick(false, "", "", "");
+        useEffect(() => {
+                const calculateVideoWidth = () => {
+                    if (window.innerWidth >= 992) {
+                        setVideoWidth('30%')
+                    } else {
+                        setVideoWidth('80%')
                     }
-                    return false;
-                });
-            }
-        };
+                }
+            calculateVideoWidth();
+            window.addEventListener('resize', calculateVideoWidth);
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [props.url, props.audio]);
+            return () => window.removeEventListener('resize', calculateVideoWidth);
+            }, [])
 
-    return (
-        <div className={"popup"}>
-            <div ref={popupRef}>
+        useEffect(() => {
+            const handleClickOutside = (event: MouseEvent) => {
+                if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                    setIsVideoShow((prevIsVideoShow) => {
+                        if (prevIsVideoShow) {
+                            props.onCardClick(false, "", "", "");
+                        }
+                        return false;
+                    });
+                }
+            };
+
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [props.url, props.audio]);
+
+        return (
+            <div className={"popup"}>
+                <div ref={popupRef}>
                     <ReactPlayer
                         className='react-player'
                         url={props.hls}
-                        width='30%'
-                        height='100%'
+                        width={videoWidth}
+                        height='90%'
                         controls={true}
                         muted={false}
                     />
                 </div>
-        </div>
-    );
-};
+            </div>
+        );
+    }
+;
 
 export default PopupVideo;

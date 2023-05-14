@@ -46,7 +46,7 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
     return (
         <div className="card-status">
             <hr className={"hr"}></hr>
-            <HorizontalLayout>
+            <HorizontalLayout theme="spacing" style={{justifyContent:"center"}}>
                 <div className="likes">
                     <Like onLikeClick={handleLikeClick} />
                     {likes}

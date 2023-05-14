@@ -33,10 +33,11 @@ for submission in submissions:
         if pos != -1:
             pos = pos + 4
             sound_url = sound_url[:pos]+"_audio.mp4"
-
+        hls_url = submission.media['reddit_video'].get('hls_url')
     # Do something with the video URL, such as download it or save it to a database
         video_entity = {"url": video_url,
                         "audio": sound_url,
+                        "hls": hls_url,
                         "post": post_url,
                         "tags": ["test1", "test2"],
                         "likes": 0,

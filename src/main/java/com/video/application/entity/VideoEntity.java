@@ -13,12 +13,21 @@ public class VideoEntity {
     @Id
     private String id;
     private String url;
-
     private String audio;
+
+    private String hls;
+
     private BigInteger likes;
 
     private LocalDate date;
     private String post;
+    public String getHls() {
+        return hls;
+    }
+
+    public void setHls(String hls) {
+        this.hls = hls;
+    }
 
     public String getSubreddit() {
         return subreddit;

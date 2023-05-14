@@ -2,6 +2,8 @@
   "name": "no-name",
   "license": "UNLICENSED",
   "dependencies": {
+    "@ffmpeg/core": "^0.11.0",
+    "@ffmpeg/ffmpeg": "^0.11.6",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -34,9 +36,11 @@
     "fluent-ffmpeg": "^2.1.2",
     "line-awesome": "1.3.0",
     "lit": "2.6.1",
+    "mux.js": "^6.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-player": "^2.12.0",
     "react-router-dom": "^6.4.2",
     "react-twitter-login": "^1.5.0"
   },
@@ -50,6 +54,7 @@
     "async": "3.2.2",
     "glob": "7.2.3",
     "mkdirp": "1.0.4",
+    "mux.js": "^6.3.0",
     "rollup-plugin-brotli": "3.1.0",
     "strip-css-comments": "5.0.0",
     "transform-ast": "2.4.4",
@@ -97,7 +102,11 @@
     "@fortawesome/free-solid-svg-icons": "$@fortawesome/free-solid-svg-icons",
     "@fortawesome/react-fontawesome": "$@fortawesome/react-fontawesome",
     "react-twitter-login": "$react-twitter-login",
-    "fluent-ffmpeg": "$fluent-ffmpeg"
+    "fluent-ffmpeg": "$fluent-ffmpeg",
+    "mux.js": "$mux.js",
+    "@ffmpeg/core": "$@ffmpeg/core",
+    "@ffmpeg/ffmpeg": "$@ffmpeg/ffmpeg",
+    "react-player": "$react-player"
   },
   "vaadin": {
     "dependencies": {
@@ -142,6 +151,6 @@
       "workbox-core": "6.5.4",
       "workbox-precaching": "6.5.4"
     },
-    "hash": "1629cc76cf1354ef3ce4dfd406527d5bec7f5bee182ee5b1d59db2ebdf231a6d"
+    "hash": "c11e4199a89af554c644c2aec31556c73914e081a458e61d2f96f93bc1976012"
   }
 }

@@ -8,6 +8,7 @@ interface CardProps {
     key?: number
     url?: any;
     audio?: any;
+    hls?: string;
     width?: number;
     id?: string;
     tags?: (string | undefined)[];
@@ -15,7 +16,7 @@ interface CardProps {
     post: string | undefined;
     isFavourite: (id: string | undefined) => Promise<boolean>;
     onFavouriteNotLoggedIn: () => void;
-    onCardClick: (state: boolean, entityUrl: string, entityAudio: string) => void;
+    onCardClick: (state: boolean, entityUrl: string, entityAudio: string, hls:string|undefined) => void;
 }
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
@@ -27,7 +28,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
         setShowVideo(prevShowVideo => {
             const isVideoShow = !prevShowVideo;
             if(isVideoShow) {
-                props.onCardClick(isVideoShow, props.url, props.audio);
+                props.onCardClick(isVideoShow, props.url, props.audio, props.hls);
             }
             return isVideoShow;
         });

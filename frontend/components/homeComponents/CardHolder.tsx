@@ -23,11 +23,13 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     const [isPopUpShow, setPopUpShow] = useState<boolean>(false);
     const [entityUrl, setEntityUrl] = useState('');
     const [entityAudio, setEntityAudio] = useState('');
+    const [hls, setHls] = useState<string|undefined>('');
 
-    const handleCardClick = (state:boolean, entityUrl:string, entityAudio:string) => {
+    const handleCardClick = (state:boolean, entityUrl:string, entityAudio:string, hls:string|undefined) => {
         setPopUpShow(state);
         setEntityUrl(entityUrl);
         setEntityAudio(entityAudio);
+        setHls(hls);
     }
 
     const myRef:any = useRef(null);
@@ -85,17 +87,17 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     }, [props.content]);
 
     useEffect(() => {
-            switch (props.content) {
-                case 'top':
-                    getTodaysTopContent();
-                    break;
-                case 'favourites':
-                    getFavouritesContent();
-                    break;
-                default:
-                    getFilteredContent(props.content || '');
-                    break;
-            }
+        switch (props.content) {
+            case 'top':
+                getTodaysTopContent();
+                break;
+            case 'favourites':
+                getFavouritesContent();
+                break;
+            default:
+                getFilteredContent(props.content || '');
+                break;
+        }
     }, [pageNr, props.content]);
 
     useEffect(() => {
@@ -125,14 +127,14 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
 
     return (
         <VerticalLayout className="card-holder-vertical-layout">
-            {isPopUpShow ? <PopupVideo onCardClick={handleCardClick} url={entityUrl} audio={entityAudio}/> : null}
+            {isPopUpShow ? <PopupVideo onCardClick={handleCardClick} url={entityUrl} audio={entityAudio} hls={hls}/> : null}
             {entityChunks.map((chunk, index) => (
                 <div key={index} className='margin-bottom'>
                     {cardsPerRow === 1 ? (
                         <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onCardClick={handleCardClick}  onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      post={entity.post} url={entity.url} audio={entity.audio}
+                                      post={entity.post} url={entity.url} audio={entity.audio} hls={entity.hls}
                                       key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </VerticalLayout>
@@ -140,7 +142,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                         <HorizontalLayout className={"margin"} ref={lastCard}>
                             {chunk.map((entity) => (
                                 <Card onCardClick={handleCardClick} onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
-                                      width={windowWidth} post={entity.post} url={entity.url} audio={entity.audio}
+                                      width={windowWidth} post={entity.post} url={entity.url} audio={entity.audio} hls={entity.hls}
                                       key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}
                         </HorizontalLayout>

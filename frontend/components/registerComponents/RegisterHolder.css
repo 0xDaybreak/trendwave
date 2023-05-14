@@ -30,11 +30,10 @@
     padding-left: 1rem;
 }
 
-.button {
-    color: #f387f3;
-    width: 100%;
-    max-width: 95%;
-    align-self: center;
-    cursor:pointer;
-    background-color: #3b3b3b;
+.ca-button {
+    color: snow;
+    margin-top: 2%;
+    cursor: pointer;
+    background-color: #503252;
+    border-radius: 25px;
 }

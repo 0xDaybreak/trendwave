@@ -64,7 +64,7 @@ const RegisterHolder = () => {
                     <h3 className={"text"}>Repeat Password</h3>
                     <PasswordField onChange={handleInputChange} name={'password2'} className={"field"}>Repeat
                         Password</PasswordField>
-                    <Button onClick={handleRegister} className={"button"}> Create
+                    <Button onClick={handleRegister} className={"ca-button"}> Create
                         Account</Button>
                 </VerticalLayout>
             </div>

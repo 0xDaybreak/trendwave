@@ -5,6 +5,7 @@ import React from "react";
 
 interface LikeProps {
     onLikeClick: ()=>void;
+    disabled: boolean;
 }
 
 
@@ -12,7 +13,7 @@ const Like:React.FC<LikeProps> = (props:LikeProps) => {
     return (
         <>
             <button className="like-button" onClick={props.onLikeClick}>
-                <FontAwesomeIcon icon={faHeart } />
+                {props.disabled ? "" : <FontAwesomeIcon icon={faHeart } />}
             </button>
         </>
 

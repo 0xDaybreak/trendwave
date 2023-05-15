@@ -32,6 +32,11 @@ public class UserEndpoint {
         return userService.findByUsername().getId();
     }
 
+    @AnonymousAllowed
+    public boolean isUsernameExist(String username) {
+        return !userService.loadUserByUsername(username).getUsername().isEmpty();
+    }
+
     @PermitAll
     public void saveFavourite(String vid) {
         User user = userService.findByUsername();

@@ -18,6 +18,8 @@ interface CardStatusBarProps {
 
 const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) => {
     const [likes, setLikes] = useState(0);
+    const [disableLike, setDisableLike] = useState(false);
+    const [likeClicked, setLikeClicked] = useState(false);
 
     const fetchData = async () => {
         if (props.id) {
@@ -37,14 +39,15 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
     }, []);
 
     const handleLikeClick = async () => {
-        if (props.id) {
+        if (!likeClicked && props.id) {
+            setLikeClicked(true);
             if(await UserEndpoint.isLoggedIn()) {
                 const userId = await UserEndpoint.retrieveUserId();
                 if(userId != '' && !props.userLikes?.includes(userId)) {
                     console.log(props.userLikes)
                     const updatedLikes = likes + 1;
                     setLikes(updatedLikes);
-                    VideoEntityEndpoint.updateLike(props.id, updatedLikes, userId);
+                    VideoEntityEndpoint.updateLike(props.id, updatedLikes, userId).then();
                 }
             }
         }
@@ -55,11 +58,11 @@ const CardStatusBar: React.FC<CardStatusBarProps> = (props: CardStatusBarProps) 
             <hr className={"hr"}></hr>
             <HorizontalLayout theme="spacing" style={{justifyContent:"center"}}>
                 <div className="likes">
-                    <Like onLikeClick={handleLikeClick} />
+                    <Like disabled={disableLike} onLikeClick={handleLikeClick} />
                     {likes}
                 </div>
                 <div className="subreddit">
-                    <a className={"nostyle"} href={"http://reddit.com/" + props.post} target="_blank">
+                    <a className={"nostyle"} href={"https://reddit.com/" + props.post} target="_blank">
                         {" r/" + props.subreddit}
                     </a>
                 </div>

@@ -23,7 +23,7 @@ const Sidebar:React.FC<SidebarProps> = (props:SidebarProps) => {
 
     const handleFeedChange = async () => {
         if (await UserEndpoint.isLoggedIn()) {
-
+            navigate('/feed');
         }
         else {
             props.onFavouriteNotLoggedIn();

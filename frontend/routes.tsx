@@ -6,6 +6,7 @@ import {LoginView} from "Frontend/views/LoginView";
 import RegisterView from "Frontend/views/RegisterView";
 import FavouritesView from "Frontend/views/FavouritesView";
 import FilteredView from "Frontend/views/FilteredView";
+import FeedView from "Frontend/views/FeedView";
 
 export type MenuProps = Readonly<{
   icon?: string;
@@ -37,7 +38,8 @@ export const routes: readonly ViewRouteObject[] = [
     {path:'/home', element:<LoginView/>},
     {path: 'register', element: <RegisterView/>},
     {path: 'favourites', element: <FavouritesView/>},
-    { path: ':category', element: <FilteredView /> } // Path with a parameter placeholder
+    {path: ':category', element: <FilteredView/> }, // Path with a parameter placeholder
+    {path: 'feed', element: <FeedView/>}
 ];
 
 

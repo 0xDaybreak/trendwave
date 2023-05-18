@@ -12,6 +12,7 @@ import {openNotification} from "Frontend/components/Notification";
 import {UserEndpoint} from "Frontend/generated/endpoints";
 import {useNavigate} from "react-router-dom";
 import ProfileHolder from "Frontend/components/profileComponents/ProfileHolder";
+import FeedHolder from "Frontend/components/feedComponents/FeedHolder";
 
 
 interface ContextHolderProps {
@@ -96,6 +97,8 @@ const ContextHolder:React.FC<ContextHolderProps> = (props:ContextHolderProps) =>
                                 return <RegisterHolder />;
                             case 'profile':
                                 return <ProfileHolder />;
+                            case 'feed':
+                                return <FeedHolder />;
                             default:
                                 return <CardHolder onFavouriteNotLoggedIn={handleShowModal} content={props.content}/>;
                         }

@@ -3,12 +3,17 @@ package com.video.application.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 @Document
 public class Redditor {
     @Id
     private String id;
 
     private String avatarurl;
+
+    private Set<String> topSubreddits;
+
 
     public String getId() {
         return id;
@@ -24,5 +29,13 @@ public class Redditor {
 
     public void setAvatarurl(String avatarurl) {
         this.avatarurl = avatarurl;
+    }
+
+    public Set<String> getTopSubreddits() {
+        return topSubreddits;
+    }
+
+    public void setTopSubreddits(Set<String> topSubreddits) {
+        this.topSubreddits = topSubreddits;
     }
 }

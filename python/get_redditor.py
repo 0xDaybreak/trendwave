@@ -11,7 +11,7 @@ print("Connection Successful")
 db = client.videosite
 collection = db.redditor
 
-redditor = reddit.redditor('himthecool21')  # Replace 'USERNAME' with the desired Reddit username
+redditor = reddit.redditor('Bitdream200k')  # Replace 'USERNAME' with the desired Reddit username
 avatar_url = redditor.icon_img
 
 redditor = {"avatarurl": avatar_url}

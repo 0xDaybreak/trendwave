@@ -10,7 +10,7 @@ const RedditCard: FC<RedditCardProps> = (props: RedditCardProps) => {
 
     return (
             <div className={"reddit-card"}>
-                <img src={props.avatar}/>
+                <img className={"avatar"} src={props.avatar}/>
             </div>
     );
 }

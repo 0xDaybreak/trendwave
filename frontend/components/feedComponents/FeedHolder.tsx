@@ -12,7 +12,6 @@ const FeedHolder = () => {
 
     const onStartUp = () => {
         RedditorEndpoint.retrieveRedditors().then(redditor=>setRedditors(redditor))
-        console.log(redditors)
     }
 
 
@@ -22,8 +21,7 @@ const FeedHolder = () => {
 
     return(
       <div className={"feedholder-items"}>
-          {redditors?.map(redditor=><RedditCard avatar={redditor?.avatarurl}/>)}
-          {redditors?.map((redditor) => redditor?.topSubreddits?.map((topSubreddit: any) => <Subreddits topSubreddit={topSubreddit} />))}
+          {redditors?.map(redditor=><RedditCard avatar={redditor?.avatarurl} topSubreddit={redditor?.topSubreddits}/>)}
       </div>
     );
 }

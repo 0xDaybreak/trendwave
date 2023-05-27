@@ -5,6 +5,14 @@
     border-radius: 15px;
     flex-direction: column;
 }
+
+
+@media(max-width: 768px) {
+    .card-item {
+        margin-left: 0.2rem;
+    }
+}
+
 .video-insert {
     opacity: 70%;
     width: 100%;
@@ -18,7 +26,7 @@
     margin-bottom: -0.5rem;
 }
 
-.new-video{
+.new-video {
     color:#ffb6c1;
     display: flex;
     font-size: smaller;

@@ -24,6 +24,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
     const [entityUrl, setEntityUrl] = useState('');
     const [entityAudio, setEntityAudio] = useState('');
     const [hls, setHls] = useState<string|undefined>('');
+    const [mobileWidth, setMobileWidth] = useState(0);
 
     const handleCardClick = (state:boolean, entityUrl:string, entityAudio:string, hls:string|undefined) => {
         setPopUpShow(state);
@@ -108,6 +109,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                 setCardsPerRow(3);
             } else {
                 setCardsPerRow(1);
+                setMobileWidth(window.innerWidth-50)
             }
         };
 
@@ -133,7 +135,7 @@ const CardHolder:React.FC<CardHolderProps> = (props:CardHolderProps) => {
                     {cardsPerRow === 1 ? (
                         <VerticalLayout className={"margin-mobile"} ref={lastCard}>
                             {chunk.map((entity) => (
-                                <Card onCardClick={handleCardClick}  onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn}
+                                <Card onCardClick={handleCardClick}  onFavouriteNotLoggedIn={props.onFavouriteNotLoggedIn} width={mobileWidth}
                                       post={entity.post} url={entity.url} audio={entity.audio} hls={entity.hls} userLikes={entity.userLikes}
                                       key={cardCounter++} id={entity.id} tags={entity.tags} subreddit={entity.subreddit} isFavourite={isFavourite}/>
                             ))}

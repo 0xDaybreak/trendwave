@@ -66,7 +66,6 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
         }
     }
 
-
     useEffect(() => {
         checkIsNewVideo();
         const video: any = videoRef.current;

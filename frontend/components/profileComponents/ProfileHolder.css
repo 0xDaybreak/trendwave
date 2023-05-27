@@ -30,3 +30,11 @@
 .text-profile{
     color:white;
 }
+
+@media (max-width:768px) {
+        .profile-holder-vertical-layout{
+            width: 65%;
+            margin-left: 4.5rem;
+            margin-top: 2rem;
+        }
+}

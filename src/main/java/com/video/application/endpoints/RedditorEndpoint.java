@@ -1,5 +1,6 @@
 package com.video.application.endpoints;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.video.application.entity.Redditor;
 import com.video.application.service.RedditorService;
 import dev.hilla.Endpoint;
@@ -8,7 +9,7 @@ import jakarta.annotation.security.PermitAll;
 import java.util.List;
 
 @Endpoint
-@PermitAll
+@AnonymousAllowed
 public class RedditorEndpoint {
 
     private final RedditorService redditorService;
@@ -17,7 +18,7 @@ public class RedditorEndpoint {
         this.redditorService = redditorService;
     }
 
-    @PermitAll
+    @AnonymousAllowed
     public List<Redditor> retrieveRedditors() {
         return redditorService.retrieveRedditors();
     }

@@ -38,10 +38,23 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
 
     const handleMouseEnter = () => {
         if (videoRef.current) {
-            videoRef.current.play();
-            videoRef.current.style.opacity = '100%';
+            const playPromise = videoRef.current.play();
+
+            if (playPromise) {
+                playPromise
+                    .then(() => {
+                        if (videoRef.current) {
+                            videoRef.current.style.opacity = '100%';
+                        }
+                    })
+                    .catch(error => {
+                        // Auto-play was prevented
+                        // Show paused UI or handle the error.
+                    });
+            }
         }
-    }
+    };
+
 
     const handleMouseLeave = () => {
         if (videoRef.current) {

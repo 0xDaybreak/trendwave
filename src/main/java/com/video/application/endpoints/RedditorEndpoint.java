@@ -19,7 +19,6 @@ public class RedditorEndpoint {
 
     @PermitAll
     public List<Redditor> retrieveRedditors() {
-        System.out.println(redditorService.retrieveRedditors().get(0).getAvatarurl());
         return redditorService.retrieveRedditors();
     }
 }

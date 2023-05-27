@@ -12,6 +12,7 @@ public class Redditor {
 
     private String avatarurl;
 
+    private String redditUsername;
     private Set<String> topSubreddits;
 
 
@@ -30,6 +31,15 @@ public class Redditor {
     public void setAvatarurl(String avatarurl) {
         this.avatarurl = avatarurl;
     }
+
+    public String getRedditUsername() {
+        return redditUsername;
+    }
+
+    public void setRedditUsername(String redditUsername) {
+        this.redditUsername = redditUsername;
+    }
+
 
     public Set<String> getTopSubreddits() {
         return topSubreddits;

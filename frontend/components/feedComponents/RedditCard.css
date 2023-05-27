@@ -10,3 +10,18 @@
     width: 9rem;
     height: 9rem;
 }
+
+.redditor-username{
+    margin-top: 0.1rem;
+    margin-left: 1.4rem;
+    color: whitesmoke;
+}
+
+.subreddit-btn{
+    background-color: #c57676;
+    color: #2b334b;
+    border-radius: 25px;
+    justify-self: flex-start;
+    margin-left: 1rem;
+    height: 1.5rem;
+}

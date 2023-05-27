@@ -50,7 +50,7 @@ const RegisterHolder = () => {
         }
     }
     return (
-        <VerticalLayout className="card-holder-vertical-layout">
+        <VerticalLayout className="card-holder-vertical-layout-register">
             <div className={"m-auto"}>
                 <VerticalLayout className={"min-h-screen"}>
                     <img className={"image"} alt="logo" src={sheepImg}/>

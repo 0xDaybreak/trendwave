@@ -4,5 +4,13 @@
     align-items: center;
     flex-wrap: wrap;
     margin-top: 3rem;
-    width: 95%;
+    width: 30%;
+    margin-left: 60vh;
+}
+
+@media (max-width: 767px) {
+    .feedholder-items {
+        margin-left: 0;
+        width: 95%;
+    }
 }

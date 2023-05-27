@@ -1,5 +1,4 @@
 
-
 .profile-holder {
     align-self: center;
     align-content: center;
@@ -29,6 +28,13 @@
 
 .text-profile{
     color:white;
+}
+
+.profile-btn{
+    cursor: pointer;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    background-color: #1f1f1f;
 }
 
 @media (max-width:768px) {

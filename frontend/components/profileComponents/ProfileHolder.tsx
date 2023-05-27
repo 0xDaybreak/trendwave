@@ -14,7 +14,8 @@ const ProfileHolder = () => {
                         <TextField name={'name'} className={"field-profile"}>Name</TextField>
                         <h3 className={"text-profile"}>Email</h3>
                         <TextField name={'email'} className={"field-profile"}>Email</TextField>
-                        <Button theme={"error"} >Delete Account</Button>
+                        <Button className={"profile-btn"} theme={"secondary success"} >Update Profile</Button>
+                        <Button className={"profile-btn"} theme={"error"} >Delete Account</Button>
                     </div>
                 </VerticalLayout>
             </div>

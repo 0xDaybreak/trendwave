@@ -37,8 +37,8 @@ const RegisterHolder = () => {
         setShowTip(true);
     }
 
-    const handleRegister = () => {
-        if (password1 === password2 && emailRegex.test(email)) {
+    const handleRegister = async () => {
+        if (password1 === password2 && emailRegex.test(email) && !await UserEndpoint.isUsernameExist(email)) {
             const u: User = {
                 username: email,
                 password: password2,

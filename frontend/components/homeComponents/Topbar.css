@@ -16,6 +16,8 @@
     height: fit-content;
     color: snow;
     cursor: pointer;
+    background-color: #7f5b88;
+    margin-right: 0.5rem;
 }
 
 .tb {

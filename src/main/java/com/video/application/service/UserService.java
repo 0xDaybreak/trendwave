@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -30,7 +31,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userRepository != null) {
-            User u = userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("username not found"));
+            User u = userRepository.findByUsername(username).orElseThrow(()-> {
+               throw new UsernameNotFoundException("username not found");
+                    }
+            );
             //List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
             //u.setAuthorities(authorities);
             return new SecurityUser(u);
@@ -51,6 +55,13 @@ public class UserService implements UserDetailsService {
 
         }
         return null;
+    }
+
+    public Optional<User> findByUsername(String username) {
+        if(userRepository != null) {
+            return userRepository.findByUsername(username);
+        }
+        return Optional.empty();
     }
 
     public void createUser(User user) {

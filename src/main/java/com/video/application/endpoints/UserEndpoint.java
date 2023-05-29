@@ -34,7 +34,7 @@ public class UserEndpoint {
 
     @AnonymousAllowed
     public boolean isUsernameExist(String username) {
-        return !userService.loadUserByUsername(username).getUsername().isEmpty();
+        return userService.findByUsername(username).isPresent();
     }
 
     @PermitAll

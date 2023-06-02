@@ -1,5 +1,6 @@
 package com.video.application.endpoints;
 
+import com.video.application.util.ResetMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -48,5 +49,10 @@ public class UserEndpoint {
         User user = userService.findByUsername();
         user.getFavourites().remove(vid);
         userService.updateUser(user);
+    }
+
+    @AnonymousAllowed
+    public ResetMessage sendRecoveryEmail(String username) {
+        return userService.sendRecoveryEmail(username);
     }
 }

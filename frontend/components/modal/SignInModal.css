@@ -30,6 +30,13 @@
     text-align: center;
 
 }
+.text-font {
+    color: #f387f3;
+    margin-left: auto;
+    font-size: 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
 .text-signing {
     color: #f387f3;
@@ -42,6 +49,7 @@
     user-select: none;
     overflow: auto;
     width: 100%;
+    min-width: 70%;
     max-width: 100%;
     background-color: #2b334b;
     border-radius: 25px;

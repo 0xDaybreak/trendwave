@@ -16,14 +16,19 @@ const ForgotPasswordModal = () => {
     }
 
     const handleSendCodeClick = async () => {
-        setIsUserNameExist(true);
+        if(email.length != 0){
+            setIsUserNameExist(true);
+        }
+
     }
 
     return (
         <div>
+            <h3 className={"text-signing"}> Reset Password </h3>
+            <h3 className={"text-font"}>Enter the email address you registered with and we will send you a link to reset your password.</h3>
             <h3 className={"text-signing"}> Email </h3>
             <HorizontalLayout className={"hl-alignment"}>
-                <TextField onChange={handleInputChange} className={"field-signin"}>
+                <TextField onChange={handleInputChange} className={"field-signin-reset"}>
                     Enter Your Email
                 </TextField>
                 <Button onClick={handleSendCodeClick} className={"sc-button"}>

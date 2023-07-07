@@ -2,6 +2,7 @@ package com.video.application.service;
 
 import com.vaadin.flow.server.VaadinRequest;
 import com.video.application.emailsender.EmailServiceImpl;
+import com.video.application.entity.PasswordResetToken;
 import com.video.application.entity.SecurityUser;
 import com.video.application.entity.User;
 import com.video.application.exceptions.UserNameAlreadyExistsException;
@@ -39,8 +40,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userRepository != null) {
-            User u = userRepository.findByUsername(username).orElseThrow(()-> {
-               throw new UsernameNotFoundException("username not found");
+            User u = userRepository.findByUsername(username).orElseThrow(() -> {
+                        throw new UsernameNotFoundException("username not found");
                     }
             );
             //List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
@@ -52,21 +53,21 @@ public class UserService implements UserDetailsService {
 
     public User findById(String id) {
         if (userRepository != null) {
-            return userRepository.findById(id).orElseThrow(()-> new UsernameNotFoundException("user id not found"));
+            return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("user id not found"));
         }
         return null;
     }
 
     public User findByUsername() {
-        if(userRepository != null) {
-            return userRepository.findByUsername(VaadinRequest.getCurrent().getUserPrincipal().getName()).orElseThrow(()->new UsernameNotFoundException("username not found"));
+        if (userRepository != null) {
+            return userRepository.findByUsername(VaadinRequest.getCurrent().getUserPrincipal().getName()).orElseThrow(() -> new UsernameNotFoundException("username not found"));
 
         }
         return null;
     }
 
     public Optional<User> findByUsername(String username) {
-        if(userRepository != null) {
+        if (userRepository != null) {
             return userRepository.findByUsername(username);
         }
         return Optional.empty();
@@ -88,20 +89,23 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-    public ResetMessage sendRecoveryEmail(String username){
+    public ResetMessage sendRecoveryEmail(String username) throws Exception {
         Optional<User> u = findByUsername(username);
-        if(u.isEmpty()) {
+        if (u.isEmpty()) {
             try {
                 throw new UserNotFoundException("username not found");
             } catch (UserNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
-            String token = UUID.randomUUID().toString();
-            passwordResetService.createPasswordResetTokenForUser(u.get(), token);
-            emailService.sendSimpleMessage("andrei1.popescu1@gmail.com", "test", "test");
+        String token = UUID.randomUUID().toString();
+        String passwordResetTokenId = passwordResetService.createPasswordResetTokenForUser(u.get(), token);
+        emailService.sendSimpleMessage("andrei1.popescu1@gmail.com", "Request to Reset Password",
+                "Dear user,\n" +
+                        "You are trying to reset the password linked with your account. \n"
+                        + "\nTo confirm your request please use the code below:\n"
+                        + passwordResetService.returnToken(passwordResetTokenId));
 
-            return new ResetMessage("Password sent successfully", "SUCCESS");
-        }
+        return new ResetMessage("Password sent successfully", "SUCCESS");
+    }
 }

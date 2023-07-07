@@ -52,7 +52,7 @@ public class UserEndpoint {
     }
 
     @AnonymousAllowed
-    public ResetMessage sendRecoveryEmail(String username) {
+    public ResetMessage sendRecoveryEmail(String username) throws Exception {
         return userService.sendRecoveryEmail(username);
     }
 }

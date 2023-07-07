@@ -3,7 +3,7 @@ import './CategoriesHolder.css';
 import Category from "Frontend/generated/com/video/application/entity/Category";
 import CategoryComp from "Frontend/components/homeComponents/CategoryComp";
 import { CategoryEndpoint } from "Frontend/generated/endpoints";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {useLocation} from "react-router-dom";
 
 interface CategoriesHolderProps {

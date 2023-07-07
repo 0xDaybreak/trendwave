@@ -1,14 +1,16 @@
 import {Notification} from "@hilla/react-components/Notification.js"
-import {NotificationPosition} from "@vaadin/notification/src/vaadin-notification";
+import {NotificationPosition, ShowOptions} from "@vaadin/notification/src/vaadin-notification";
 import './homeComponents/ContextHolder.css';
 
 let notificationOpened = false;
 
 export const openNotification = (input: string, pos:NotificationPosition) => {
     notificationOpened = true;
-    const notification = Notification.show(input, {
-        position: pos, duration: 5000
-    });
+    const options: ShowOptions = {
+        position: pos,
+        duration: 5000,
+    };
+    const notification = Notification.show(input, options);
     const handleOpenChanged = (e: any) => {
         if (!e.detail.value) {
             notificationOpened = false;

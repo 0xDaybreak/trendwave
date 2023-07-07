@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import './SignInModal.css';
 import {login} from "@hilla/frontend";
 import {Button} from '@hilla/react-components/Button.js';
@@ -73,7 +73,7 @@ const SignInModal: React.FC<SignInModalProps> = (props: SignInModalProps) => {
                                     className={"sn-button"}
                                     onClick={() =>
                                         login(username, password, {loginProcessingUrl: "/home"})
-                                            .then((e) => e.error ? openNotification("Invalid user", "middle") : handleLogIn())
+                                            .then((e) => e.error ? openNotification("Invalid user", "bottom-center") : handleLogIn())
                                             .catch((e) => console.warn(e))
                                     }
                                 >Sign in

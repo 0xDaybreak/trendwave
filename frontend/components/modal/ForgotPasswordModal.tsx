@@ -1,7 +1,7 @@
 import {Button} from "@hilla/react-components/Button.js";
 import {TextField} from "@hilla/react-components/TextField.js";
 import './ForgotPasswordModal.css'
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout.js";
 import {UserEndpoint} from "Frontend/generated/endpoints";
 

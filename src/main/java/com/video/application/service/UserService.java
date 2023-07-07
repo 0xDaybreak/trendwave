@@ -1,12 +1,15 @@
 package com.video.application.service;
 
 import com.vaadin.flow.server.VaadinRequest;
+import com.video.application.emailsender.EmailServiceImpl;
 import com.video.application.entity.SecurityUser;
 import com.video.application.entity.User;
 import com.video.application.exceptions.UserNameAlreadyExistsException;
 import com.video.application.exceptions.UserNotFoundException;
 import com.video.application.repository.UserRepository;
 import com.video.application.util.ResetMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -96,6 +99,9 @@ public class UserService implements UserDetailsService {
         }
             String token = UUID.randomUUID().toString();
             passwordResetService.createPasswordResetTokenForUser(u.get(), token);
+            EmailServiceImpl emailService = new EmailServiceImpl(new JavaMailSenderImpl());
+            emailService.sendSimpleMessage("andrei1.popescu1@gmail.com", "test", "test");
+
             return new ResetMessage("Password sent successfully", "SUCCESS");
         }
 }

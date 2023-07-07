@@ -8,8 +8,6 @@ import com.video.application.exceptions.UserNameAlreadyExistsException;
 import com.video.application.exceptions.UserNotFoundException;
 import com.video.application.repository.UserRepository;
 import com.video.application.util.ResetMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,11 +26,14 @@ public class UserService implements UserDetailsService {
 
     private final PasswordResetService passwordResetService;
 
+    private final EmailServiceImpl emailService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PasswordResetService passwordResetService) {
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PasswordResetService passwordResetService, EmailServiceImpl emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.passwordResetService = passwordResetService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -99,7 +100,6 @@ public class UserService implements UserDetailsService {
         }
             String token = UUID.randomUUID().toString();
             passwordResetService.createPasswordResetTokenForUser(u.get(), token);
-            EmailServiceImpl emailService = new EmailServiceImpl(new JavaMailSenderImpl());
             emailService.sendSimpleMessage("andrei1.popescu1@gmail.com", "test", "test");
 
             return new ResetMessage("Password sent successfully", "SUCCESS");

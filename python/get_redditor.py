@@ -2,16 +2,14 @@ import praw
 from pymongo import MongoClient
 from datetime import date
 
-reddit = praw.Reddit(client_id='***REMOVED***',
-                     client_secret='***REMOVED***',
-                     user_agent='your_user_agent')
+reddit = praw.Reddit(user_agent='your_user_agent')
 
 client = MongoClient("mongodb://localhost:27017")
 print("Connection Successful")
 db = client.videosite
 collection = db.redditor
 
-reddit_usernames = ['Bitdream200k', 'himthecool21']
+reddit_usernames = ['', '']
 
 for reddit_u in reddit_usernames:
     redditor_username = reddit_u

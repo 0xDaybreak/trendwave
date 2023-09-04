@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from datetime import date
 
 reddit = praw.Reddit(client_id='***REMOVED***',
-                     client_secret='***REMOVED***',
+                   
                      user_agent='your_user_agent')
 
 client = MongoClient("mongodb://localhost:27017")

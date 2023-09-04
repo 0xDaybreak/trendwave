@@ -1,7 +1,12 @@
-# Custom project from Hilla
+# Trend Wave project
+This is an application similar to [scrolller.com](https://scrolller.com). The project uses the latest hilla version. Hilla is an open source framework that integrates a Spring Boot Java backend with a reactive TypeScript frontend. 
+For more information about hilla and technologies used in this project check the "Useful links" section.
 
-This project can be used as a starting point to create your own Hilla application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+## Setting up the project
+
+Clone the project and open it in our favourite IDE and wait for Maven to download all the dependencies. 
+
+Set up MongoDB on the machine you would like to run the application on. In the file src/main/resources/application.properties make sure that the variable spring.data.mongodb.uri has the correct uri of your database.
 
 ## Running the application
 
@@ -12,37 +17,9 @@ http://localhost:8080 in your browser.
 You can also import the project to your IDE of choice as you would with any
 Maven project.
 
-## Deploying to Production
+## Creating content for the website
 
-To create a production build, call `mvnw clean package -Pproduction` (Windows),
-or `./mvnw clean package -Pproduction` (Mac & Linux).
-This will build a JAR file with all the dependencies and front-end resources,
-ready to be deployed. The file can be found in the `target` folder after the build completes.
-
-Once the JAR file is built, you can run it using
-`java -jar target/myapp-1.0-SNAPSHOT.jar` (NOTE, replace
-`myapp-1.0-SNAPSHOT.jar` with the name of your jar).
-
-## Project structure
-
-<table style="width:100%; text-align: left;">
-  <tr><th>Directory</th><th>Description</th></tr>
-  <tr><td><code>frontend/</code></td><td>Client-side source directory</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>index.html</code></td><td>HTML template</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>index.ts</code></td><td>Frontend 
-entrypoint, bootstraps a React application</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>routes.tsx</code></td><td>React Router routes definition</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>MainLayout.tsx</code></td><td>Main 
-layout component, contains the navigation menu, uses <a href="https://hilla.dev/docs/react/components/app-layout">
-App Layout</a></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>views/</code></td><td>UI view 
-components</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>themes/</code></td><td>Custom  
-CSS styles</td></tr>
-  <tr><td><code>src/main/java/&lt;groupId&gt;/</code></td><td>Server-side 
-source directory, contains the server-side Java views</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>Application.java</code></td><td>Server entry-point</td></tr>
-</table>
+In order to populate the website with content you can modify the python scripts to access the Reddit API with your credentials. After modifying the .py files, make sure that the MongoDB server is running and simply run the python scripts in order to populate the Database.
 
 ## Useful links
 
